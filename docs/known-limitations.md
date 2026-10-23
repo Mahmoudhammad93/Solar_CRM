@@ -1,15 +1,17 @@
 # Known Limitations
 
-Updated as work progresses. Phase 0 baseline (no application yet).
-
 ## Process / environment
-- Assignment receipt timestamp not yet provided by the human; `docs/project-clock.md` is incomplete until that is set.
-- This Cursor session is Auto/Composer, not Claude. Claude-only evidence for the evaluator may be incomplete or need a separate Claude session; this is disclosed honestly (see Phase 0 report).
-- MySQL client is installed (8.0.46) but default local login for OS user `hammad` without a password failed (`ERROR 1045`). Database credentials will be configured in `.env` during app scaffolding (Phase 1+).
+- Assignment receipt timestamp not yet provided; `docs/project-clock.md` remains awaiting start time.
+- This Cursor session is Auto/Composer, not Claude. Claude-only evidence for the evaluator may need a separate Claude session; disclosed honestly.
+- Local MySQL for the app is Docker container `solar_crm_mysql` on port **3308** (not the system MySQL socket).
 
-## Application
-- No Laravel/Filament application scaffolded yet (Phase 0 boundary).
-- No features implemented; see `docs/feature-status.md` (all **Not implemented**).
+## Phase 1 complete / still missing
+- Domain modules (leads, visits, calculators, quotations, orders, inventory, tickets, reports) are **not implemented**.
+- Filament User/Role CRUD UI not yet built (users/roles are seeded; matrix editable later via DB/admin tools).
+- SET-01 (logo + app name after refresh/logout) needs **human manual confirmation** (branding service + Settings UI are implemented).
+- WhatsApp/email/maps/payment/e-sign/subsidy/production backups remain future Demo drivers.
+- PDF branding snapshot service exists (`BrandingService::pdfSnapshot`) but quote PDFs are not generated yet.
+- Composer TLS is disabled on this machine (`disable-tls`); fix before any production use.
 
-## Integrations (planned Demo by default)
-Per PDF §2 / §10: WhatsApp/email live delivery, live maps, external subsidy APIs, e-signature, payment gateway, and production backups may be simulated when labelled and documented. Production wiring will be README-only unless credentials are deliberately configured later.
+## Demo passwords
+Demo passwords are local-only fictional values documented in README. Do not reuse outside this assignment environment.

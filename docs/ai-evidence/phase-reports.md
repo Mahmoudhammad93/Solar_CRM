@@ -55,3 +55,55 @@ Append-only. Never rewrite prior phase entries.
 
 ### Next phase readiness
 Ready for Phase 1 scaffolding after receipt timestamp is provided and clock is filled (or human explicitly authorizes provisional start).
+
+---
+
+## Phase 1 - Foundation: install, auth, roles, settings, audit, numbering, branding
+
+**Time (shell):** `2026-10-23 15:00:03 EEST` (approx report time; verify with `date` at commit)
+
+**Elapsed / remaining:** clock start not set (receipt timestamp still awaited).
+
+### What was built
+- Laravel 13.38.0 + Filament 5.10.3 + Livewire 4.4.8 on MySQL 8 (Docker `solar_crm_mysql:3308`)
+- Users (phone, role, branch/team, is_active, last_login_at), 6 roles, DB permission matrix, Gates/Policies, RecordScoping helper
+- SettingsService (typed, cache+invalidate, versions), AuditLogger (redaction), NumberingService (lockForUpdate), BrandingService
+- Filament Settings page (branding/security/numbering + Unavailable tab), Change password page
+- Demo seeders, README credentials, foundation Feature tests + MySQL concurrency test
+- `.env.example` placeholders only
+
+### Commands run + results
+- `composer create-project laravel/laravel ^13.0` (prefer-dist) OK
+- `composer require filament/filament:^5.10` OK -> v5.10.3
+- `php artisan migrate:fresh --seed` OK
+- `php artisan test --testsuite=Feature` -> **15 passed, 1 skipped** (MySQL-only test skipped on sqlite)
+- `DB_CONNECTION=mysql ... php artisan test --filter=NumberingMysqlConcurrencyTest` -> **passed** (12 parallel allocations, no duplicates)
+- `curl /admin/login` -> HTTP **200**, branding name present
+- Earlier failure: parallel numbering under sqlite transaction wrap / wrong DB env for child processes — fixed by dedicated MySQL test class + env passthrough
+
+### Requirement status summary (matrix)
+- Fully working: 30
+- Partial: 4
+- Simulated: 0
+- Not implemented: 183
+
+### Known bugs
+- None blocking Phase 1 tests. SET-01 manual logo persistence check not human-confirmed yet.
+
+### Deviations / assumptions
+- Dedicated Docker MySQL on 3308 instead of system MySQL (no sudo password for socket root).
+- Custom RBAC (no Spatie/Shield) per Phase 1 boundary.
+- Receipt clock still awaiting human timestamp.
+- Identity: Auto/Composer session (not Claude).
+
+### Human manual verify
+1. Login as `admin@solar-crm.test` / `Password1!` at `/admin/login`.
+2. Settings → change app name + upload logo → Save → refresh → logout/login (SET-01/SET-09).
+3. Account → Change password (SET-02): wrong current rejected; new works; old fails.
+4. Login as `executive@solar-crm.test` — Settings nav should be inaccessible / 403 (SET-07).
+5. Login as `inactive@solar-crm.test` — blocked.
+6. Narrow browser to mobile width; confirm responsive Filament shell.
+7. Provide assignment receipt timestamp for `docs/project-clock.md`.
+
+### Next phase readiness
+Foundation ready for domain modules (leads/visits) in Phase 2+.
