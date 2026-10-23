@@ -238,3 +238,9 @@ Total features: 217
 - Evidence: `docs/calculation-verification.md`
 - All H1–H5, I1–I2, E1–E2, Q1–Q2 reconcile within documented tolerance; no formula bugs found.
 - Tests: `CalculationVerificationTest` (13) + existing calculator/totals suites.
+
+
+## Validation V4 — UI / workflow
+- Evidence: `docs/ui-workflow-checklist.md`
+- Browser-checked at 375/768/1280; no blocking responsive defects.
+- Seed golden path fixed (accepted quote on Lead 3 with visit+calc+order+project+invoice+ticket+AMC).

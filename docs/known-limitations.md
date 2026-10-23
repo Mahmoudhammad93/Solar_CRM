@@ -34,3 +34,7 @@ Demo passwords are local-only fictional values documented in README. Do not reus
 
 ## Validation V3
 - NPV/IRR remain Not implemented (bonus). See calculation-verification.md for reconciled scenarios.
+
+## Validation V4
+- Wide Filament tables use in-card horizontal scroll on narrow viewports (by design).
+- Full keyboard-only tour and every empty-state variant not exhaustively automated; see ui-workflow-checklist.md manual optional items.

@@ -24,6 +24,8 @@ Shared demo password for all active users: `Password1!`
 
 Seeded scenario marker: Settings `demo.scenario_version=12`, leads with `campaign_details=DEMO-P12`.
 
+**Golden linked path (Validation V4):** `LEAD-2026-0003` → `VIS-2026-0003` → `CAL-2026-0001` → accepted `QUO-2026-0005` → `ORD-2026-0001` / `PRJ-2026-0001` → `INV-2026-0001` → Ticket #1 / AMC #1 (same customer). See `docs/ui-workflow-checklist.md`.
+
 ---
 
 ## Click path (≈12–20 minutes)

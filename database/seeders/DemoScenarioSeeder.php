@@ -301,7 +301,8 @@ class DemoScenarioSeeder extends Seeder
             ['draft', 'hybrid', $manager, $customers[1], $leads[3], $hybridLines(6)],
             ['sent', 'hybrid', $exec, $customers[0], $leads[4], $hybridLines(10)],
             ['sent', 'pump', $manager, $customers[3], $leads[7], $pumpLines],
-            ['accepted', 'hybrid', $admin, $customers[2], $leads[8], $hybridLines(12)],
+            // Golden walkthrough path: leads[2] already has completed visit + hybrid calc (calcs[0]).
+            ['accepted', 'hybrid', $admin, $customers[0], $leads[2], $hybridLines(12)],
             ['accepted', 'hybrid', $exec, $customers[1], $leads[9], $hybridLines(16)],
             ['accepted', 'pump', $manager, $customers[3], $leads[10], $pumpLines],
             ['rejected', 'hybrid', $exec, $customers[4], $leads[11], $hybridLines(4)],
