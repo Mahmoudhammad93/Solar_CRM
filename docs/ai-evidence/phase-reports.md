@@ -450,3 +450,39 @@ AT-10 Fully working.
 
 ### Next phase readiness
 Ready for settings polish / AT-11 / packaging.
+
+---
+
+## Phase 10 - WhatsApp (Demo), Email, notifications, reminders
+
+**Time (shell):** `2026-10-23 17:12:14 EEST`
+
+**Git:** commit pending on `master` (this phase)
+
+### What was built
+- `WhatsAppProvider` + `DemoWhatsAppDriver` (default) + `ConfiguredWhatsAppDriver` stub (**Not implemented** live client)
+- Expanded `MessageService` / `MessageTemplateService` / `PhoneNumber` / consent on Customer
+- `message_logs` (status: `demo_simulated` | `failed` only); UI badge **SIMULATED – not delivered**
+- Filament **Communications** settings: mode, non-secret display fields, Configured/Not configured, setup message, templates + preview, test-connection (Demo simulated); webhook **Not implemented**
+- Email mode log/smtp display; SMTP secrets env-only; test email **Unavailable**
+- Reminder settings + `reminders:dispatch` → in-app `UserNotification`s; scheduled every 15 minutes
+- Quotation share / open wa.me actions labelled honestly
+- README production setup notes
+
+### Tests
+`MessagingAndRemindersTest` — **8 passed** (demo_simulated, opt-out block, invalid phone, unknown placeholder, redaction, non-admin 403, reminders dispatch, test-connection simulated)
+
+### Status
+SET-05 Fully working; SET-06 Fully working; live delivery = Simulated; configured provider / webhook = Not implemented.
+
+### Screenshots to capture (manual)
+1. Communications → WhatsApp: Demo mode + credential **Not configured** setup message (no secret fields)
+2. Template preview with sample data
+3. Test connection notification labelled SIMULATED
+4. Quotation Share action result: SIMULATED – not delivered
+5. Message logs table badge SIMULATED – not delivered
+6. Customer consent Opted out → send blocked error
+7. Email tab: SMTP Not configured / test email Unavailable
+
+### Next phase readiness
+Ready for AT-11 settings polish / packaging / recording.

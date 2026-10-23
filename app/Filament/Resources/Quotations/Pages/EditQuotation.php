@@ -13,10 +13,11 @@ use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -45,7 +46,7 @@ class EditQuotation extends EditRecord
         return $data;
     }
 
-    protected function handleRecordUpdate(\Illuminate\Database\Eloquent\Model $record, array $data): \Illuminate\Database\Eloquent\Model
+    protected function handleRecordUpdate(Model $record, array $data): Model
     {
         $svc = app(QuotationService::class);
         $lines = $data['lines'] ?? [];
@@ -108,16 +109,43 @@ class EditQuotation extends EditRecord
                     return response()->streamDownload(fn () => print ($binary), $filename, ['Content-Type' => 'application/pdf']);
                 }),
             Action::make('shareSimulated')
-                ->label('Share Email/WhatsApp (Simulated)')
-                ->action(function (): void {
+                ->label('Share WhatsApp (SIMULATED – not delivered)')
+                ->form([
+                    TextInput::make('to')
+                        ->label('Recipient phone (with country code)')
+                        ->default(fn () => $this->record->customer?->mobile)
+                        ->required(),
+                ])
+                ->action(function (array $data): void {
+                    $customer = $this->record->customer;
                     $result = app(MessageService::class)->share('whatsapp', 'quotation_ready', [
                         'entity_type' => $this->record::class,
                         'entity_id' => $this->record->id,
                         'entity_reference' => $this->record->number,
-                        'to' => 'demo-customer',
+                        'to' => $data['to'],
+                        'customer_id' => $customer?->id,
+                        'customer_name' => $customer?->name,
+                        'quote_number' => $this->record->number,
+                        'link' => route('quotes.verify', $this->record->public_token),
                     ], Filament::auth()->user());
-                    Notification::make()->title($result['message'])->warning()->send();
+                    $n = Notification::make()->title($result['message']);
+                    ($result['simulated'] ?? false) ? $n->warning()->send() : $n->danger()->send();
                 }),
+            Action::make('openWhatsApp')
+                ->label('Open conversation (opens WhatsApp, no delivery tracking)')
+                ->url(function (): ?string {
+                    $mobile = $this->record->customer?->mobile;
+                    if (! filled($mobile)) {
+                        return null;
+                    }
+                    try {
+                        return app(MessageService::class)->openConversation($mobile)['url'];
+                    } catch (\Throwable) {
+                        return null;
+                    }
+                })
+                ->openUrlInNewTab()
+                ->visible(fn (): bool => filled($this->record->customer?->mobile)),
             Action::make('captureSignature')
                 ->label('Attach demo signature')
                 ->form([

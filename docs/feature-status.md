@@ -145,16 +145,16 @@ Updated after Phase 2.
 | REQ-9-G-001 | Settings-Templates | Configure numbering prefixes and sequence behavior for quote/invoice/order/project/ticket/AMC; validity day... | Not implemented |  |  |  |
 | REQ-9-G-002 | Settings-Templates | Editable branded templates for quotation PDF, hybrid calculator report, site-visit report, installation/com... | Partial |  |  | Phase6: quote+hybrid+visit PDFs Blade; Settings template strings for quote sections |
 | REQ-9-G-003 | Settings-Templates | Enable/disable QR code, signature block, footer/contact block, logo display, PDF/CSV/Excel export options w... | Fully working |  |  | Phase6: quotations.qr_enabled; signature block on PDF |
-| REQ-9-H-001 | Settings-WhatsApp | WhatsApp settings page: provider/mode (Demo or configured), business phone/sender, business/account IDs, ap... | Not implemented |  |  |  |
-| REQ-9-H-002 | Settings-WhatsApp | Secure server-side credential configuration, test-connection, connection status, webhook/callback if implem... | Not implemented |  |  |  |
-| REQ-9-H-003 | Settings-WhatsApp | Editable message templates with safe placeholders, preview, validation for: lead assignment, follow-up remi... | Not implemented |  |  |  |
+| REQ-9-H-001 | Settings-WhatsApp | WhatsApp settings page: provider/mode (Demo or configured), business phone/sender, business/account IDs, ap... | Simulated |  |  | Phase10: Communications |
+| REQ-9-H-002 | Settings-WhatsApp | Secure server-side credential configuration, test-connection, connection status, webhook/callback if implem... | Simulated |  |  | Phase10: Communications |
+| REQ-9-H-003 | Settings-WhatsApp | Editable message templates with safe placeholders, preview, validation for: lead assignment, follow-up remi... | Fully working |  |  | Phase10: Communications |
 | REQ-9-H-004 | Settings-WhatsApp | WhatsApp actions: share quotation PDF/link, share calculator/report link, send approved template, open cust... | Simulated |  |  | Phase6: MessageService share labelled Simulated |
-| REQ-9-H-005 | Settings-WhatsApp | Store message history: linked record, recipient, template, time, initiating user, status (queued/sent/deliv... | Not implemented |  |  |  |
-| REQ-9-H-006 | Settings-WhatsApp | Respect customer consent/opt-in and opt-out; validate phone numbers with country code; safe errors for inva... | Not implemented |  |  |  |
-| REQ-9-I-001 | Settings-Email | Configurable SMTP/provider mode and sender display name/address; server-side secret storage; test email act... | Not implemented |  |  |  |
-| REQ-9-I-002 | Settings-Email | Editable email templates for quotes, visits, project updates, ticket updates, invoices, AMC reminders | Not implemented |  |  |  |
+| REQ-9-H-005 | Settings-WhatsApp | Store message history: linked record, recipient, template, time, initiating user, status (queued/sent/deliv... | Fully working |  |  | Phase10: Communications |
+| REQ-9-H-006 | Settings-WhatsApp | Respect customer consent/opt-in and opt-out; validate phone numbers with country code; safe errors for inva... | Fully working |  |  | Phase10: Communications |
+| REQ-9-I-001 | Settings-Email | Configurable SMTP/provider mode and sender display name/address; server-side secret storage; test email act... | Simulated |  |  | Phase10: Communications |
+| REQ-9-I-002 | Settings-Email | Editable email templates for quotes, visits, project updates, ticket updates, invoices, AMC reminders | Fully working |  |  | Phase10: Communications |
 | REQ-9-I-003 | Settings-Email | Optional SMS/push channels may be documented if not implemented | Not implemented |  |  |  |
-| REQ-9-I-004 | Settings-Notifications | Configure reminders, lead follow-up intervals, task due reminders, notification channels, working hours, ti... | Not implemented |  |  |  |
+| REQ-9-I-004 | Settings-Notifications | Configure reminders, lead follow-up intervals, task due reminders, notification channels, working hours, ti... | Fully working |  |  | Phase10: Communications |
 | REQ-10-J-001 | Settings-Regional | Locale, timezone, date/time format, currency symbol/precision, measurement units, rounding behavior, defaul... | Not implemented |  |  |  |
 | REQ-10-J-002 | Settings-Finance | Tax rules/GST rates, company fiscal year, financial report parameters editable by authorized users, validat... | Fully working |  |  | Phase6: finance.* tax rates/rule in Settings Sample/Demo |
 | REQ-10-J-003 | Settings-API | REST API configuration: enabled/disabled, API client/key metadata and rotation/revocation if implemented; n... | Not implemented |  |  |  |
@@ -164,8 +164,8 @@ Updated after Phase 2.
 | SET-02 | Settings | SET-02 Change own password ? current validated; new/confirm mismatch rejected; new works and old fails | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | SET-03 | Settings | SET-03 Change dropdown/workflow value ? new lead source/stage in forms/filters; changed project/ticket work... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups new lead_source in Lookup options |
 | SET-04 | Settings | SET-04 Change hybrid defaults ? changing PSH, battery DoD, loss factor or panel wattage changes results and... | Fully working |  |  | Phase5: change PSH/DoD/loss/panel → new run changes; old snapshot fixed |
-| SET-05 | Settings-WhatsApp | SET-05 Configure WhatsApp in Demo mode ? template preview works, demo visibly marked simulated, no false se... | Not implemented |  |  |  |
-| SET-06 | Settings-WhatsApp | SET-06 Missing WhatsApp credentials ? useful setup message; never expose or request credentials in public/c... | Not implemented |  |  |  |
+| SET-05 | Settings-WhatsApp | SET-05 Configure WhatsApp in Demo mode ? template preview works, demo visibly marked simulated, no false se... | Fully working |  |  | Phase10: Communications Demo; MessagingAndRemindersTest 8 pass |
+| SET-06 | Settings-WhatsApp | SET-06 Missing WhatsApp credentials ? useful setup message; never expose or request credentials in public/c... | Fully working |  |  | Phase10: env-only secrets; setup message; no UI token fields |
 | SET-07 | Settings | SET-07 Role restrictions ? non-admin cannot save protected settings by UI or direct HTTP/API | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | SET-08 | Settings | SET-08 Audit history ? settings changes record user, timestamp, category, safe summary; secrets/passwords n... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | SET-09 | Settings | SET-09 Persistence ? saved settings remain after logout/login and server restart using DB-backed configuration | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |

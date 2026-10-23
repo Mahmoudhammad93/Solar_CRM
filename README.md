@@ -70,6 +70,37 @@ DB_CONNECTION=mysql DB_HOST=127.0.0.1 DB_PORT=3308 DB_DATABASE=solar_crm_test \
 - `docs/MASTER_PROMPT.md`, `docs/project-clock.md`, `docs/requirements-matrix.csv`
 - `docs/feature-status.md`, `docs/known-limitations.md`, `docs/ai-evidence/phase-reports.md`
 
+## Communications (WhatsApp / Email) — production setup
+
+Defaults are **Demo / SIMULATED – not delivered**. Live delivery is not claimed.
+
+### WhatsApp
+1. Keep `whatsapp.mode=demo` in Settings → Communications until a tested provider client exists.
+2. Put secrets **only** in server env (never in the Settings UI or DB):
+   - `WHATSAPP_TOKEN`
+   - `WHATSAPP_PHONE_NUMBER_ID`
+   - `WHATSAPP_BUSINESS_ACCOUNT_ID` (optional)
+   - `WHATSAPP_ALLOW_LIVE_TEST=false` / `WHATSAPP_ALLOW_LIVE_SEND=false` unless you intentionally enable calls
+3. UI shows **Configured / Not configured** only; it never asks for a token.
+4. Webhook/callback: **Not implemented** in this build.
+5. Configured provider HTTP client: **Not implemented** (interface + stub only).
+
+### Email
+1. Sender name/address: Settings → Communications.
+2. SMTP secrets: `MAIL_*` in `.env` only (`MAIL_MAILER=smtp`, host, username, password).
+3. Test email action: **Unavailable** (demo/log path only).
+
+### Reminders
+Run the scheduler so in-app notifications are created from stored leads/tasks:
+
+```bash
+php artisan reminders:dispatch
+# or cron: * * * * * php /path/to/artisan schedule:run
+```
+
+### Consent
+Customers must be **opted_in** (with timestamp/source) before WhatsApp template sends. Opt-out and unknown consent block sending.
+
 ## Known limitations
 
-See `docs/known-limitations.md`. Domain modules (leads, quotes, calculators, etc.) are not built yet (Phase 1 foundation only). Integrations default to Demo later.
+See `docs/known-limitations.md`. Integrations default to Demo/Simulated; see production setup above.

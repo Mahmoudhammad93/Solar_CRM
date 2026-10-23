@@ -5,15 +5,20 @@
 - This Cursor session is Auto/Composer, not Claude. Claude-only evidence for the evaluator may need a separate Claude session; disclosed honestly.
 - Local MySQL for the app is Docker container `solar_crm_mysql` on port **3308** (not the system MySQL socket).
 
-## Phase 8 (current)
+## Communications (Phase 10)
+- WhatsApp/Email outbound is **Demo / SIMULATED – not delivered** by default. Statuses are only `demo_simulated` or `failed` unless a real provider response exists.
+- **Configured WhatsApp provider client**: Not implemented (interface + stub; no untested HTTP client).
+- WhatsApp **webhook/callback**: Not implemented.
+- Email **test send** action: Unavailable / Not implemented for live SMTP.
+- Live delivery requires env credentials + future tested provider; never invent `queued`/`sent`/`delivered`.
+
+## Other
 - **Payment gateway** is **Simulated/not implemented** — manual payments only; labelled on invoices.
-- AMC **scheduling automation** is **Partial** — `amc:renewal-reminders` daily-command-ready; requires scheduler process.
+- AMC **scheduling automation** is **Partial** — `amc:renewal-reminders` + `reminders:dispatch` need a scheduler process.
 - Partial/milestone billing beyond one invoice per order is **Not implemented**.
 - Installation **completion-report PDF** remains **Partial**.
 - My Orders is **internal-only** (no customer portal in this build).
-- Email/WhatsApp share is **Simulated** via MessageService (no real send).
 - E-signature is explicitly **Demo e-signature, not legally verified**.
-- Dashboard/reports (AT-10) still Phase 9+.
 - Filament User/Role CRUD UI not yet built.
 - Composer TLS is disabled on this machine (`disable-tls`); fix before any production use.
 

@@ -256,11 +256,11 @@ class ManageSettings extends Page
                         ])->columns(3),
                 ]),
                 Tab::make('Coming soon')->schema([
-                    Section::make('Not yet implemented')
+                    Section::make('Integrations')
                         ->schema([
-                            Placeholder::make('unavailable_whatsapp')
-                                ->label('WhatsApp / Email integrations')
-                                ->content('Unavailable — Demo drivers (MessageService)'),
+                            Placeholder::make('comms_link')
+                                ->label('WhatsApp / Email / Reminders')
+                                ->content('Configured under Administration → Communications (Demo default; secrets from env only). Webhook: Not implemented.'),
                             Placeholder::make('unavailable_regional')
                                 ->label('Regional / finance / API')
                                 ->content('Unavailable — later settings phases'),

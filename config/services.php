@@ -35,4 +35,18 @@ return [
         ],
     ],
 
+    /*
+    | WhatsApp credentials — environment/server-side ONLY.
+    | Never store tokens in the database or expose them in Filament forms.
+    */
+    'whatsapp' => [
+        'provider_name' => env('WHATSAPP_PROVIDER_NAME', 'Meta Cloud API'),
+        'token' => env('WHATSAPP_TOKEN'),
+        'phone_number_id' => env('WHATSAPP_PHONE_NUMBER_ID'),
+        'business_account_id' => env('WHATSAPP_BUSINESS_ACCOUNT_ID'),
+        'api_version' => env('WHATSAPP_API_VERSION', 'v21.0'),
+        'allow_live_test' => (bool) env('WHATSAPP_ALLOW_LIVE_TEST', false),
+        'allow_live_send' => (bool) env('WHATSAPP_ALLOW_LIVE_SEND', false),
+    ],
+
 ];

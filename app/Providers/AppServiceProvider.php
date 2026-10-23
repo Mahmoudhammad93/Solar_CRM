@@ -17,6 +17,7 @@ use App\Services\DocumentService;
 use App\Services\InvoiceReportService;
 use App\Services\InvoiceService;
 use App\Services\MessageService;
+use App\Services\MessageTemplateService;
 use App\Services\NumberingService;
 use App\Services\ProjectMilestoneService;
 use App\Services\QuotationReportService;
@@ -51,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(QuotationTotals::class);
         $this->app->singleton(QuotationService::class);
         $this->app->singleton(QuotationReportService::class);
+        $this->app->singleton(MessageTemplateService::class);
         $this->app->singleton(MessageService::class);
         $this->app->singleton(ConvertQuotationToProject::class);
         $this->app->singleton(ProjectMilestoneService::class);

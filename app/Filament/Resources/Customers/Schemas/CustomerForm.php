@@ -34,6 +34,16 @@ class CustomerForm
                 TextInput::make('gps_lng')->numeric(),
                 Select::make('branch_id')->options(fn () => Branch::query()->pluck('name', 'id')),
                 Textarea::make('notes')->columnSpanFull(),
+                Select::make('whatsapp_consent_status')
+                    ->label('WhatsApp consent')
+                    ->options([
+                        'unknown' => 'Unknown (send blocked)',
+                        'opted_in' => 'Opted in',
+                        'opted_out' => 'Opted out (send blocked)',
+                    ])
+                    ->default('unknown'),
+                TextInput::make('whatsapp_consent_source')->label('Consent source'),
+                TextInput::make('whatsapp_consent_at')->label('Consent at')->disabled()->dehydrated(false)->visibleOn('edit'),
             ]),
         ]);
     }

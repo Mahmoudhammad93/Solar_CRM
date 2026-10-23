@@ -10,3 +10,6 @@ Artisan::command('inspire', function () {
 
 // Daily-command-ready AMC renewal list (automation Partial — requires scheduler process).
 Schedule::command('amc:renewal-reminders')->dailyAt('08:00')->withoutOverlapping();
+
+// In-app reminders from stored leads/tasks (requires scheduler process).
+Schedule::command('reminders:dispatch')->everyFifteenMinutes()->withoutOverlapping();
