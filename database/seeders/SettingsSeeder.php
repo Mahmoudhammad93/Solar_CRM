@@ -89,6 +89,25 @@ class SettingsSeeder extends Seeder
             ['key' => 'calc.investment.default_analysis_years', 'value' => 10, 'group' => 'calc', 'type' => 'integer', 'unit' => 'years', 'is_sample' => false],
             ['key' => 'calc.ev.default_utilization', 'value' => 0.6, 'group' => 'calc', 'type' => 'float', 'unit' => 'fraction', 'is_sample' => true],
             ['key' => 'numbering.calculation.prefix', 'value' => 'CAL', 'group' => 'numbering', 'type' => 'string', 'is_sample' => false],
+
+            ['key' => 'finance.company_state', 'value' => 'Maharashtra', 'group' => 'finance', 'type' => 'string', 'unit' => null, 'is_sample' => true],
+            ['key' => 'finance.tax_split_rule', 'value' => 'auto', 'group' => 'finance', 'type' => 'string', 'unit' => null, 'is_sample' => true],
+            ['key' => 'finance.cgst_rate', 'value' => 0.09, 'group' => 'finance', 'type' => 'float', 'unit' => 'fraction', 'is_sample' => true],
+            ['key' => 'finance.sgst_rate', 'value' => 0.09, 'group' => 'finance', 'type' => 'float', 'unit' => 'fraction', 'is_sample' => true],
+            ['key' => 'finance.igst_rate', 'value' => 0.18, 'group' => 'finance', 'type' => 'float', 'unit' => 'fraction', 'is_sample' => true],
+            ['key' => 'finance.round_off', 'value' => 'none', 'group' => 'finance', 'type' => 'string', 'unit' => null, 'is_sample' => false],
+            ['key' => 'quotations.validity_days', 'value' => 15, 'group' => 'quotations', 'type' => 'integer', 'unit' => 'days', 'is_sample' => false],
+            ['key' => 'quotations.max_discount_percent', 'value' => 25, 'group' => 'quotations', 'type' => 'float', 'unit' => 'percent', 'is_sample' => false],
+            ['key' => 'quotations.require_manager_approval', 'value' => false, 'group' => 'quotations', 'type' => 'boolean', 'unit' => null, 'is_sample' => false],
+            ['key' => 'quotations.qr_enabled', 'value' => true, 'group' => 'quotations', 'type' => 'boolean', 'unit' => null, 'is_sample' => false],
+            ['key' => 'quotations.default_terms', 'value' => 'Prices are indicative. Detailed engineering validation required before installation.', 'group' => 'quotations', 'type' => 'string', 'unit' => null, 'is_sample' => true],
+            ['key' => 'quotations.template_scope', 'value' => 'Supply and installation of listed equipment.', 'group' => 'quotations', 'type' => 'string', 'is_sample' => true],
+            ['key' => 'quotations.template_exclusions', 'value' => 'Utility liaison, extra civil works, and unforeseen site constraints.', 'group' => 'quotations', 'type' => 'string', 'is_sample' => true],
+            ['key' => 'quotations.template_commissioning', 'value' => 'Commissioning checklist on handover.', 'group' => 'quotations', 'type' => 'string', 'is_sample' => true],
+            ['key' => 'quotations.template_warranty', 'value' => 'Manufacturer warranties apply; workmanship per company policy.', 'group' => 'quotations', 'type' => 'string', 'is_sample' => true],
+            ['key' => 'quotations.template_maintenance', 'value' => 'Optional AMC available separately.', 'group' => 'quotations', 'type' => 'string', 'is_sample' => true],
+            ['key' => 'quotations.template_validity', 'value' => 'Valid until the date shown on this quotation.', 'group' => 'quotations', 'type' => 'string', 'is_sample' => true],
+            ['key' => 'integrations.message_mode', 'value' => 'demo', 'group' => 'integrations', 'type' => 'string', 'is_sample' => true],
         ];
 
         foreach ($defaults as $row) {

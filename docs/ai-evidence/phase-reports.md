@@ -277,3 +277,48 @@ Ready for hybrid calculators / quotations.
 
 ### Next phase readiness
 Ready for quotations (Phase 6) consuming calculation runs.
+
+---
+
+## Phase 6 - Quotations, taxes, PDF, QR, signature
+
+**Time (shell):** `2026-10-23 16:00:38 EEST`
+
+**Elapsed / remaining:** clock start not set (receipt timestamp still awaited).
+
+### What was built
+- Quotations with revisions, workflow transitions, payment schedule, hybrid import from CalculationRun, pump proposal fields
+- `QuotationTotals` (sole totals engine): CGST+SGST vs IGST via Settings `finance.tax_split_rule` / company vs customer state; Money minor-units half-up rounding; optional nearest-rupee round-off
+- Immutable locked snapshots (tax/branding/lines/totals); edit after Sent ? new revision
+- Branded PDF, public `/quotes/verify/{token}` (minimal fields), Endroid SVG QR, demo signature label, MessageService Simulated share
+
+### Sample totals
+
+**Hybrid QUO-2026-0001 (intra-state Maharashtra)** — PDF `quotation-quo-2026-0001-r1-20261023-130037.pdf` (880,865 bytes)
+
+| Field | Amount |
+|-------|--------|
+| Subtotal | 2,000.00 |
+| Discount (10%) | 200.00 |
+| Taxable | 1,800.00 |
+| CGST 9% | 162.00 |
+| SGST 9% | 162.00 |
+| Grand total | 2,124.00 |
+
+**Pump QUO-2026-0002 (inter-state Karnataka)** — PDF `quotation-quo-2026-0002-r1-20261023-130038.pdf` (881,404 bytes)
+
+| Field | Amount |
+|-------|--------|
+| Subtotal | 1,640.00 |
+| Taxable | 1,640.00 |
+| IGST 18% | 295.20 |
+| Grand total | 1,935.20 |
+
+### Tests
+`QuotationTotalsAndWorkflowTest` ? **9 passed** (intra/inter hand totals, discount limit, round-off, snapshot immutability, PDF/HTML, auth, verify page privacy, QR SVG)
+
+### Status
+AT-06 Fully working; REQ-5-A-* Fully working; NPV N/A; order conversion still Phase 7.
+
+### Next phase readiness
+Ready for order/project conversion (Phase 7).

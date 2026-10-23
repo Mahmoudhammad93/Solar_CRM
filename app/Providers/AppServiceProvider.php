@@ -12,6 +12,10 @@ use App\Services\CalculationReportService;
 use App\Services\Calculators\EvCalculatorService;
 use App\Services\Calculators\HybridCalculatorService;
 use App\Services\Calculators\InvestmentCalculatorService;
+use App\Services\MessageService;
+use App\Services\QuotationReportService;
+use App\Services\QuotationService;
+use App\Services\QuotationTotals;
 use App\Services\StockService;
 use App\Services\VisitReportService;
 use Illuminate\Auth\Events\Login;
@@ -34,6 +38,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(InvestmentCalculatorService::class);
         $this->app->singleton(EvCalculatorService::class);
         $this->app->singleton(CalculationReportService::class);
+        $this->app->singleton(QuotationTotals::class);
+        $this->app->singleton(QuotationService::class);
+        $this->app->singleton(QuotationReportService::class);
+        $this->app->singleton(MessageService::class);
     }
 
     public function boot(): void
