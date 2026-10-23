@@ -653,11 +653,12 @@ SEC-V2-01..05 (see security-verification.md). Residuals: 2FA optional, LeadPolic
 
 ## Validation V5 - Clean setup from README (AT-12)
 
-**Time (shell):** `2026-10-23 17:59:20 EEST`
+**Time (shell):** `2026-10-23 18:02 EEST`  
+**Git:** commit `d25b7a4`
 
 ### Actions
 - Refreshed README (stack versions, architecture + Mermaid, DB/env, install, demo creds, tests, queue/scheduler, flows, settings, Demo messaging, API, backup, deploy, security, limitations, future work)
-- Verified via temp clone `../solar-crm-v5-verify`
+- Verified via temp clone `../solar-crm-v5-verify` at `d25b7a4`
 - Committed `package-lock.json`; documented MySQL wait + no `--omit=optional`
 - Updated feature-status / requirements-matrix / acceptance-evidence for AT-12 / REQ-1-010/011 / REQ-12-002/003
 
@@ -666,5 +667,5 @@ SEC-V2-01..05 (see security-verification.md). Residuals: 2FA optional, LeadPolic
 2. `npm install --omit=optional` breaks rolldown Linux binding — **documented**
 3. First Docker boot needs ready-wait before migrate — **documented**
 
-### Verified command sequence (results)
-See progress report in chat; all steps exit 0; login HTTP 200; `PASS_OK` for `admin@solar-crm.test` / `Password1!`; `.env` ignored.
+### Re-verify (post-commit) command results
+`git clone` → `MYSQL_READY` → `composer install` 0 → `npm ci` 0 → `npm run build` 0 → `key:generate` 0 → `migrate:fresh --seed` 0 → `storage:link` 0 → `LOGIN_HTTP:200` → `PASS_OK` / `AUTH_OK` → `.env` ignored; main `git status` clean aside from this report hash note.
