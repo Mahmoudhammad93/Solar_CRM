@@ -1,6 +1,6 @@
 # Feature Status
 
-Updated after Phase 1. Status upgrades require evidence.
+Updated after Phase 2.
 
 | ID | Module | Feature | Status | Known bugs | Dependencies | Evidence |
 |----|--------|---------|--------|------------|--------------|----------|
@@ -41,21 +41,21 @@ Updated after Phase 1. Status upgrades require evidence.
 | REQ-3-A-005 | Dashboard | Filters: date range, branch, team member, lead source, status | Not implemented |  |  |  |
 | REQ-3-A-006 | Dashboard | KPI cards open underlying filtered records | Not implemented |  |  |  |
 | REQ-3-A-007 | Dashboard | Activity center: timestamped events, task reminders, overdue highlights, read/unread notifications, action ... | Not implemented |  |  |  |
-| REQ-3-B-001 | Leads | Lead identity fields: auto lead ID, created date/time, lead title, customer type, full name/company, contac... | Not implemented |  |  |  |
-| REQ-3-B-002 | Leads | Lead location fields: address, city, district, state, PIN/postal, GPS if available, branch/territory | Not implemented |  |  |  |
-| REQ-3-B-003 | Leads | Lead solar need fields: system type (hybrid, solar water pump, EV charging, other), property segment, roof/... | Not implemented |  |  |  |
-| REQ-3-B-004 | Leads | Lead sales tracking: source, campaign/source details, assigned owner, stage, loss reason, probability, expe... | Not implemented |  |  |  |
-| REQ-3-B-005 | Leads | Lead follow-up/files: next follow-up, reminder, outcome, call/meeting notes, documents/photos, interaction ... | Not implemented |  |  |  |
-| REQ-3-B-006 | Leads | Lead actions: add/edit/view, assign/reassign, search/filter/sort, duplicate check, follow-up scheduling, cu... | Not implemented |  |  |  |
-| REQ-3-B-007 | Leads | Lead import/export where feasible | Not implemented |  |  |  |
+| REQ-3-B-001 | Leads | Lead identity fields: auto lead ID, created date/time, lead title, customer type, full name/company, contac... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
+| REQ-3-B-002 | Leads | Lead location fields: address, city, district, state, PIN/postal, GPS if available, branch/territory | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
+| REQ-3-B-003 | Leads | Lead solar need fields: system type (hybrid, solar water pump, EV charging, other), property segment, roof/... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
+| REQ-3-B-004 | Leads | Lead sales tracking: source, campaign/source details, assigned owner, stage, loss reason, probability, expe... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
+| REQ-3-B-005 | Leads | Lead follow-up/files: next follow-up, reminder, outcome, call/meeting notes, documents/photos, interaction ... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
+| REQ-3-B-006 | Leads | Lead actions: add/edit/view, assign/reassign, search/filter/sort, duplicate check, follow-up scheduling, cu... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
+| REQ-3-B-007 | Leads | Lead import/export where feasible | Partial |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups CSV export done; import Not implemented |
 | REQ-3-C-001 | Visits | Visit core: Visit ID, linked lead/customer, schedule, assigned surveyor, status, site address, GPS, resched... | Not implemented |  |  |  |
 | REQ-3-C-002 | Visits | Survey fields: property type, roof type/material, usable area, orientation/tilt, shading/obstructions, stru... | Not implemented |  |  |  |
 | REQ-3-C-003 | Visits | Utility details: bill/consumption evidence, monthly units, sanctioned load, single/three-phase, utility/DIS... | Not implemented |  |  |  |
 | REQ-3-C-004 | Visits | Visit outcome: measurements, feasibility, customer needs, objections, feedback, recommended next step, prel... | Not implemented |  |  |  |
 | REQ-3-C-005 | Visits | Map/GPS real only when configured; otherwise manual coordinates and demo-labeled map preview | Not implemented |  |  |  |
-| REQ-3-D-001 | Tasks | Tasks linkable to leads, customers, quotes, visits, projects, tickets | Not implemented |  |  |  |
-| REQ-3-D-002 | Tasks | Task fields: title, description, owner, due date/time, priority, status, reminder, outcome | Not implemented |  |  |  |
-| REQ-3-D-003 | Tasks | Task list/calendar view, overdue and due-today views, completion timestamps, linked-record activity history | Not implemented |  |  |  |
+| REQ-3-D-001 | Tasks | Tasks linkable to leads, customers, quotes, visits, projects, tickets | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
+| REQ-3-D-002 | Tasks | Task fields: title, description, owner, due date/time, priority, status, reminder, outcome | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
+| REQ-3-D-003 | Tasks | Task list/calendar view, overdue and due-today views, completion timestamps, linked-record activity history | Partial |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups list/due-today/overdue; calendar not shipped |
 | REQ-4-001 | Calculators | Calculator must not return arbitrary/fixed results; show inputs, formulas/assumptions, intermediate totals,... | Not implemented |  |  |  |
 | REQ-4-002 | Calculators | Results labeled as indicative estimates, not engineering certification | Not implemented |  |  |  |
 | REQ-4-003 | Calculators | Configurable formulas and documented assumptions; validate non-negative, units, efficiency ranges, zero den... | Not implemented |  |  |  |
@@ -132,7 +132,7 @@ Updated after Phase 1. Status upgrades require evidence.
 | REQ-8-C-001 | Settings-RBAC | Configure roles, module access and actions (view/create/edit/delete/export/approve/settings); protect setti... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-8-C-002 | Settings-RBAC | Configure branch/warehouse list, territory/region, assignment rules, team names, access scope | Not implemented |  |  |  |
 | REQ-8-C-003 | Settings-Numbering | Configure company/fiscal-year details and numbering sequences/prefixes for leads, quotes, orders, invoices,... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
-| REQ-8-D-001 | Settings-Lists | Add/edit/deactivate lead sources, lead stages, customer types, property types, product categories, units, p... | Not implemented |  |  |  |
+| REQ-8-D-001 | Settings-Lists | Add/edit/deactivate lead sources, lead stages, customer types, property types, product categories, units, p... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
 | REQ-8-D-002 | Settings-Lists | Where feasible: admin-defined custom fields (text/number/date/dropdown/checkbox) with label, required, defa... | Not implemented |  |  |  |
 | REQ-8-D-003 | Settings-Workflow | Configure quotation statuses, project milestones, ticket workflow, AMC statuses and allowed transitions; ne... | Not implemented |  |  |  |
 | REQ-8-D-004 | Settings-Lists | Configure table columns and defaults where feasible; deactivating config must not break existing records (p... | Not implemented |  |  |  |
@@ -162,7 +162,7 @@ Updated after Phase 1. Status upgrades require evidence.
 | REQ-10-J-005 | Settings-System | Configure data-export formats, backup reminder/schedule, retention preferences, audit-log filter settings w... | Not implemented |  |  |  |
 | SET-01 | Settings | SET-01 Change app/website display name and logo ? branding changes in nav/login and generated quotation/rep... | Partial |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 Branding settings UI+service present; manual logo refresh check pending human confirmation |
 | SET-02 | Settings | SET-02 Change own password ? current validated; new/confirm mismatch rejected; new works and old fails | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
-| SET-03 | Settings | SET-03 Change dropdown/workflow value ? new lead source/stage in forms/filters; changed project/ticket work... | Not implemented |  |  |  |
+| SET-03 | Settings | SET-03 Change dropdown/workflow value ? new lead source/stage in forms/filters; changed project/ticket work... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups new lead_source in Lookup options |
 | SET-04 | Settings | SET-04 Change hybrid defaults ? changing PSH, battery DoD, loss factor or panel wattage changes results and... | Not implemented |  |  |  |
 | SET-05 | Settings-WhatsApp | SET-05 Configure WhatsApp in Demo mode ? template preview works, demo visibly marked simulated, no false se... | Not implemented |  |  |  |
 | SET-06 | Settings-WhatsApp | SET-06 Missing WhatsApp credentials ? useful setup message; never expose or request credentials in public/c... | Not implemented |  |  |  |
@@ -173,7 +173,7 @@ Updated after Phase 1. Status upgrades require evidence.
 | REQ-10-011 | Cross-cutting | PDF and CSV/Excel-compatible exports, quote QR code, signature capture/display area, document management, G... | Not implemented |  |  |  |
 | REQ-10-012 | Integrations | Email/WhatsApp live delivery, live maps, external subsidy APIs, electronic signatures, payment gateway, pro... | Not implemented |  |  |  |
 | AT-01 | Acceptance | AT-01 Log in with demo credentials; demonstrate ?2 roles with different server-enforced permissions | Partial |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 roles/permissions ready; full UI demo pending human |
-| AT-02 | Acceptance | AT-02 Create lead, assign, add follow-up/customer note, find via search/filter | Not implemented |  |  |  |
+| AT-02 | Acceptance | AT-02 Create lead, assign, add follow-up/customer note, find via search/filter | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
 | AT-03 | Acceptance | AT-03 Schedule and complete site visit with survey fields, photo/document support, visit history/report | Not implemented |  |  |  |
 | AT-04 | Acceptance | AT-04 Run hybrid calculator; show changed inputs, units, assumptions, formula/intermediates, changing outpu... | Not implemented |  |  |  |
 | AT-05 | Acceptance | AT-05 Run solar investment and EV income calculators; verify input changes affect results logically | Not implemented |  |  |  |
@@ -222,5 +222,5 @@ Updated after Phase 1. Status upgrades require evidence.
 | REQ-MP-CONVERT-IDEM | Orders | Conversion quotation?project must be idempotent (no duplicate projects) | Not implemented |  |  |  |
 | REQ-MP-TESTS | Tests | Required automated tests: calculation hand-computed, authorization, numbering concurrency (MySQL), snapshot... | Partial |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 Foundation tests present; domain calc/stock/snapshot tests later |
 
-Totals: {'Not implemented': 183, 'Fully working': 30, 'Partial': 4}
+Totals: {'Not implemented': 170, 'Fully working': 41, 'Partial': 6}
 Total features: 217

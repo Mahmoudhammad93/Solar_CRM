@@ -11,7 +11,7 @@ class SequenceSeeder extends Seeder
     {
         $numbering = app(NumberingService::class);
 
-        foreach (['lead', 'visit', 'quote', 'order', 'project', 'invoice', 'ticket', 'amc', 'product'] as $entity) {
+        foreach (['lead', 'customer', 'task', 'visit', 'quote', 'order', 'project', 'invoice', 'ticket', 'amc', 'product'] as $entity) {
             $numbering->syncFromSettings($entity);
         }
     }

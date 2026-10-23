@@ -7,6 +7,7 @@ final class PermissionCatalog
     public const MODULES = [
         'dashboard',
         'leads',
+        'customers',
         'visits',
         'tasks',
         'calculators',
@@ -86,7 +87,7 @@ final class PermissionCatalog
                 ['users.view'],
             ))),
             'sales-executive' => $moduleActions(
-                ['dashboard', 'leads', 'visits', 'tasks', 'calculators', 'quotations', 'products', 'documents'],
+                ['dashboard', 'leads', 'customers', 'visits', 'tasks', 'calculators', 'quotations', 'products', 'documents'],
                 ['view', 'create', 'edit']
             ),
             'surveyor-engineer' => $moduleActions(

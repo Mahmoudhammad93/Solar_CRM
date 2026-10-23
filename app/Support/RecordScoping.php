@@ -6,8 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Reusable record-level query scoping for later domain modules.
- * Sales Executive and Surveyor/Engineer see only assigned records by default.
+ * Reusable record-level query scoping for domain modules.
  */
 final class RecordScoping
 {
@@ -27,28 +26,89 @@ final class RecordScoping
         return $slug !== null && in_array($slug, self::ASSIGNED_ROLE_SLUGS, true);
     }
 
+    public static function isSalesManager(?User $user): bool
+    {
+        return $user?->role?->slug === 'sales-manager';
+    }
+
     /**
-     * Apply owner/assignee scoping. Column defaults are common for leads/visits.
-     *
      * @param  Builder<\Illuminate\Database\Eloquent\Model>  $query
      * @return Builder<\Illuminate\Database\Eloquent\Model>
      */
     public static function applyAssignedScope(Builder $query, ?User $user, string $ownerColumn = 'assigned_to'): Builder
     {
-        if (! self::mustScopeToAssigned($user)) {
+        if (! $user || $user->isSuperAdmin()) {
             return $query;
         }
 
-        return $query->where($ownerColumn, $user->id);
+        if (self::isSalesManager($user)) {
+            return self::applyTeamOwnerScope($query, $user, $ownerColumn);
+        }
+
+        if (self::mustScopeToAssigned($user)) {
+            return $query->where($ownerColumn, $user->id);
+        }
+
+        return $query;
     }
 
     /**
-     * Whether a user may access a specific owned record.
+     * Sales Manager: records owned by anyone on the same team (fallback: same branch).
+     *
+     * @param  Builder<\Illuminate\Database\Eloquent\Model>  $query
+     * @return Builder<\Illuminate\Database\Eloquent\Model>
      */
+    public static function applyTeamOwnerScope(Builder $query, User $user, string $ownerColumn = 'assigned_to'): Builder
+    {
+        $ownerIds = User::query()
+            ->when(
+                $user->team_id,
+                fn (Builder $q) => $q->where('team_id', $user->team_id),
+                fn (Builder $q) => $q->when(
+                    $user->branch_id,
+                    fn (Builder $inner) => $inner->where('branch_id', $user->branch_id),
+                    fn (Builder $inner) => $inner->whereKey($user->id),
+                ),
+            )
+            ->pluck('id')
+            ->all();
+
+        if ($ownerIds === []) {
+            $ownerIds = [$user->id];
+        }
+
+        return $query->whereIn($ownerColumn, $ownerIds);
+    }
+
     public static function canAccessOwnedRecord(?User $user, ?int $ownerId): bool
     {
         if (! $user) {
             return false;
+        }
+
+        if ($user->isSuperAdmin()) {
+            return true;
+        }
+
+        if (self::isSalesManager($user)) {
+            if ($ownerId === null) {
+                return true;
+            }
+
+            $allowed = User::query()
+                ->when(
+                    $user->team_id,
+                    fn (Builder $q) => $q->where('team_id', $user->team_id),
+                    fn (Builder $q) => $q->when(
+                        $user->branch_id,
+                        fn (Builder $inner) => $inner->where('branch_id', $user->branch_id),
+                        fn (Builder $inner) => $inner->whereKey($user->id),
+                    ),
+                )
+                ->whereKey($ownerId)
+                ->exists();
+
+            return $allowed;
         }
 
         if (! self::mustScopeToAssigned($user)) {

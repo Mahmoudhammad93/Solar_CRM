@@ -107,3 +107,42 @@ Ready for Phase 1 scaffolding after receipt timestamp is provided and clock is f
 
 ### Next phase readiness
 Foundation ready for domain modules (leads/visits) in Phase 2+.
+
+---
+
+## Phase 2 - Leads, customers, follow-ups, tasks
+
+**Time (shell):** `2026-10-23 15:11:46 EEST`
+
+**Elapsed / remaining:** clock start not set (receipt timestamp still awaited).
+
+### What was built
+- Lookups table + Filament LookupResource (Settings-managed dropdowns; deactivation preserves values)
+- Leads (all PDF field groups), customers, interactions, stage history, tasks (polymorphic)
+- LeadConversionService (transactional, idempotent), LeadDuplicateChecker, RecordScoping team/assigned
+- CSV export for filtered leads; CSV import skipped; calendar Partial (list/due-today/overdue shipped)
+
+### Commands run + results
+- `php artisan migrate` Phase 2 tables OK
+- `php artisan test --testsuite=Feature` -> **22 passed, 1 skipped**
+
+### Requirement status
+See matrix totals after Phase 2 update.
+
+### Known bugs
+- None blocking AT-02 tests.
+
+### Deviations / assumptions
+- Task calendar view not implemented (list tabs only).
+- Lead CSV import Not implemented.
+- Visit/Quote/Project/Ticket morph targets stubbed as labels until those modules exist.
+
+### Human manual verify (AT-02 / SET-03)
+1. Login admin@solar-crm.test / Password1!
+2. Administration → Lookups: add lead_source value; confirm it appears on Lead form Source + table filter.
+3. Create lead, assign owner, add interaction note, schedule follow-up, search/filter.
+4. Login as executive A vs B: cannot open the other's lead URL.
+5. Convert lead to customer twice; same customer_number.
+
+### Next phase readiness
+Ready for visits / calculators / quotations phases.

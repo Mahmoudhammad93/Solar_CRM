@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             RolePermissionSeeder::class,
             SettingsSeeder::class,
             SequenceSeeder::class,
+            LookupSeeder::class,
             DemoUserSeeder::class,
         ]);
     }
