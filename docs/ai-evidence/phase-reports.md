@@ -413,3 +413,40 @@ AT-09 Fully working; AMC scheduling Partial; payment gateway Simulated.
 
 ### Next phase readiness
 Ready for dashboard/reports (AT-10) / settings polish.
+
+---
+
+## Phase 9 - Dashboard, activity center, reports, exports
+
+**Time (shell):** `2026-10-23 17:04:39 EEST`
+
+**Git:** commit pending on `master` (this phase)
+
+### What was built
+- `DashboardMetrics` + `DashboardFilters` — all KPI cards/charts from stored data (no hard-coded numbers); role scoping via `RecordScoping`
+- Filament Dashboard filters (date/branch/member/source/status) + widgets: KPI stats, sales mix/conversion, pipeline, source, monthly revenue, project status, recent activity/upcoming tasks
+- KPI deep-links (`DashboardKpiQuery`) on Leads/Visits/Quotations/Projects/Tickets/Invoices lists
+- Activity center: overdue tasks, audit history, read/unread `UserNotification`s, sync overdue reminders
+- Reports hub: 8 `ReportQuery` classes feed on-screen table, CSV (UTF-8 BOM), and PDF; `reports.export` enforced server-side
+- Migration `user_notifications`
+
+### AT-10 KPI vs SQL (seeded sample leads)
+
+| KPI | DashboardMetrics | SQL count | Match |
+|-----|------------------|-----------|-------|
+| new_leads (30d) | 3 | 3 | yes |
+| follow_ups_due (today) | 1 | 1 | yes |
+| follow_ups_overdue (< today) | 1 | 1 | yes |
+
+### Report export check
+- Lead report filter `source=web`: rows=2, CSV data rows=2, totals.expected_value_sum=3000, UTF-8 BOM present
+- Product/tax `quote_tax_total` equals sum of revision CGST+SGST+IGST (test)
+
+### Tests
+`tests/Feature/Dashboard/DashboardAndReportsTest.php` — **6 passed** (KPI=DB, executive scope, report totals=row sums, CSV count, tax summary, deep-link + export permission)
+
+### Status
+AT-10 Fully working.
+
+### Next phase readiness
+Ready for settings polish / AT-11 / packaging.

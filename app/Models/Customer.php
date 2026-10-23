@@ -41,6 +41,26 @@ class Customer extends Model
         return $this->hasMany(Lead::class);
     }
 
+    public function visits(): HasMany
+    {
+        return $this->hasMany(Visit::class);
+    }
+
+    public function quotations(): HasMany
+    {
+        return $this->hasMany(Quotation::class);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
     public function tasks(): MorphMany
     {
         return $this->morphMany(Task::class, 'taskable');

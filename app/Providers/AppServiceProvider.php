@@ -12,6 +12,7 @@ use App\Services\Calculators\EvCalculatorService;
 use App\Services\Calculators\HybridCalculatorService;
 use App\Services\Calculators\InvestmentCalculatorService;
 use App\Services\ConvertQuotationToProject;
+use App\Services\DashboardMetrics;
 use App\Services\DocumentService;
 use App\Services\InvoiceReportService;
 use App\Services\InvoiceService;
@@ -21,6 +22,7 @@ use App\Services\ProjectMilestoneService;
 use App\Services\QuotationReportService;
 use App\Services\QuotationService;
 use App\Services\QuotationTotals;
+use App\Services\ReportExportService;
 use App\Services\SettingsService;
 use App\Services\StockService;
 use App\Services\TicketReportService;
@@ -58,6 +60,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(AmcService::class);
         $this->app->singleton(InvoiceService::class);
         $this->app->singleton(InvoiceReportService::class);
+        $this->app->singleton(DashboardMetrics::class);
+        $this->app->singleton(ReportExportService::class);
     }
 
     public function boot(): void

@@ -3,15 +3,24 @@
 namespace App\Filament\Resources\Leads\Pages;
 
 use App\Filament\Resources\Leads\LeadResource;
+use App\Models\Lead;
+use App\Support\DashboardKpiQuery;
 use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
 use Filament\Facades\Filament;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ListLeads extends ListRecords
 {
     protected static string $resource = LeadResource::class;
+
+    protected function getTableQuery(): Builder|Relation|null
+    {
+        return DashboardKpiQuery::applyLeads(parent::getTableQuery());
+    }
 
     protected function getHeaderActions(): array
     {
@@ -19,7 +28,7 @@ class ListLeads extends ListRecords
             Action::make('exportCsv')
                 ->label('Export CSV')
                 ->icon('heroicon-o-arrow-down-tray')
-                ->visible(fn (): bool => Filament::auth()->user()?->can('export', \App\Models\Lead::class)
+                ->visible(fn (): bool => Filament::auth()->user()?->can('export', Lead::class)
                     || Filament::auth()->user()?->hasPermission('leads.export')
                     || Filament::auth()->user()?->hasPermission('leads.view'))
                 ->action(fn () => $this->exportFilteredCsv()),

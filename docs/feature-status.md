@@ -181,7 +181,7 @@ Updated after Phase 2.
 | AT-07 | Acceptance | AT-07 Accept quotation and convert to linked order/project without losing key data; update milestones and s... | Fully working |  |  | Phase7: ConvertQuotationToProject + milestones; ORD-2026-0001/PRJ-2026-0001 from QUO-2026-0003; tests 17+MySQL concurrency |
 | AT-08 | Acceptance | AT-08 View catalogue/stock, link required materials to a project, show stock shortage/low-stock information | Fully working |  |  | Phase7: ProjectMaterial+AllocationService via StockService; shortage 12 req/2 avail; low-stock page retained |
 | AT-09 | Acceptance | AT-09 Create, assign, update and close ticket linked to customer/project; show AMC record or renewal workflow | Fully working |  |  | Phase8: TKT-2026-0002 closed on project; AMC-2026-0001 + amc:renewal-reminders; INV payment |
-| AT-10 | Acceptance | AT-10 Dashboard KPIs and core reports reflect stored records; export data and verify filters/totals | Not implemented |  |  |  |
+| AT-10 | Acceptance | AT-10 Dashboard KPIs and core reports reflect stored records; export data and verify filters/totals | Fully working |  |  | Phase9: DashboardMetrics+ReportQuery; tests 6 pass; KPI=SQL table; CSV BOM |
 | AT-11 | Acceptance | AT-11 Demonstrate dynamic settings: app name/logo, password change, new dropdown/workflow, calculator assum... | Not implemented |  |  |  |
 | AT-12 | Acceptance | AT-12 README setup works; seed data/demo login exist; no secrets committed; known limitations listed | Not implemented |  |  |  |
 | AT-13 | Acceptance | AT-13 Submit full-project recording and Claude-only evidence within the 30-hour limit | Not implemented |  |  |  |
