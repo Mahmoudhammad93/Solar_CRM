@@ -379,3 +379,37 @@ AT-07 Fully working; AT-08 Fully working; installation completion PDF Partial.
 
 ### Next phase readiness
 Ready for invoices/tickets/AMC (Phase 8).
+
+---
+
+## Phase 8 - Tickets, AMC, invoice/payment visibility
+
+**Time (shell):** `2026-10-23 16:49:59 EEST`
+
+**Git:** commit pending (this phase)
+
+### What was built
+- Tickets: numbering, SLA target from `tickets.default_sla_hours`, TicketWorkflow (Open→…→Closed), assign/comments/history, Filament Service → Tickets, resolution PDF
+- AMC: contracts with renewal_reminder_on / next_service_on; `amc:renewal-reminders` (+ daily schedule entry; automation Partial)
+- Invoices: one per order from snapshot totals/schedule; manual payments; outstanding = total − payments; overpayment rejected; gateway labelled Simulated; branded invoice PDF
+- Settings Service tab for ticket/AMC SLA
+
+### Payment example
+| Step | Amount | Outstanding | Status |
+|------|--------|-------------|--------|
+| INV-2026-0001 created from ORD-2026-0001 | grand 19,399.20 | 19,399.20 | issued |
+| Payment AT09-UPI-1 | 5,000.00 | 14,399.20 | partial |
+
+### Manual AT-09
+- TKT-2026-0002 linked to project/order → assigned → in_progress → resolved → closed (5 history rows); PDF ~880KB
+- AMC-2026-0001 (ends 2027-10-23, reminder 2027-09-23, next service 2027-01-23)
+- AMC-2026-0002 listed by `amc:renewal-reminders` (ends within 30 days)
+
+### Tests
+`TicketAmcInvoiceTest` — **5 passed** (SLA, transitions, assign/close+scope, outstanding/overpay, AMC reminder)
+
+### Status
+AT-09 Fully working; AMC scheduling Partial; payment gateway Simulated.
+
+### Next phase readiness
+Ready for dashboard/reports (AT-10) / settings polish.

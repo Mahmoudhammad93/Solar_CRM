@@ -3,23 +3,28 @@
 namespace App\Providers;
 
 use App\Listeners\RecordUserLogin;
+use App\Services\AllocationService;
+use App\Services\AmcService;
 use App\Services\AuditLogger;
 use App\Services\BrandingService;
-use App\Services\DocumentService;
-use App\Services\NumberingService;
-use App\Services\SettingsService;
 use App\Services\CalculationReportService;
 use App\Services\Calculators\EvCalculatorService;
 use App\Services\Calculators\HybridCalculatorService;
 use App\Services\Calculators\InvestmentCalculatorService;
-use App\Services\MessageService;
-use App\Services\AllocationService;
 use App\Services\ConvertQuotationToProject;
+use App\Services\DocumentService;
+use App\Services\InvoiceReportService;
+use App\Services\InvoiceService;
+use App\Services\MessageService;
+use App\Services\NumberingService;
 use App\Services\ProjectMilestoneService;
 use App\Services\QuotationReportService;
 use App\Services\QuotationService;
 use App\Services\QuotationTotals;
+use App\Services\SettingsService;
 use App\Services\StockService;
+use App\Services\TicketReportService;
+use App\Services\TicketService;
 use App\Services\VisitReportService;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Event;
@@ -48,6 +53,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ConvertQuotationToProject::class);
         $this->app->singleton(ProjectMilestoneService::class);
         $this->app->singleton(AllocationService::class);
+        $this->app->singleton(TicketService::class);
+        $this->app->singleton(TicketReportService::class);
+        $this->app->singleton(AmcService::class);
+        $this->app->singleton(InvoiceService::class);
+        $this->app->singleton(InvoiceReportService::class);
     }
 
     public function boot(): void

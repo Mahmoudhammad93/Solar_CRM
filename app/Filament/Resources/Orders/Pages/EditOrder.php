@@ -2,10 +2,15 @@
 
 namespace App\Filament\Resources\Orders\Pages;
 
+use App\Filament\Resources\Invoices\InvoiceResource;
 use App\Filament\Resources\Orders\OrderResource;
+use App\Services\InvoiceService;
+use Filament\Actions\Action;
+use Filament\Facades\Filament;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -52,6 +57,15 @@ class EditOrder extends EditRecord
 
     protected function getHeaderActions(): array
     {
-        return [];
+        return [
+            Action::make('createInvoice')
+                ->label('Create / open invoice')
+                ->action(function () {
+                    $invoice = app(InvoiceService::class)->createFromOrder($this->record, Filament::auth()->user());
+                    Notification::make()->title('Invoice '.$invoice->number)->success()->send();
+
+                    return redirect(InvoiceResource::getUrl('edit', ['record' => $invoice]));
+                }),
+        ];
     }
 }

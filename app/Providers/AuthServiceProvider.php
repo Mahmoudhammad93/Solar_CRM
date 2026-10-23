@@ -2,20 +2,25 @@
 
 namespace App\Providers;
 
+use App\Models\AmcContract;
 use App\Models\Customer;
 use App\Models\Document;
+use App\Models\Invoice;
 use App\Models\Lead;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Project;
 use App\Models\Quotation;
 use App\Models\Task;
+use App\Models\Ticket;
 use App\Models\User;
 use App\Models\Vendor;
 use App\Models\Visit;
 use App\Models\Warehouse;
+use App\Policies\AmcContractPolicy;
 use App\Policies\CustomerPolicy;
 use App\Policies\DocumentPolicy;
+use App\Policies\InvoicePolicy;
 use App\Policies\LeadPolicy;
 use App\Policies\OrderPolicy;
 use App\Policies\ProductPolicy;
@@ -23,6 +28,7 @@ use App\Policies\ProjectPolicy;
 use App\Policies\QuotationPolicy;
 use App\Policies\SettingsPolicy;
 use App\Policies\TaskPolicy;
+use App\Policies\TicketPolicy;
 use App\Policies\VendorPolicy;
 use App\Policies\VisitPolicy;
 use App\Policies\WarehousePolicy;
@@ -43,6 +49,9 @@ class AuthServiceProvider extends ServiceProvider
         Quotation::class => QuotationPolicy::class,
         Order::class => OrderPolicy::class,
         Project::class => ProjectPolicy::class,
+        Ticket::class => TicketPolicy::class,
+        AmcContract::class => AmcContractPolicy::class,
+        Invoice::class => InvoicePolicy::class,
     ];
 
     public function boot(): void

@@ -104,6 +104,9 @@ class ManageSettings extends Page
             'project_delivery_days' => $settings->get('projects.default_delivery_days', 45),
             'project_duration_days' => $settings->get('projects.default_duration_days', 60),
             'project_milestone_sla_days' => $settings->get('projects.milestone_sla_days', 7),
+            'ticket_sla_hours' => $settings->get('tickets.default_sla_hours', 48),
+            'amc_sla_hours' => $settings->get('amc.default_sla_hours', 72),
+            'amc_renewal_days' => $settings->get('amc.renewal_reminder_days', 30),
         ]);
     }
 
@@ -244,6 +247,14 @@ class ManageSettings extends Page
                             TextInput::make('project_milestone_sla_days')->numeric()->integer()->label('Milestone SLA step (days)')->disabled(! $canEdit),
                         ])->columns(3),
                 ]),
+                Tab::make('Service')->schema([
+                    Section::make('Tickets & AMC SLA')
+                        ->schema([
+                            TextInput::make('ticket_sla_hours')->numeric()->integer()->label('Ticket default SLA (hours)')->disabled(! $canEdit),
+                            TextInput::make('amc_sla_hours')->numeric()->integer()->label('AMC default SLA (hours)')->disabled(! $canEdit),
+                            TextInput::make('amc_renewal_days')->numeric()->integer()->label('AMC renewal reminder (days before end)')->disabled(! $canEdit),
+                        ])->columns(3),
+                ]),
                 Tab::make('Coming soon')->schema([
                     Section::make('Not yet implemented')
                         ->schema([
@@ -319,6 +330,9 @@ class ManageSettings extends Page
             'projects.default_delivery_days' => ['value' => $data['project_delivery_days'] ?? 45, 'group' => 'projects', 'type' => 'integer'],
             'projects.default_duration_days' => ['value' => $data['project_duration_days'] ?? 60, 'group' => 'projects', 'type' => 'integer'],
             'projects.milestone_sla_days' => ['value' => $data['project_milestone_sla_days'] ?? 7, 'group' => 'projects', 'type' => 'integer'],
+            'tickets.default_sla_hours' => ['value' => $data['ticket_sla_hours'] ?? 48, 'group' => 'tickets', 'type' => 'integer'],
+            'amc.default_sla_hours' => ['value' => $data['amc_sla_hours'] ?? 72, 'group' => 'amc', 'type' => 'integer'],
+            'amc.renewal_reminder_days' => ['value' => $data['amc_renewal_days'] ?? 30, 'group' => 'amc', 'type' => 'integer'],
         ];
 
         $user = Auth::user();

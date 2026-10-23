@@ -111,6 +111,9 @@ class SettingsSeeder extends Seeder
             ['key' => 'projects.default_delivery_days', 'value' => 45, 'group' => 'projects', 'type' => 'integer', 'unit' => 'days', 'is_sample' => false],
             ['key' => 'projects.default_duration_days', 'value' => 60, 'group' => 'projects', 'type' => 'integer', 'unit' => 'days', 'is_sample' => false],
             ['key' => 'projects.milestone_sla_days', 'value' => 7, 'group' => 'projects', 'type' => 'integer', 'unit' => 'days', 'is_sample' => false],
+            ['key' => 'tickets.default_sla_hours', 'value' => 48, 'group' => 'tickets', 'type' => 'integer', 'unit' => 'hours', 'is_sample' => false],
+            ['key' => 'amc.default_sla_hours', 'value' => 72, 'group' => 'amc', 'type' => 'integer', 'unit' => 'hours', 'is_sample' => false],
+            ['key' => 'amc.renewal_reminder_days', 'value' => 30, 'group' => 'amc', 'type' => 'integer', 'unit' => 'days', 'is_sample' => false],
         ];
 
         foreach ($defaults as $row) {

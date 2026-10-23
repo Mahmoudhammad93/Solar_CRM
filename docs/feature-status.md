@@ -101,9 +101,9 @@ Updated after Phase 2.
 | REQ-6-C-003 | Inventory | Stock movement log: date, warehouse/branch, reference, quantity, user, reason; supplier/vendor name, contac... | Fully working |  |  | Phase4: stock_movements ledger + Vendor master (name/contact/address/tax/status/notes) |
 | REQ-6-C-004 | Inventory | Low-stock alerts; material/product/order/project reports; reconciliation to stock transactions | Partial |  |  | Phase4: low-stock page + reconcile command; project/order reports later |
 | REQ-6-C-005 | Inventory | Purchase requests/orders and goods-received workflow (bonus) | Not implemented |  |  | Bonus PO/GRN not built |
-| REQ-7-A-001 | Tickets | Ticket fields: Ticket ID, customer, linked project/order/product, category, issue, priority/source, opened ... | Not implemented |  |  |  |
-| REQ-7-A-002 | Tickets | Ticket states: Open, Assigned, In Progress, Waiting for Customer/Parts, Resolved, Closed; assignment, comme... | Not implemented |  |  |  |
-| REQ-7-A-003 | AMC | AMC record: contract number, customer/site, start/end, coverage, visit frequency, SLA, amount, next service... | Not implemented |  |  |  |
+| REQ-7-A-001 | Tickets | Ticket fields: Ticket ID, customer, linked project/order/product, category, issue, priority/source, opened ... | Fully working |  |  | Phase8: TicketResource + SLA from Settings |
+| REQ-7-A-002 | Tickets | Ticket states: Open, Assigned, In Progress, Waiting for Customer/Parts, Resolved, Closed; assignment, comme... | Fully working |  |  | Phase8: TicketWorkflow + comments + history + resolution PDF |
+| REQ-7-A-003 | AMC | AMC record: contract number, customer/site, start/end, coverage, visit frequency, SLA, amount, next service... | Partial |  |  | Phase8: AMC record + amc:renewal-reminders; scheduling automation Partial |
 | REQ-7-B-001 | Reports | Lead report: ID, source, owner, stage, creation date, follow-up, expected value, win/loss; date/source/stat... | Not implemented |  |  |  |
 | REQ-7-B-002 | Reports | Customer report: profile, city/state, related leads, visits, quotes, projects/orders, tickets | Not implemented |  |  |  |
 | REQ-7-B-003 | Reports | Quotation report: quote number, customer, date, subtotal/tax/total, status, owner, validity, conversion | Not implemented |  |  |  |
@@ -180,7 +180,7 @@ Updated after Phase 2.
 | AT-06 | Acceptance | AT-06 Create itemized hybrid and solar water-pump quotations, calculate configured taxes/totals, generate P... | Fully working |  |  | Phase6: QuotationTotalsAndWorkflowTest 9 pass; sample PDFs generated |
 | AT-07 | Acceptance | AT-07 Accept quotation and convert to linked order/project without losing key data; update milestones and s... | Fully working |  |  | Phase7: ConvertQuotationToProject + milestones; ORD-2026-0001/PRJ-2026-0001 from QUO-2026-0003; tests 17+MySQL concurrency |
 | AT-08 | Acceptance | AT-08 View catalogue/stock, link required materials to a project, show stock shortage/low-stock information | Fully working |  |  | Phase7: ProjectMaterial+AllocationService via StockService; shortage 12 req/2 avail; low-stock page retained |
-| AT-09 | Acceptance | AT-09 Create, assign, update and close ticket linked to customer/project; show AMC record or renewal workflow | Not implemented |  |  |  |
+| AT-09 | Acceptance | AT-09 Create, assign, update and close ticket linked to customer/project; show AMC record or renewal workflow | Fully working |  |  | Phase8: TKT-2026-0002 closed on project; AMC-2026-0001 + amc:renewal-reminders; INV payment |
 | AT-10 | Acceptance | AT-10 Dashboard KPIs and core reports reflect stored records; export data and verify filters/totals | Not implemented |  |  |  |
 | AT-11 | Acceptance | AT-11 Demonstrate dynamic settings: app name/logo, password change, new dropdown/workflow, calculator assum... | Not implemented |  |  |  |
 | AT-12 | Acceptance | AT-12 README setup works; seed data/demo login exist; no secrets committed; known limitations listed | Not implemented |  |  |  |

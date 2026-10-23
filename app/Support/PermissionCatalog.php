@@ -95,7 +95,7 @@ final class PermissionCatalog
                 ['view', 'create', 'edit']
             ),
             'project-manager' => $moduleActions(
-                ['dashboard', 'orders', 'projects', 'inventory', 'documents', 'tasks', 'reports'],
+                ['dashboard', 'orders', 'projects', 'inventory', 'documents', 'tasks', 'reports', 'tickets', 'amc'],
                 ['view', 'create', 'edit', 'export']
             ),
             'inventory-finance-service' => $moduleActions(
