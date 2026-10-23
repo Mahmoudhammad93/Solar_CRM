@@ -637,7 +637,7 @@ SEC-V2-01..05 (see security-verification.md). Residuals: 2FA optional, LeadPolic
 ## Validation V4 - UI / workflow
 
 **Time (shell):** `2026-10-23 17:46:15 EEST`  
-**Git:** commit pending
+**Git:** commit `f70bd71`
 
 ### Actions
 - Browser automation login + screens at 375/768/1280
