@@ -420,7 +420,7 @@ Ready for dashboard/reports (AT-10) / settings polish.
 
 **Time (shell):** `2026-10-23 17:04:39 EEST`
 
-**Git:** commit pending on `master` (this phase)
+**Git:** commit `fafb8a9` on `master`
 
 ### What was built
 - `DashboardMetrics` + `DashboardFilters` — all KPI cards/charts from stored data (no hard-coded numbers); role scoping via `RecordScoping`
