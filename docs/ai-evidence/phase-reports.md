@@ -586,7 +586,7 @@ AT-12 Fully working. Ready for FEATURE FREEZE.
 
 **Time (shell):** `2026-10-23 17:25:36 EEST`
 
-**Git:** commit pending
+**Git:** commit `3a113b6`
 
 ### Actions
 - `migrate:fresh --seed` OK
