@@ -690,3 +690,16 @@ SEC-V2-01..05 (see security-verification.md). Residuals: 2FA optional, LeadPolic
 | Partial | 13 |
 | Not implemented | 26 |
 | **Total** | **217** (= matrix) |
+
+---
+
+## Validation V7 - Live demonstration script (12–20 min)
+
+**Time (shell):** `2026-10-23 18:15 EEST`
+
+### Actions
+- Rebuilt `docs/demo-script.md` with timed segments (15 min target), exact click paths, speaking notes, seeded anchors, pre-recording checklist, fallback plan, interviewer Q&A
+- Dry-ran admin paths (25× HTTP 200), executive Settings **403**, convert/password/messaging tests green
+- Flags only: visit PDF action if missing on camera; SET-01 logo refresh Partial
+
+### No product code changes (script-only)
