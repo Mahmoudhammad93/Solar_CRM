@@ -6,7 +6,6 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 
 class OrdersTable
 {
@@ -32,10 +31,6 @@ class OrdersTable
                     'cancelled' => 'Cancelled',
                 ]),
             ])
-            ->modifyQueryUsing(function (Builder $query, $livewire) {
-                // tabs handled on ListOrders
-                return $query;
-            })
             ->recordActions([
                 EditAction::make()->label('Open'),
             ]);

@@ -25,12 +25,14 @@ class ListOrders extends ListRecords
     public function getTabs(): array
     {
         return [
-            'pending' => Tab::make('Pending')->modifyQueryUsing(fn (Builder $q) => $q->where('status', 'pending'))
+            // Parameter must be named $query — Filament injects by name; $q resolves
+            // app(Builder::class) with a null model and breaks filters.
+            'pending' => Tab::make('Pending')->modifyQueryUsing(fn (Builder $query) => $query->where('status', 'pending'))
                 ->badge(fn () => Order::query()->where('status', 'pending')->count()),
-            'active' => Tab::make('Active')->modifyQueryUsing(fn (Builder $q) => $q->where('status', 'active'))
+            'active' => Tab::make('Active')->modifyQueryUsing(fn (Builder $query) => $query->where('status', 'active'))
                 ->badge(fn () => Order::query()->where('status', 'active')->count()),
-            'completed' => Tab::make('Completed')->modifyQueryUsing(fn (Builder $q) => $q->where('status', 'completed')),
-            'cancelled' => Tab::make('Cancelled')->modifyQueryUsing(fn (Builder $q) => $q->where('status', 'cancelled')),
+            'completed' => Tab::make('Completed')->modifyQueryUsing(fn (Builder $query) => $query->where('status', 'completed')),
+            'cancelled' => Tab::make('Cancelled')->modifyQueryUsing(fn (Builder $query) => $query->where('status', 'cancelled')),
             'all' => Tab::make('All'),
         ];
     }
