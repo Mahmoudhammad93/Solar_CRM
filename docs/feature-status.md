@@ -160,7 +160,7 @@ Updated after Phase 2.
 | REQ-10-J-003 | Settings-API | REST API configuration: enabled/disabled, API client/key metadata and rotation/revocation if implemented; n... | Not implemented |  |  |  |
 | REQ-10-J-004 | Settings-Integrations | Map/GPS, signature, payment, backup and external-data integration status show Configured / Not configured /... | Not implemented |  |  |  |
 | REQ-10-J-005 | Settings-System | Configure data-export formats, backup reminder/schedule, retention preferences, audit-log filter settings w... | Not implemented |  |  |  |
-| SET-01 | Settings | SET-01 Change app/website display name and logo ? branding changes in nav/login and generated quotation/rep... | Fully working |  |  | Phase11: branding settings evidenced |
+| SET-01 | Settings | SET-01 Change app/website display name and logo ? branding changes in nav/login and generated quotation/rep... | Partial |  |  | V1: branding code Pass; logo refresh awaiting human |
 | SET-02 | Settings | SET-02 Change own password ? current validated; new/confirm mismatch rejected; new works and old fails | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | SET-03 | Settings | SET-03 Change dropdown/workflow value ? new lead source/stage in forms/filters; changed project/ticket work... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups new lead_source in Lookup options |
 | SET-04 | Settings | SET-04 Change hybrid defaults ? changing PSH, battery DoD, loss factor or panel wattage changes results and... | Fully working |  |  | Phase5: change PSH/DoD/loss/panel → new run changes; old snapshot fixed |
@@ -172,7 +172,7 @@ Updated after Phase 2.
 | REQ-10-010 | UI | Responsive desktop/tablet/mobile design, accessible labels, search/filter/sort/pagination, sensible error s... | Not implemented |  |  |  |
 | REQ-10-011 | Cross-cutting | PDF and CSV/Excel-compatible exports, quote QR code, signature capture/display area, document management, G... | Partial |  |  | Phase6: quote QR+signature+PDF; CSV exports later |
 | REQ-10-012 | Integrations | Email/WhatsApp live delivery, live maps, external subsidy APIs, electronic signatures, payment gateway, pro... | Simulated |  |  | Phase3: live maps Simulated (Demo preview); other integrations unchanged |
-| AT-01 | Acceptance | AT-01 Log in with demo credentials; demonstrate ?2 roles with different server-enforced permissions | Partial |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 roles/permissions ready; full UI demo pending human |
+| AT-01 | Acceptance | AT-01 Log in with demo credentials; demonstrate ?2 roles with different server-enforced permissions | Partial |  |  | V1: automated Pass; UI role demo awaiting human (acceptance-evidence.md) |
 | AT-02 | Acceptance | AT-02 Create lead, assign, add follow-up/customer note, find via search/filter | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
 | AT-03 | Acceptance | AT-03 Schedule and complete site visit with survey fields, photo/document support, visit history/report | Fully working |  |  | Phase3: tests 5 pass; scripted schedule/complete/upload/reschedule/history/PDF VIS-2026-0001 |
 | AT-04 | Acceptance | AT-04 Run hybrid calculator; show changed inputs, units, assumptions, formula/intermediates, changing outpu... | Fully working |  |  | Phase5: hybrid UI+tests+PDF; 3 worked examples |
@@ -182,9 +182,9 @@ Updated after Phase 2.
 | AT-08 | Acceptance | AT-08 View catalogue/stock, link required materials to a project, show stock shortage/low-stock information | Fully working |  |  | Phase7: ProjectMaterial+AllocationService via StockService; shortage 12 req/2 avail; low-stock page retained |
 | AT-09 | Acceptance | AT-09 Create, assign, update and close ticket linked to customer/project; show AMC record or renewal workflow | Fully working |  |  | Phase8: TKT-2026-0002 closed on project; AMC-2026-0001 + amc:renewal-reminders; INV payment |
 | AT-10 | Acceptance | AT-10 Dashboard KPIs and core reports reflect stored records; export data and verify filters/totals | Fully working |  |  | Phase9: DashboardMetrics+ReportQuery; tests 6 pass; KPI=SQL table; CSV BOM |
-| AT-11 | Acceptance | AT-11 Demonstrate dynamic settings: app name/logo, password change, new dropdown/workflow, calculator assum... | Fully working |  |  | Phase11: SettingsCompletionAndApiTest 9 pass; coverage table |
+| AT-11 | Acceptance | AT-11 Demonstrate dynamic settings: app name/logo, password change, new dropdown/workflow, calculator assum... | Partial |  |  | V1: automated Pass; UI walkthrough awaiting human |
 | AT-12 | Acceptance | AT-12 README setup works; seed data/demo login exist; no secrets committed; known limitations listed | Fully working |  |  | Phase12: clean seed + demo-script.md + demo:reset |
-| AT-13 | Acceptance | AT-13 Submit full-project recording and Claude-only evidence within the 30-hour limit | Not implemented |  |  |  |
+| AT-13 | Acceptance | AT-13 Submit full-project recording and Claude-only evidence within the 30-hour limit | Not implemented |  |  | V1: recording + Claude evidence + clock pending |
 | REQ-11-014 | Architecture | Related screens update consistently from one stored source of truth; avoid duplicate copies of same busines... | Not implemented |  |  |  |
 | REQ-11-015 | UI | Show loading/success/failure feedback; validate input client and server where relevant; handle empty states | Not implemented |  |  |  |
 | REQ-11-016 | Integrations | Integrations expose real status only when real provider/API response supports it; local success toast is no... | Not implemented |  |  |  |

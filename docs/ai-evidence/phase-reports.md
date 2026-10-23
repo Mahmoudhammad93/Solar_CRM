@@ -579,3 +579,22 @@ See README / demo-script (Password1!): admin, manager, executive, surveyor, pm, 
 
 ### Status
 AT-12 Fully working. Ready for FEATURE FREEZE.
+
+---
+
+## Validation V1 - Acceptance evidence
+
+**Time (shell):** `2026-10-23 17:25:36 EEST`
+
+**Git:** commit pending
+
+### Actions
+- `migrate:fresh --seed` OK
+- Full suite: **88 passed, 3 skipped, 0 failed**
+- Created `docs/acceptance-evidence.md` (AT-01..13, SET-01..09)
+- Honest Partial: AT-01, AT-11, SET-01 (await human UI confirmation)
+- Not implemented: AT-13 (recording/Claude/clock)
+- Clock still awaiting receipt timestamp — remaining time unknown
+
+### Defects fixed this validation
+None (suite already green).

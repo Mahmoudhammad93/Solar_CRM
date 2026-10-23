@@ -24,3 +24,6 @@
 
 ## Demo passwords
 Demo passwords are local-only fictional values documented in README. Do not reuse outside this assignment environment.
+
+## Validation V1
+- See `docs/acceptance-evidence.md` for AT/SET status. Manual confirmation still required for AT-01, AT-11, SET-01 UI checks; AT-13 not started (clock awaiting receipt).
