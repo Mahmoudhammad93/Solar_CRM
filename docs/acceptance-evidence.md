@@ -227,16 +227,16 @@ Command: `php artisan test --compact tests/Feature/Settings tests/Feature/Founda
 **Expected:** README setup works; seed/demo login exist; no secrets committed; known limitations listed.  
 **Related:** REQ-12-001, REQ-12-002, REQ-MP-SECRETS-UI  
 
-**Automated / verification:**  
-- `migrate:fresh --seed` (this run)  
+**Automated / verification (Validation V5):**  
+- Temp clean clone under `../solar-crm-v5-verify` from committed tree  
+- Sequence: `git clone` → Docker MySQL ready → `cp .env.example .env` → `composer install` → `npm ci`/`npm install` + `npm run build` → `key:generate` → `migrate:fresh --seed` → `storage:link` → `php artisan serve` → `/admin/login` HTTP 200 → `admin@solar-crm.test` / `Password1!` auth OK  
 - Demo users in README + `DemoUserSeeder`  
-- `.gitignore` includes `.env`  
+- `.gitignore` includes `.env`; `git ls-files .env` empty; `package-lock.json` + `composer.lock` committed  
 - `docs/known-limitations.md`, `docs/demo-script.md`  
-Command: `php artisan migrate:fresh --seed --no-interaction --force`
 
-**Manual:** Fresh clone path on another machine (optional).
+**Gaps found & fixed in README:** MySQL ready-wait loop; do not use `npm install --omit=optional`; commit `package-lock.json`; clarify Docker auto-creates `solar_crm`.
 
-**Actual:** Seed OK; docs present; secrets in env only.  
+**Actual:** Fresh setup works exactly as documented; no secrets in README/git.  
 **Status:** **Pass**
 
 ---

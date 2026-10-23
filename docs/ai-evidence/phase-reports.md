@@ -648,3 +648,23 @@ SEC-V2-01..05 (see security-verification.md). Residuals: 2FA optional, LeadPolic
 ### Defects
 - UI-V4-01 seed linkage — fixed
 - UI-V4-02 empty/keyboard Partial — documented
+
+---
+
+## Validation V5 - Clean setup from README (AT-12)
+
+**Time (shell):** `2026-10-23 17:59:20 EEST`
+
+### Actions
+- Refreshed README (stack versions, architecture + Mermaid, DB/env, install, demo creds, tests, queue/scheduler, flows, settings, Demo messaging, API, backup, deploy, security, limitations, future work)
+- Verified via temp clone `../solar-crm-v5-verify`
+- Committed `package-lock.json`; documented MySQL wait + no `--omit=optional`
+- Updated feature-status / requirements-matrix / acceptance-evidence for AT-12 / REQ-1-010/011 / REQ-12-002/003
+
+### Gaps found
+1. `package-lock.json` untracked → `npm ci` would fail — **fixed (commit lockfile)**
+2. `npm install --omit=optional` breaks rolldown Linux binding — **documented**
+3. First Docker boot needs ready-wait before migrate — **documented**
+
+### Verified command sequence (results)
+See progress report in chat; all steps exit 0; login HTTP 200; `PASS_OK` for `admin@solar-crm.test` / `Password1!`; `.env` ignored.

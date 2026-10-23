@@ -8,8 +8,8 @@ REQ-1-006,1,"Use fictional seed data only; no real customer data, passwords, API
 REQ-1-007,1,Store credentials in environment variables or secure server-side secret mechanism,R,Security,,,,P0,0.5,no,Fully working,Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200
 REQ-1-008,1,Candidate must understand submitted code; unexplained AI code may count against assessment,R,Process,,,,P1,0.5,no,Not implemented,
 REQ-1-009,1,Deliverable: runnable responsive web app with connected core workflows and demo credentials,R,Submission,,,AT-12,P0,2,no,Not implemented,
-REQ-1-010,1,"Deliverable: source repository/archive with migrations/schema, seed data, dependency/lock files, safe env sample",R,Submission,,,AT-12,P0,1,no,Not implemented,
-REQ-1-011,1,"Deliverable: README with setup, stack, architecture, DB setup, demo roles, test steps, deployment notes, known limitations",R,Submission,,,AT-12,P0,2,no,Not implemented,
+REQ-1-010,1,"Deliverable: source repository/archive with migrations/schema, seed data, dependency/lock files, safe env sample",R,Submission,,,AT-12,P0,1,no,Fully working,V5: composer.lock+package-lock.json;.env.example;clean clone
+REQ-1-011,1,"Deliverable: README with setup, stack, architecture, DB setup, demo roles, test steps, deployment notes, known limitations",R,Submission,,,AT-12,P0,2,no,Fully working,V5: README AT-12 clean-clone verified
 REQ-1-012,1,"Deliverable: full-project screen-recording (live app, major modules, workflows, settings, WhatsApp demo, calculators, exports, limitations)",R,Submission,,,AT-13,P0,2,cfg,Not implemented,
 REQ-1-013,1,Deliverable: Claude AI evidence (prompt history/export or screenshots) plus short validation/debugging note,R,Submission,,,AT-13,P0,1,no,Not implemented,
 REQ-1-014,1,Deliverable: feature status sheet marking Fully working / Simulated / Partial / Not implemented,R,Submission,,,AT-12,P0,0.5,no,Not implemented,
@@ -178,15 +178,15 @@ AT-08,11,"AT-08 View catalogue/stock, link required materials to a project, show
 AT-09,11,"AT-09 Create, assign, update and close ticket linked to customer/project; show AMC record or renewal workflow",R,Acceptance,,,AT-09,P0,0.5,no,Fully working,Phase8: TKT-2026-0002 closed; AMC-2026-0001; INV payment
 AT-10,11,AT-10 Dashboard KPIs and core reports reflect stored records; export data and verify filters/totals,R,Acceptance,,,AT-10,P0,0.5,no,Fully working,Phase9: DashboardAndReportsTest 6 pass; KPI=SQL; CSV BOM
 AT-11,11,"AT-11 Demonstrate dynamic settings: app name/logo, password change, new dropdown/workflow, calculator assumptions, WhatsApp Demo/configured mode",R,Acceptance,,,AT-11,P0,0.5,no,Partial,V1: settings tests Pass; full UI walkthrough awaiting human
-AT-12,11,AT-12 README setup works; seed data/demo login exist; no secrets committed; known limitations listed,R,Acceptance,,,AT-12,P0,0.5,no,Fully working,Phase12: migrate:fresh --seed; demo-script.md; demo:reset; suite 88 pass
+AT-12,11,AT-12 README setup works; seed data/demo login exist; no secrets committed; known limitations listed,R,Acceptance,,,AT-12,P0,0.5,no,Fully working,V5: temp clean clone; README gaps fixed; .env untracked
 AT-13,11,AT-13 Submit full-project recording and Claude-only evidence within the 30-hour limit,R,Acceptance,,,AT-13,P0,1,no,Not implemented,V1: recording+Claude package+clock receipt pending human
 REQ-11-014,11,Related screens update consistently from one stored source of truth; avoid duplicate copies of same business setting across unrelated forms,R,Architecture,,,,P0,1,no,Not implemented,
 REQ-11-015,11,Show loading/success/failure feedback; validate input client and server where relevant; handle empty states,R,UI,,,,P0,1,no,Not implemented,
 REQ-11-016,11,Integrations expose real status only when real provider/API response supports it; local success toast is not proof of WhatsApp/email delivery,R,Integrations,,,,P0,0.5,yes,Not implemented,
 REQ-11-017,11,Store snapshot of quote/calculation values so editing current settings does not silently alter previously accepted commercial documents,R,Snapshots,,,Snapshot immutability test,P0,2,no,Fully working,Phase5: calculation_runs immutable JSON snapshot
 REQ-12-001,12,"Submit working URL or local run steps, demo credentials, seed data, core flows accessible",R,Submission,,,AT-12,P0,1,no,Fully working,Phase12: README + demo credentials + demo-script
-REQ-12-002,12,"Submit source repo/archive, migrations/schema, env sample without secrets, dependency/lock files",R,Submission,,,AT-12,P0,0.5,no,Not implemented,
-REQ-12-003,12,"Submit README covering setup, stack, architecture, modules, database, demo accounts/roles, tests, deployment, limitations, future work",R,Submission,,,AT-12,P0,2,no,Partial,Phase12: README+demo-script; full packaging later
+REQ-12-002,12,"Submit source repo/archive, migrations/schema, env sample without secrets, dependency/lock files",R,Submission,,,AT-12,P0,0.5,no,Fully working,V5: locks +.env.example
+REQ-12-003,12,"Submit README covering setup, stack, architecture, modules, database, demo accounts/roles, tests, deployment, limitations, future work",R,Submission,,,AT-12,P0,2,no,Fully working,V5: full README + clean-clone proof
 REQ-12-004,12,Submit one complete walkthrough recording preferably 12-20 minutes of live running application with narration,R,Submission,,,AT-13,P0,2,no,Not implemented,
 REQ-12-005,12,Submit Claude evidence: prompt log/export or screenshots showing Claude-only coding; explain how generated code was verified,R,Submission,,,AT-13,P0,1,no,Not implemented,
 REQ-12-006,12,Submit status sheet marking every feature Fully working / Simulated / Partial / Not implemented and list bugs/dependencies,R,Submission,,,AT-12,P0,0.5,no,Not implemented,

@@ -13,8 +13,8 @@ Updated after Phase 2.
 | REQ-1-007 | Security | Store credentials in environment variables or secure server-side secret mechanism | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-1-008 | Process | Candidate must understand submitted code; unexplained AI code may count against assessment | Not implemented |  |  |  |
 | REQ-1-009 | Submission | Deliverable: runnable responsive web app with connected core workflows and demo credentials | Not implemented |  |  |  |
-| REQ-1-010 | Submission | Deliverable: source repository/archive with migrations/schema, seed data, dependency/lock files, safe env s... | Not implemented |  |  |  |
-| REQ-1-011 | Submission | Deliverable: README with setup, stack, architecture, DB setup, demo roles, test steps, deployment notes, kn... | Not implemented |  |  |  |
+| REQ-1-010 | Submission | Deliverable: source repository/archive with migrations/schema, seed data, dependency/lock files, safe env s... | Fully working |  |  | V5: composer.lock + package-lock.json committed; .env.example only; migrate/seed OK |
+| REQ-1-011 | Submission | Deliverable: README with setup, stack, architecture, DB setup, demo roles, test steps, deployment notes, kn... | Fully working |  |  | V5: README AT-12 clean-clone verified (clone→install→migrate:fresh --seed→serve→login) |
 | REQ-1-012 | Submission | Deliverable: full-project screen-recording (live app, major modules, workflows, settings, WhatsApp demo, ca... | Not implemented |  |  |  |
 | REQ-1-013 | Submission | Deliverable: Claude AI evidence (prompt history/export or screenshots) plus short validation/debugging note | Not implemented |  |  |  |
 | REQ-1-014 | Submission | Deliverable: feature status sheet marking Fully working / Simulated / Partial / Not implemented | Not implemented |  |  |  |
@@ -183,15 +183,15 @@ Updated after Phase 2.
 | AT-09 | Acceptance | AT-09 Create, assign, update and close ticket linked to customer/project; show AMC record or renewal workflow | Fully working |  |  | Phase8: TKT-2026-0002 closed on project; AMC-2026-0001 + amc:renewal-reminders; INV payment |
 | AT-10 | Acceptance | AT-10 Dashboard KPIs and core reports reflect stored records; export data and verify filters/totals | Fully working |  |  | Phase9: DashboardMetrics+ReportQuery; tests 6 pass; KPI=SQL table; CSV BOM |
 | AT-11 | Acceptance | AT-11 Demonstrate dynamic settings: app name/logo, password change, new dropdown/workflow, calculator assum... | Partial |  |  | V1: automated Pass; UI walkthrough awaiting human |
-| AT-12 | Acceptance | AT-12 README setup works; seed data/demo login exist; no secrets committed; known limitations listed | Fully working |  |  | Phase12: clean seed + demo-script.md + demo:reset |
+| AT-12 | Acceptance | AT-12 README setup works; seed data/demo login exist; no secrets committed; known limitations listed | Fully working |  |  | V5: temp clean clone verified; README gaps fixed; .env untracked |
 | AT-13 | Acceptance | AT-13 Submit full-project recording and Claude-only evidence within the 30-hour limit | Not implemented |  |  | V1: recording + Claude evidence + clock pending |
 | REQ-11-014 | Architecture | Related screens update consistently from one stored source of truth; avoid duplicate copies of same busines... | Not implemented |  |  |  |
 | REQ-11-015 | UI | Show loading/success/failure feedback; validate input client and server where relevant; handle empty states | Not implemented |  |  |  |
 | REQ-11-016 | Integrations | Integrations expose real status only when real provider/API response supports it; local success toast is no... | Not implemented |  |  |  |
 | REQ-11-017 | Snapshots | Store snapshot of quote/calculation values so editing current settings does not silently alter previously a... | Fully working |  |  | Phase5: calculation_runs immutable JSON snapshot |
 | REQ-12-001 | Submission | Submit working URL or local run steps, demo credentials, seed data, core flows accessible | Not implemented |  |  |  |
-| REQ-12-002 | Submission | Submit source repo/archive, migrations/schema, env sample without secrets, dependency/lock files | Not implemented |  |  |  |
-| REQ-12-003 | Submission | Submit README covering setup, stack, architecture, modules, database, demo accounts/roles, tests, deploymen... | Not implemented |  |  |  |
+| REQ-12-002 | Submission | Submit source repo/archive, migrations/schema, env sample without secrets, dependency/lock files | Fully working |  |  | V5: locks + .env.example; no .env in git |
+| REQ-12-003 | Submission | Submit README covering setup, stack, architecture, modules, database, demo accounts/roles, tests, deploymen... | Fully working |  |  | V5: full README sections + clean-clone proof |
 | REQ-12-004 | Submission | Submit one complete walkthrough recording preferably 12-20 minutes of live running application with narration | Not implemented |  |  |  |
 | REQ-12-005 | Submission | Submit Claude evidence: prompt log/export or screenshots showing Claude-only coding; explain how generated ... | Not implemented |  |  |  |
 | REQ-12-006 | Submission | Submit status sheet marking every feature Fully working / Simulated / Partial / Not implemented and list bu... | Not implemented |  |  |  |

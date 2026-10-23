@@ -100,7 +100,7 @@ Text relationships: Lead → Visit / CalculationRun / Quotation → (accepted) O
 
 ## Database setup (Docker MySQL — recommended)
 
-Dedicated container so host MySQL DBs are untouched:
+Dedicated container so host MySQL DBs are untouched. The first `docker run` creates database `solar_crm` and user `solar_crm` automatically (`MYSQL_DATABASE` / `MYSQL_USER`) — no separate `CREATE DATABASE` step for the default path.
 
 ```bash
 docker start solar_crm_mysql 2>/dev/null || docker run -d --name solar_crm_mysql \
@@ -111,7 +111,13 @@ docker start solar_crm_mysql 2>/dev/null || docker run -d --name solar_crm_mysql
   -p 3308:3306 mysql:8.0
 ```
 
-Wait until MySQL accepts connections (`docker logs solar_crm_mysql` or retry migrate).
+**Wait until MySQL accepts connections** (first boot can take 20–60s):
+
+```bash
+until docker exec solar_crm_mysql mysqladmin ping -h 127.0.0.1 -uroot -psolar_crm_root_local --silent; do
+  sleep 2
+done
+```
 
 Default app DB connection (see `.env.example`):
 
@@ -146,16 +152,23 @@ Secrets belong in `.env` / secure store — not Settings UI, not git, not audit 
 
 ## Install (clean machine)
 
-From a clone of this repository:
+From a clone of this repository (order matters):
 
 ```bash
 git clone <repo-url> solar-crm && cd solar-crm
+
+# 1) Start MySQL (see Database setup) and wait until it pings OK
 
 cp .env.example .env
 # Confirm DB_* match your MySQL (Docker defaults already set in .env.example)
 
 composer install
-npm install
+
+# Full install required — do NOT use `npm install --omit=optional`
+# (omitting optional deps breaks Vite/rolldown native bindings on Linux).
+# Prefer `npm ci` when package-lock.json is present (committed in this repo).
+npm ci
+# or: npm install   # first-time / lockfile refresh; often ~1 minute
 npm run build
 
 php artisan key:generate
@@ -166,6 +179,8 @@ php artisan serve
 # → http://127.0.0.1:8000/admin/login
 ```
 
+Login with a demo account from the table below (e.g. `admin@solar-crm.test` / `Password1!`).
+
 Optional convenience (still run `npm`/`migrate:fresh --seed` as above if you need demo data): `composer run setup` runs install + key + migrate + npm build (uses `migrate`, not necessarily fresh seed — prefer the explicit sequence for reviewers).
 
 Reload fictional demo data anytime:
@@ -174,6 +189,8 @@ Reload fictional demo data anytime:
 php artisan demo:reset --force
 # equivalent: php artisan migrate:fresh --seed
 ```
+
+**Reviewer checklist:** `.env` must stay untracked (`git check-ignore -v .env`); never commit secrets. `composer.lock` and `package-lock.json` are committed for reproducible installs.
 
 ---
 
@@ -299,7 +316,7 @@ Manual `mysqldump` + `storage/app` + secure `.env` backup. No automated cloud ba
 ## Deployment notes
 
 - Target PHP 8.3+, MySQL 8, HTTPS reverse proxy, `APP_DEBUG=false`, strong `APP_KEY`.
-- Run `composer install --no-dev -o`, `npm ci && npm run build`, `php artisan migrate --force`, `storage:link`, queue worker + cron for scheduler.
+- Run `composer install --no-dev -o`, `npm ci && npm run build` (requires committed `package-lock.json`; never `--omit=optional`), `php artisan migrate --force`, `storage:link`, queue worker + cron for scheduler.
 - Re-enable Composer TLS if disabled on the build agent.
 - Optional: [Laravel Cloud](https://cloud.laravel.com/) — see project skill `deploying-to-cloud` when using Cloud CLI.
 - Do not deploy with demo passwords or `APP_DEBUG=true`.
