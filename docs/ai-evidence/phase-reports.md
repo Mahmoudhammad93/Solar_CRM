@@ -386,7 +386,7 @@ Ready for invoices/tickets/AMC (Phase 8).
 
 **Time (shell):** `2026-10-23 16:49:59 EEST`
 
-**Git:** commit pending (this phase)
+**Git:** commit `929e9a8` on `master`
 
 ### What was built
 - Tickets: numbering, SLA target from `tickets.default_sla_hours`, TicketWorkflow (Open→…→Closed), assign/comments/history, Filament Service → Tickets, resolution PDF
