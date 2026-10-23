@@ -3,13 +3,17 @@
 namespace App\Providers;
 
 use App\Models\Customer;
+use App\Models\Document;
 use App\Models\Lead;
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Visit;
 use App\Policies\CustomerPolicy;
+use App\Policies\DocumentPolicy;
 use App\Policies\LeadPolicy;
 use App\Policies\SettingsPolicy;
 use App\Policies\TaskPolicy;
+use App\Policies\VisitPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -19,6 +23,8 @@ class AuthServiceProvider extends ServiceProvider
         Lead::class => LeadPolicy::class,
         Task::class => TaskPolicy::class,
         Customer::class => CustomerPolicy::class,
+        Visit::class => VisitPolicy::class,
+        Document::class => DocumentPolicy::class,
     ];
 
     public function boot(): void

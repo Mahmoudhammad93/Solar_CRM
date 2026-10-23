@@ -23,11 +23,11 @@ Updated after Phase 2.
 | REQ-2-001 | Architecture | Centralized CRM connecting sales, field survey, hybrid sizing, quotations, execution, inventory, service, a... | Not implemented |  |  |  |
 | REQ-2-002 | Workflow | PRIMARY WORKFLOW: Lead ? follow-up/qualification ? customer/site visit ? hybrid calculation ? quotation ? a... | Not implemented |  |  |  |
 | REQ-2-003 | UI | Consistent navigation, clear page titles, search/filter, validation messages, empty/loading/error states, r... | Not implemented |  |  |  |
-| REQ-2-004 | Data model | Linked records (not disconnected duplicates): lead/customer links to visits, calculations, quotations, orde... | Not implemented |  |  |  |
-| REQ-2-005 | Numbering | Unique reference IDs for leads, visits, quotations, orders/projects, products, invoices, tickets, AMC contr... | Not implemented |  |  |  |
+| REQ-2-004 | Data model | Linked records (not disconnected duplicates): lead/customer links to visits, calculations, quotations, orde... | Partial |  |  | Phase3: lead/customer linked to visits+documents; quotes/orders/tickets later |
+| REQ-2-005 | Numbering | Unique reference IDs for leads, visits, quotations, orders/projects, products, invoices, tickets, AMC contr... | Partial |  |  | Phase3: visit numbering via NumberingService; other entities as seeded sequences |
 | REQ-2-006 | Dashboard | Dashboard metrics and reports calculated from stored data; no decorative hard-coded KPIs | Not implemented |  |  |  |
 | REQ-2-007 | Settings | Dynamic business configuration in Settings tab and database; changes affect UI/calculations/templates/expor... | Not implemented |  |  |  |
-| REQ-2-008 | Integrations | External services not integrated must be labeled Demo/Simulated and production setup documented | Not implemented |  |  |  |
+| REQ-2-008 | Integrations | External services not integrated must be labeled Demo/Simulated and production setup documented | Simulated |  |  | Phase3: map Demo preview labelled; other externals still Demo/Simulated |
 | REQ-2-009 | Auth | Role Super Admin: all modules, settings, users, roles/permissions, company config, audit logs, integrations | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 roles seeded + permissions matrix |
 | REQ-2-010 | Auth | Role Sales Manager: team leads, assignment, approvals, quotes, sales pipeline, team reports | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 roles seeded + permissions matrix |
 | REQ-2-011 | Auth | Role Sales Executive: assigned leads, follow-ups, visits, customers, calculators, quotations, own pipeline | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 roles seeded + permissions matrix |
@@ -48,11 +48,11 @@ Updated after Phase 2.
 | REQ-3-B-005 | Leads | Lead follow-up/files: next follow-up, reminder, outcome, call/meeting notes, documents/photos, interaction ... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
 | REQ-3-B-006 | Leads | Lead actions: add/edit/view, assign/reassign, search/filter/sort, duplicate check, follow-up scheduling, cu... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
 | REQ-3-B-007 | Leads | Lead import/export where feasible | Partial |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups CSV export done; import Not implemented |
-| REQ-3-C-001 | Visits | Visit core: Visit ID, linked lead/customer, schedule, assigned surveyor, status, site address, GPS, resched... | Not implemented |  |  |  |
-| REQ-3-C-002 | Visits | Survey fields: property type, roof type/material, usable area, orientation/tilt, shading/obstructions, stru... | Not implemented |  |  |  |
-| REQ-3-C-003 | Visits | Utility details: bill/consumption evidence, monthly units, sanctioned load, single/three-phase, utility/DIS... | Not implemented |  |  |  |
-| REQ-3-C-004 | Visits | Visit outcome: measurements, feasibility, customer needs, objections, feedback, recommended next step, prel... | Not implemented |  |  |  |
-| REQ-3-C-005 | Visits | Map/GPS real only when configured; otherwise manual coordinates and demo-labeled map preview | Not implemented |  |  |  |
+| REQ-3-C-001 | Visits | Visit core: Visit ID, linked lead/customer, schedule, assigned surveyor, status, site address, GPS, resched... | Fully working |  |  | Phase3: VisitResource+history; Feature VisitScopingAndDocumentsTest 5 pass; AT-03 script VIS-2026-0001 |
+| REQ-3-C-002 | Visits | Survey fields: property type, roof type/material, usable area, orientation/tilt, shading/obstructions, stru... | Fully working |  |  | Phase3: VisitForm survey section; AT-03 script + PDF report |
+| REQ-3-C-003 | Visits | Utility details: bill/consumption evidence, monthly units, sanctioned load, single/three-phase, utility/DIS... | Fully working |  |  | Phase3: VisitForm utility section; AT-03 script |
+| REQ-3-C-004 | Visits | Visit outcome: measurements, feasibility, customer needs, objections, feedback, recommended next step, prel... | Fully working |  |  | Phase3: VisitReportService Dompdf; PDF 879706 bytes 1 page A4 %PDF-1.7 |
+| REQ-3-C-005 | Visits | Map/GPS real only when configured; otherwise manual coordinates and demo-labeled map preview | Simulated |  |  | Phase3: Demo preview placeholder only; no external map API |
 | REQ-3-D-001 | Tasks | Tasks linkable to leads, customers, quotes, visits, projects, tickets | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
 | REQ-3-D-002 | Tasks | Task fields: title, description, owner, due date/time, priority, status, reminder, outcome | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
 | REQ-3-D-003 | Tasks | Task list/calendar view, overdue and due-today views, completion timestamps, linked-record activity history | Partial |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups list/due-today/overdue; calendar not shipped |
@@ -85,7 +85,7 @@ Updated after Phase 2.
 | REQ-5-B-001 | Catalogue | Product master fields: ID/SKU, category, brand/model/title, description, technical specs, wattage/capacity,... | Not implemented |  |  |  |
 | REQ-5-B-002 | Catalogue | Product categories cover panels, hybrid inverters, batteries, pumps, chargers, structures, wiring/protectio... | Not implemented |  |  |  |
 | REQ-5-B-003 | Catalogue | Catalogue search, category/brand filters, sort, detail view, create/edit/archive, stock visibility; prices/... | Not implemented |  |  |  |
-| REQ-5-C-001 | Documents | Document attachments: bills, site photos, signed proposals, invoices, installation checklists, warranty doc... | Not implemented |  |  |  |
+| REQ-5-C-001 | Documents | Document attachments: bills, site photos, signed proposals, invoices, installation checklists, warranty doc... | Fully working |  |  | Phase3: polymorphic DocumentService private disk; DocumentsRelationManager; download policy |
 | REQ-5-C-002 | Documents | Store filename/type/date/uploader metadata, secure access rules, downloadable links; restrict sensitive doc... | Not implemented |  |  |  |
 | REQ-5-C-003 | Documents | Generate PDF quotes/proposals/reports with unique references and predictable filenames | Not implemented |  |  |  |
 | REQ-6-A-001 | Orders | Accepted quotation creates linked customer order/project without retyping core customer, line-item, amount ... | Not implemented |  |  |  |
@@ -123,7 +123,7 @@ Updated after Phase 2.
 | REQ-8-003 | Settings | Unimplemented settings clearly marked unavailable rather than shown as working | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-8-A-001 | Settings-Branding | Editable app/website display name, organization/company name, logo, favicon, login-page logo, sidebar/heade... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-8-A-002 | Settings-Branding | Company details: legal name, display name, address, phone, support email, website, GSTIN/tax IDs, invoice a... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
-| REQ-8-A-003 | Settings-Branding | Logo/name changes appear in navigation, login where applicable, quotation PDFs, report headers, generated d... | Not implemented |  |  |  |
+| REQ-8-A-003 | Settings-Branding | Logo/name changes appear in navigation, login where applicable, quotation PDFs, report headers, generated d... | Partial |  |  | Phase3: visit report PDF uses BrandingService snapshot; quote PDFs later |
 | REQ-8-A-004 | Settings-Branding | Secure logo upload with type/size validation, preview, replace, remove/reset-to-default | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-8-B-001 | Settings-Security | Signed-in user change password with current, new, confirmation; show policy, mismatch/weak errors, success | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-8-B-002 | Settings-Security | Admin-managed password reset/invitation, user activation/deactivation, session expiry/idle timeout and pass... | Not implemented |  |  |  |
@@ -143,7 +143,7 @@ Updated after Phase 2.
 | REQ-9-F-001 | Settings-Inventory | Product/inventory settings: category, brand, warranty defaults, units, tax rate, price defaults, serial/bat... | Not implemented |  |  |  |
 | REQ-9-F-002 | Settings-Inventory | Configure allowed product types and component attributes for panels, hybrid inverters, batteries, pumps, EV... | Not implemented |  |  |  |
 | REQ-9-G-001 | Settings-Templates | Configure numbering prefixes and sequence behavior for quote/invoice/order/project/ticket/AMC; validity day... | Not implemented |  |  |  |
-| REQ-9-G-002 | Settings-Templates | Editable branded templates for quotation PDF, hybrid calculator report, site-visit report, installation/com... | Not implemented |  |  |  |
+| REQ-9-G-002 | Settings-Templates | Editable branded templates for quotation PDF, hybrid calculator report, site-visit report, installation/com... | Partial |  |  | Phase3: Blade visit-report template branded; Settings-editable templates later |
 | REQ-9-G-003 | Settings-Templates | Enable/disable QR code, signature block, footer/contact block, logo display, PDF/CSV/Excel export options w... | Not implemented |  |  |  |
 | REQ-9-H-001 | Settings-WhatsApp | WhatsApp settings page: provider/mode (Demo or configured), business phone/sender, business/account IDs, ap... | Not implemented |  |  |  |
 | REQ-9-H-002 | Settings-WhatsApp | Secure server-side credential configuration, test-connection, connection status, webhook/callback if implem... | Not implemented |  |  |  |
@@ -170,11 +170,11 @@ Updated after Phase 2.
 | SET-08 | Settings | SET-08 Audit history ? settings changes record user, timestamp, category, safe summary; secrets/passwords n... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | SET-09 | Settings | SET-09 Persistence ? saved settings remain after logout/login and server restart using DB-backed configuration | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-10-010 | UI | Responsive desktop/tablet/mobile design, accessible labels, search/filter/sort/pagination, sensible error s... | Not implemented |  |  |  |
-| REQ-10-011 | Cross-cutting | PDF and CSV/Excel-compatible exports, quote QR code, signature capture/display area, document management, G... | Not implemented |  |  |  |
-| REQ-10-012 | Integrations | Email/WhatsApp live delivery, live maps, external subsidy APIs, electronic signatures, payment gateway, pro... | Not implemented |  |  |  |
+| REQ-10-011 | Cross-cutting | PDF and CSV/Excel-compatible exports, quote QR code, signature capture/display area, document management, G... | Partial |  |  | Phase3: visit PDF + documents + GPS fields + audit; QR/signature/exports later |
+| REQ-10-012 | Integrations | Email/WhatsApp live delivery, live maps, external subsidy APIs, electronic signatures, payment gateway, pro... | Simulated |  |  | Phase3: live maps Simulated (Demo preview); other integrations unchanged |
 | AT-01 | Acceptance | AT-01 Log in with demo credentials; demonstrate ?2 roles with different server-enforced permissions | Partial |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 roles/permissions ready; full UI demo pending human |
 | AT-02 | Acceptance | AT-02 Create lead, assign, add follow-up/customer note, find via search/filter | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
-| AT-03 | Acceptance | AT-03 Schedule and complete site visit with survey fields, photo/document support, visit history/report | Not implemented |  |  |  |
+| AT-03 | Acceptance | AT-03 Schedule and complete site visit with survey fields, photo/document support, visit history/report | Fully working |  |  | Phase3: tests 5 pass; scripted schedule/complete/upload/reschedule/history/PDF VIS-2026-0001 |
 | AT-04 | Acceptance | AT-04 Run hybrid calculator; show changed inputs, units, assumptions, formula/intermediates, changing outpu... | Not implemented |  |  |  |
 | AT-05 | Acceptance | AT-05 Run solar investment and EV income calculators; verify input changes affect results logically | Not implemented |  |  |  |
 | AT-06 | Acceptance | AT-06 Create itemized hybrid and solar water-pump quotations, calculate configured taxes/totals, generate P... | Not implemented |  |  |  |
@@ -216,7 +216,7 @@ Updated after Phase 2.
 | REQ-MP-SECRETS-UI | Security | Secrets (SMTP, WhatsApp tokens, API keys) in environment/server-side only; UI shows Configured/Not configur... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-MP-SNAPSHOTS | Snapshots | Calculation runs and quotation revisions store full JSON snapshots; issued snapshots never rewritten; edits... | Not implemented |  |  |  |
 | REQ-MP-CALC-SPEC | Calculators | Calculations server-side only with explicit units and shown intermediates; document additional assumptions ... | Not implemented |  |  |  |
-| REQ-MP-FILES | Documents | Private disk storage, randomized stored names, MIME/extension/size validation by content, authorized downlo... | Not implemented |  |  |  |
+| REQ-MP-FILES | Documents | Private disk storage, randomized stored names, MIME/extension/size validation by content, authorized downlo... | Fully working |  |  | Phase3: randomized names; MIME+ext+size; DocumentDownloadController; sensitive types; tests MIME/403 |
 | REQ-MP-QR | Quotations | Quote QR verification page may expose only minimal configurable fields via unguessable token | Not implemented |  |  |  |
 | REQ-MP-DEMO-DRIVERS | Integrations | External services behind interfaces with Demo drivers; never send real messages or call paid services by de... | Not implemented |  |  |  |
 | REQ-MP-CONVERT-IDEM | Orders | Conversion quotation?project must be idempotent (no duplicate projects) | Not implemented |  |  |  |

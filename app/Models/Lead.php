@@ -113,6 +113,16 @@ class Lead extends Model
         return $this->morphMany(Task::class, 'taskable');
     }
 
+    public function documents(): MorphMany
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
+
+    public function visits(): HasMany
+    {
+        return $this->hasMany(Visit::class);
+    }
+
     public function isLost(): bool
     {
         return strtolower((string) $this->stage) === 'lost';

@@ -5,8 +5,10 @@ namespace App\Providers;
 use App\Listeners\RecordUserLogin;
 use App\Services\AuditLogger;
 use App\Services\BrandingService;
+use App\Services\DocumentService;
 use App\Services\NumberingService;
 use App\Services\SettingsService;
+use App\Services\VisitReportService;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(SettingsService::class);
         $this->app->singleton(BrandingService::class);
         $this->app->singleton(NumberingService::class);
+        $this->app->singleton(DocumentService::class);
+        $this->app->singleton(VisitReportService::class);
     }
 
     public function boot(): void

@@ -86,6 +86,32 @@ class LookupSeeder extends Seeder
                 ['100k_250k', '100k–250k'],
                 ['250k_plus', '250k+'],
             ],
+            'visit_status' => [
+                ['scheduled', 'Scheduled'],
+                ['in_progress', 'In progress'],
+                ['completed', 'Completed'],
+                ['rescheduled', 'Rescheduled'],
+                ['cancelled', 'Cancelled'],
+            ],
+            'document_type' => [
+                ['site_photo', 'Site photo'],
+                ['electrical_room_photo', 'Electrical room / meter photo'],
+                ['bill_evidence', 'Bill / consumption evidence'],
+                ['visit_report', 'Visit report'],
+                ['signed_proposal', 'Signed proposal'],
+                ['warranty', 'Warranty'],
+                ['general', 'General'],
+                ['sensitive_id', 'Sensitive ID (restricted)'],
+            ],
+            'phase_type' => [
+                ['single', 'Single-phase'],
+                ['three', 'Three-phase'],
+            ],
+            'feasibility' => [
+                ['feasible', 'Feasible'],
+                ['conditional', 'Conditional'],
+                ['not_feasible', 'Not feasible'],
+            ],
         ];
 
         foreach ($groups as $type => $rows) {

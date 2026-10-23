@@ -28,6 +28,8 @@ class SettingsSeeder extends Seeder
             ['key' => 'branding.login_logo_path', 'value' => null, 'group' => 'branding', 'type' => 'file'],
             ['key' => 'security.session_idle_minutes', 'value' => 120, 'group' => 'security', 'type' => 'integer', 'is_sample' => false],
             ['key' => 'security.password_min_length', 'value' => 8, 'group' => 'security', 'type' => 'integer', 'is_sample' => false],
+            ['key' => 'documents.max_upload_kb', 'value' => 5120, 'group' => 'documents', 'type' => 'integer', 'is_sample' => false],
+            ['key' => 'integrations.map_provider_mode', 'value' => 'demo', 'group' => 'integrations', 'type' => 'string', 'is_sample' => true],
             ['key' => 'numbering.lead.prefix', 'value' => 'LEAD', 'group' => 'numbering', 'type' => 'string', 'is_sample' => false],
             ['key' => 'numbering.lead.format', 'value' => '{PREFIX}-{YYYY}-{####}', 'group' => 'numbering', 'type' => 'string', 'is_sample' => false],
             ['key' => 'numbering.lead.reset_yearly', 'value' => false, 'group' => 'numbering', 'type' => 'boolean', 'is_sample' => false],

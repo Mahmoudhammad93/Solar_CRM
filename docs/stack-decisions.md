@@ -27,6 +27,7 @@ Host MySQL root uses socket auth (no passwordless access for OS user). Phase 1 u
 | Testing | PHPUnit 12 (Laravel default) | Pest not required; PHPUnit covers Phase 1 tests |
 | Permissions | Custom `roles` / `permissions` / `role_permissions` + Gates/Policies | No Spatie/Shield — interview-friendly and verified without extra package risk |
 | Frontend | Vite (Laravel default) | Filament ships compiled assets; npm build optional for app CSS |
+| PDF | **barryvdh/laravel-dompdf v3.1.x** (installed Phase 3) | Compatible with Laravel 13; Blade templates for visit/quote reports; simplest verified option |
 
 ## Composer note
 

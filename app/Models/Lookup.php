@@ -81,6 +81,10 @@ class Lookup extends Model
             'task_type' => 'Task types',
             'task_status' => 'Task statuses',
             'budget_range' => 'Budget ranges',
+            'visit_status' => 'Visit statuses',
+            'document_type' => 'Document types',
+            'phase_type' => 'Electrical phase types',
+            'feasibility' => 'Feasibility outcomes',
         ]);
     }
 }

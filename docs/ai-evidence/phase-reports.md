@@ -146,3 +146,55 @@ See matrix totals after Phase 2 update.
 
 ### Next phase readiness
 Ready for visits / calculators / quotations phases.
+
+---
+
+## Phase 3 - Site visits, survey, documents, visit PDF
+
+**Time (shell):** `2026-10-23 15:19:53 EEST`
+
+**Elapsed / remaining:** clock start not set (receipt timestamp still awaited).
+
+### What was built
+- Visits: auto Visit ID (`NumberingService`), lead/customer link, schedule, assigned surveyor, configurable status lookups, site address, manual GPS, Demo preview map (no external calls), reschedule/cancel reason required, `visit_histories` log
+- Survey + utility + outcome fields on Filament Visit form; preliminary BOM free-text (catalogue link later)
+- Documents: polymorphic attachments, private `local` disk, UUID stored names, extension+MIME-by-content+max size (`documents.max_upload_kb`), authorized download route+policy, sensitive types role-restricted, audit on upload/delete
+- Visit report PDF via `barryvdh/laravel-dompdf` v3.1.2 + Blade + `BrandingService` snapshot; filename `visit-report-{ref}-{Ymd-His}.pdf`
+- Surveyor query/policy scope on `assigned_surveyor_id`
+
+### Upload validation rules
+- Max size: Settings `documents.max_upload_kb` (default 5120)
+- Allowed extensions ? MIME: jpg/jpeg?image/jpeg, png, webp, gif, pdf, doc/docx, xls/xlsx, csv
+- Detected with `mime_content_type` on real path; mismatch rejected
+- Extra head-byte reject for `<?php` / `<?=` / `<script`
+
+### PDF library decision
+- Installed **barryvdh/laravel-dompdf ^3.1** (verified stack); Blade templates kept; sample opened via `pdfinfo`: 1 page A4, 879706 bytes, `%PDF-1.7`, Producer dompdf 3.1.6
+
+### Commands run + results
+- `php artisan migrate --force` ? visits/histories/documents OK
+- `php artisan test --filter=VisitScopingAndDocumentsTest` ? **5 passed**
+- AT-03 scripted: VIS-2026-0001 schedule?complete?upload?reschedule?history?PDF
+
+### Requirement status
+- REQ-3-C-001..004, REQ-5-C-001, REQ-MP-FILES, AT-03 ? Fully working
+- REQ-3-C-005 map ? **Simulated** (Demo preview)
+- REQ-8-A-003 / REQ-9-G-002 / REQ-10-011 ? Partial (visit PDF branding only)
+
+### Known bugs
+- None blocking AT-03 automated checks. Filament FileUpload temp path extension normalized in DocumentsRelationManager.
+
+### Deviations / assumptions
+- Map never calls external providers; labelled Demo preview.
+- Preliminary BOM free-text until catalogue products exist.
+- Polymorphic documents ready for quote/project/installation/ticket owners when those models land.
+
+### Human manual verify (AT-03)
+1. Login admin / surveyor; Field ? Visits ? create scheduled visit, assign surveyor.
+2. Fill survey/utility/outcome; upload site/meter photo; mark completed.
+3. Reschedule with reason; confirm Histories tab shows events.
+4. Download visit report PDF; confirm branding + non-empty file.
+5. As other surveyor: unassigned visit ? 403/404; download foreign doc ? 403.
+
+### Next phase readiness
+Ready for hybrid calculators / quotations (Phase 4+).

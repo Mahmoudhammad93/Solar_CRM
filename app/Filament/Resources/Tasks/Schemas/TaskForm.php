@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Lead;
 use App\Models\Lookup;
 use App\Models\User;
+use App\Models\Visit;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -40,8 +41,7 @@ class TaskForm
                     ->options([
                         Lead::class => 'Lead',
                         Customer::class => 'Customer',
-                        // Stubs for later modules:
-                        'App\\Models\\Visit' => 'Visit (later)',
+                        Visit::class => 'Visit',
                         'App\\Models\\Quotation' => 'Quote (later)',
                         'App\\Models\\Project' => 'Project (later)',
                         'App\\Models\\Ticket' => 'Ticket (later)',
@@ -54,11 +54,12 @@ class TaskForm
                         return match ($get('taskable_type')) {
                             Lead::class => Lead::query()->orderByDesc('id')->limit(100)->pluck('reference', 'id'),
                             Customer::class => Customer::query()->orderByDesc('id')->limit(100)->pluck('customer_number', 'id'),
+                            Visit::class => Visit::query()->orderByDesc('id')->limit(100)->pluck('reference', 'id'),
                             default => [],
                         };
                     })
                     ->searchable()
-                    ->visible(fn (Get $get) => filled($get('taskable_type')) && in_array($get('taskable_type'), [Lead::class, Customer::class], true)),
+                    ->visible(fn (Get $get) => filled($get('taskable_type')) && in_array($get('taskable_type'), [Lead::class, Customer::class, Visit::class], true)),
             ]),
         ]);
     }
