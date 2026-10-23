@@ -2,6 +2,8 @@
 
 namespace App\Support;
 
+use App\Models\Lookup;
+
 final class QuotationWorkflow
 {
     /** @var array<string, list<string>> */
@@ -32,7 +34,9 @@ final class QuotationWorkflow
      */
     public static function labels(): array
     {
-        return [
+        $opts = Lookup::options('quotation_status');
+
+        return $opts !== [] ? $opts : [
             'draft' => 'Draft',
             'review' => 'Review',
             'sent' => 'Sent',

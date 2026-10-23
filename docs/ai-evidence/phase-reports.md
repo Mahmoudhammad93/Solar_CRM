@@ -486,3 +486,48 @@ SET-05 Fully working; SET-06 Fully working; live delivery = Simulated; configure
 
 ### Next phase readiness
 Ready for AT-11 settings polish / packaging / recording.
+
+---
+
+## Phase 11 - Settings completion, REST API, security hardening
+
+**Time (shell):** `2026-10-23 17:17:26 EEST`
+
+**Git:** commit pending on `master` (this phase)
+
+### What was built
+- Settings tabs extended: Lists & workflows, Regional & finance, Documents, Integrations status cards, API & system (real Save maps — no decorative dead controls)
+- Lookups expanded: ticket_type/status, quotation_status, amc_status, notification_category, territory; Ticket/Quotation/Amc workflow **labels** from Lookups; inactive preserve
+- Branches Filament resource; assignment rule setting
+- REST API: `api.enabled`, `ApiToken` (hash + prefix; plaintext once), `GET /api/v1/leads` scoped + paginated; `docs/api.md`
+- `docs/backup-plan.md`; SecurityHeaders; RateLimiter `api`/`login`
+- Custom fields: **Not implemented** (labelled)
+
+### Tests
+`SettingsCompletionAndApiTest` — **9 passed** (SET-03 source/status, SET-07, SET-08 redaction, SET-09 cache, API 401/503/200/403 + scoping)
+
+### Secrets check
+- `.gitignore` includes `.env`; no AWS/RSA private keys in app/config; `.env` not committed
+
+### Settings coverage (PDF §8–10 → status → evidence)
+
+| PDF item | Status | Evidence |
+|----------|--------|----------|
+| 8.A Branding | Fully working | ManageSettings Branding; SET-01 |
+| 8.B Password / idle | Fully working / Partial | Change password + idle; admin invite Not implemented |
+| 8.C RBAC / branches | Fully working | Gates + Branches + Warehouses + assignment rule |
+| 8.D Dynamic lists / workflows | Fully working | Lookups + workflow labels; custom fields Not implemented |
+| 9.E Calculators | Fully working | Existing Calculators tab |
+| 9.F Inventory | Fully working | Existing Inventory tab |
+| 9.G Documents/templates | Fully working / Partial | Documents tab toggles; install PDF Partial |
+| 9.H–I WhatsApp/Email | Simulated / Fully working | Phase 10 Communications |
+| 10.J Regional/tax | Fully working | Regional & finance tab |
+| 10.J API | Fully working | api.enabled + tokens + /api/v1/leads |
+| 10.J Integration cards | Fully working | Integrations tab Demo/Not configured |
+| 10.J Backup/export | Partial | Preferences + backup-plan.md; restore Unavailable |
+| SET-01..SET-09 | Evidenced | Tests + prior phases; SET-01/09 updated Fully working |
+| AT-11 | Fully working | This phase tests + coverage table |
+| Custom fields (F) | Not implemented | Explicit label in Lists & workflows |
+
+### Next phase readiness
+Ready for packaging / recording / AT-12–13.

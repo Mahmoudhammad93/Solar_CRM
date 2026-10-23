@@ -144,6 +144,51 @@ class LookupSeeder extends Seeder
                 ['SafeGrid', 'SafeGrid'],
                 ['Rootflash Demo', 'Rootflash Demo'],
             ],
+            'ticket_type' => [
+                ['fault', 'Fault / breakdown'],
+                ['service', 'Service visit'],
+                ['complaint', 'Complaint'],
+                ['amc', 'AMC related'],
+                ['other', 'Other'],
+            ],
+            'ticket_status' => [
+                ['open', 'Open'],
+                ['assigned', 'Assigned'],
+                ['in_progress', 'In Progress'],
+                ['waiting_customer', 'Waiting for Customer'],
+                ['waiting_parts', 'Waiting for Parts'],
+                ['resolved', 'Resolved'],
+                ['closed', 'Closed'],
+            ],
+            'quotation_status' => [
+                ['draft', 'Draft'],
+                ['review', 'Review'],
+                ['sent', 'Sent'],
+                ['accepted', 'Accepted'],
+                ['rejected', 'Rejected'],
+                ['expired', 'Expired'],
+            ],
+            'amc_status' => [
+                ['draft', 'Draft'],
+                ['active', 'Active'],
+                ['suspended', 'Suspended'],
+                ['expired', 'Expired'],
+                ['cancelled', 'Cancelled'],
+            ],
+            'notification_category' => [
+                ['follow_up', 'Follow-up'],
+                ['task', 'Task'],
+                ['overdue', 'Overdue'],
+                ['system', 'System'],
+                ['activity', 'Activity'],
+            ],
+            'territory' => [
+                ['north', 'North'],
+                ['south', 'South'],
+                ['east', 'East'],
+                ['west', 'West'],
+                ['central', 'Central'],
+            ],
         ];
 
         foreach ($groups as $type => $rows) {

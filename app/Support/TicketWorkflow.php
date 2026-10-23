@@ -2,6 +2,8 @@
 
 namespace App\Support;
 
+use App\Models\Lookup;
+
 final class TicketWorkflow
 {
     /** @var array<string, list<string>> */
@@ -21,11 +23,15 @@ final class TicketWorkflow
     }
 
     /**
+     * Labels from Lookups (ticket_status); deactivated values preserved via Lookup::options when needed.
+     *
      * @return array<string, string>
      */
     public static function labels(): array
     {
-        return [
+        $opts = Lookup::options('ticket_status');
+
+        return $opts !== [] ? $opts : [
             'open' => 'Open',
             'assigned' => 'Assigned',
             'in_progress' => 'In Progress',

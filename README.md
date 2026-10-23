@@ -70,6 +70,18 @@ DB_CONNECTION=mysql DB_HOST=127.0.0.1 DB_PORT=3308 DB_DATABASE=solar_crm_test \
 - `docs/MASTER_PROMPT.md`, `docs/project-clock.md`, `docs/requirements-matrix.csv`
 - `docs/feature-status.md`, `docs/known-limitations.md`, `docs/ai-evidence/phase-reports.md`
 
+## REST API
+
+See [`docs/api.md`](docs/api.md). Enable under Settings → API & system, create a token under Administration → API tokens, then:
+
+```bash
+curl -H "Authorization: Bearer rf_…" "http://127.0.0.1:8000/api/v1/leads"
+```
+
+## Backup plan
+
+See [`docs/backup-plan.md`](docs/backup-plan.md) (mysqldump, retention, restore warnings). Automated backup: Not configured.
+
 ## Communications (WhatsApp / Email) — production setup
 
 Defaults are **Demo / SIMULATED – not delivered**. Live delivery is not claimed.

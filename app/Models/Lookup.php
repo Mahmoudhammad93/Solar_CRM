@@ -88,6 +88,12 @@ class Lookup extends Model
             'product_category' => 'Product categories',
             'product_unit' => 'Product units',
             'product_brand' => 'Product brands',
+            'ticket_type' => 'Ticket types',
+            'ticket_status' => 'Ticket statuses',
+            'quotation_status' => 'Quotation statuses',
+            'amc_status' => 'AMC statuses',
+            'notification_category' => 'Notification categories',
+            'territory' => 'Territories / regions',
         ]);
     }
 }
