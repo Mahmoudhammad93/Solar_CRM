@@ -538,7 +538,7 @@ Ready for packaging / recording / AT-12–13.
 
 **Time (shell):** `2026-10-23 17:22:49 EEST`
 
-**Git:** commit pending on `master` (this phase)
+**Git:** commit `632bb23` on `master`
 
 ### What was built
 - `DemoScenarioSeeder` (DEMO ONLY, idempotent via `demo.scenario_version=12`) using Numbering/Quotation/Convert/Invoice/Ticket/AMC/Calculator services
