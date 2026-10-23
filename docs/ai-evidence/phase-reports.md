@@ -493,7 +493,7 @@ Ready for AT-11 settings polish / packaging / recording.
 
 **Time (shell):** `2026-10-23 17:17:26 EEST`
 
-**Git:** commit pending on `master` (this phase)
+**Git:** commit `31ef6f2` on `master`
 
 ### What was built
 - Settings tabs extended: Lists & workflows, Regional & finance, Documents, Integrations status cards, API & system (real Save maps — no decorative dead controls)
