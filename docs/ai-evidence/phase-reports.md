@@ -79,7 +79,7 @@ Ready for Phase 1 scaffolding after receipt timestamp is provided and clock is f
 - `php artisan test --testsuite=Feature` -> **15 passed, 1 skipped** (MySQL-only test skipped on sqlite)
 - `DB_CONNECTION=mysql ... php artisan test --filter=NumberingMysqlConcurrencyTest` -> **passed** (12 parallel allocations, no duplicates)
 - `curl /admin/login` -> HTTP **200**, branding name present
-- Earlier failure: parallel numbering under sqlite transaction wrap / wrong DB env for child processes ó fixed by dedicated MySQL test class + env passthrough
+- Earlier failure: parallel numbering under sqlite transaction wrap / wrong DB env for child processes ù fixed by dedicated MySQL test class + env passthrough
 
 ### Requirement status summary (matrix)
 - Fully working: 30
@@ -100,8 +100,8 @@ Ready for Phase 1 scaffolding after receipt timestamp is provided and clock is f
 1. Login as `admin@solar-crm.test` / `Password1!` at `/admin/login`.
 2. Settings ? change app name + upload logo ? Save ? refresh ? logout/login (SET-01/SET-09).
 3. Account ? Change password (SET-02): wrong current rejected; new works; old fails.
-4. Login as `executive@solar-crm.test` ó Settings nav should be inaccessible / 403 (SET-07).
-5. Login as `inactive@solar-crm.test` ó blocked.
+4. Login as `executive@solar-crm.test` ù Settings nav should be inaccessible / 403 (SET-07).
+5. Login as `inactive@solar-crm.test` ù blocked.
 6. Narrow browser to mobile width; confirm responsive Filament shell.
 7. Provide assignment receipt timestamp for `docs/project-clock.md`.
 
@@ -329,13 +329,13 @@ Ready for order/project conversion (Phase 7).
 
 **Time (shell):** `2026-10-23 16:32:40 EEST`
 
-**Git:** commit `c22b55e` on `master`
+**Git:** commit `365052e` on `master`
 
 ### What was built
-- `ConvertQuotationToProject` ó Accepted only; `lockForUpdate`; unique `orders.quotation_id`; idempotent return of existing; copies snapshot lines/totals/schedule/site/customer; preserves quote; audit + quotation activity
+- `ConvertQuotationToProject` ù Accepted only; `lockForUpdate`; unique `orders.quotation_id`; idempotent return of existing; copies snapshot lines/totals/schedule/site/customer; preserves quote; audit + quotation activity
 - Orders / Projects migrations + models; milestones (10 defaults + weights/%); Installation (checklist/readings/Demo sign-off; completion PDF Partial); ProjectMaterial BOM from quote lines
 - `AllocationService` ? `StockService` (reserve/allocate/issue/return/damage); shortage required vs available
-- `ProjectMilestoneService` ó configurable transitions; hold/exception require reason; SLA due_at / overdue
+- `ProjectMilestoneService` ù configurable transitions; hold/exception require reason; SLA due_at / overdue
 - Filament: My Orders (Pending/Active/Completed/Cancelled, internal-only); Projects + relation managers; Convert action on Accepted quote
 - Settings: `projects.default_delivery_days`, `default_duration_days`, `milestone_sla_days`
 - Artisan `quote:convert` for concurrency tests
@@ -345,33 +345,33 @@ Ready for order/project conversion (Phase 7).
 | Snapshot / quote field | Order | Project |
 |------------------------|-------|---------|
 | quotation.id | quotation_id (unique) | quotation_id |
-| revision.id | quotation_revision_id | ó |
+| revision.id | quotation_revision_id | ù |
 | customer_id | customer_id | customer_id |
-| revision.site_address | site_address | ó |
-| revision.system_type / proposal_type | project_type | ó |
-| revision.system_capacity_kw | capacity_kw | ó |
-| revision.totals.grand_total | contract_value | ó |
+| revision.site_address | site_address | ù |
+| revision.system_type / proposal_type | project_type | ù |
+| revision.system_capacity_kw | capacity_kw | ù |
+| revision.totals.grand_total | contract_value | ù |
 | revision.lines | lines_snapshot + ProjectMaterial rows | materials (BOM) |
-| revision.totals | totals_snapshot | ó |
-| revision.payment_schedule | payment_schedule | ó |
-| revision.template_texts.scope / customer_terms | confirmed_scope | ó |
+| revision.totals | totals_snapshot | ù |
+| revision.payment_schedule | payment_schedule | ù |
+| revision.template_texts.scope / customer_terms | confirmed_scope | ù |
 | owner_id | owner_id | sales_user_id |
-| ó | number ORD-*, ordered_on, delivery_target, status | number PRJ-*, milestones, installation, % complete |
+| ù | number ORD-*, ordered_on, delivery_target, status | number PRJ-*, milestones, installation, % complete |
 
 ### Shortage example (AT-08)
 - Project material `PNL-HC-550`: required **12**, warehouse AT08S available **2** ? shortage **10**, `has_shortage=true`
-- Reserve 5 blocked: ìInsufficient stockÖ negative stock blocked by policyî
+- Reserve 5 blocked: ùInsufficient stockù negative stock blocked by policyù
 - Low-stock samples still visible: PNL-HC-450 (8/15), INV-VN-8K (2/2), BAT-VN-10KWH (3/3)
 
 ### Manual AT-07 evidence
 - QUO-2026-0003 Accepted ? ORD-2026-0001 / PRJ-2026-0001
-- contract_value 19399.2 equals revision grand_total; site ìAT-07 Demo Site, Nagpurî; capacity 4.4; payment schedule 30/40/30
+- contract_value 19399.2 equals revision grand_total; site ùAT-07 Demo Site, Nagpurù; capacity 4.4; payment schedule 30/40/30
 - 10 milestones; after complete Order Confirmed ? percent_complete 5%, current `documents_pending`
-- Second convert: idempotent message ìOrder/project already existsÖî
+- Second convert: idempotent message ùOrder/project already existsùù
 
 ### Tests
-- `ConvertQuotationToProjectTest` + `ProjectMilestoneAndAllocationTest` ó **8 passed** (sqlite)
-- `ConvertQuotationMysqlConcurrencyTest` ó **1 passed** (6 parallel `quote:convert`, single order)
+- `ConvertQuotationToProjectTest` + `ProjectMilestoneAndAllocationTest` ù **8 passed** (sqlite)
+- `ConvertQuotationMysqlConcurrencyTest` ù **1 passed** (6 parallel `quote:convert`, single order)
 - Quotation workflow suite still **9 passed** (sent?accepted status-only on locked revision)
 
 ### Status
