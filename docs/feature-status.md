@@ -183,7 +183,7 @@ Updated after Phase 2.
 | AT-09 | Acceptance | AT-09 Create, assign, update and close ticket linked to customer/project; show AMC record or renewal workflow | Fully working |  |  | Phase8: TKT-2026-0002 closed on project; AMC-2026-0001 + amc:renewal-reminders; INV payment |
 | AT-10 | Acceptance | AT-10 Dashboard KPIs and core reports reflect stored records; export data and verify filters/totals | Fully working |  |  | Phase9: DashboardMetrics+ReportQuery; tests 6 pass; KPI=SQL table; CSV BOM |
 | AT-11 | Acceptance | AT-11 Demonstrate dynamic settings: app name/logo, password change, new dropdown/workflow, calculator assum... | Fully working |  |  | Phase11: SettingsCompletionAndApiTest 9 pass; coverage table |
-| AT-12 | Acceptance | AT-12 README setup works; seed data/demo login exist; no secrets committed; known limitations listed | Not implemented |  |  |  |
+| AT-12 | Acceptance | AT-12 README setup works; seed data/demo login exist; no secrets committed; known limitations listed | Fully working |  |  | Phase12: clean seed + demo-script.md + demo:reset |
 | AT-13 | Acceptance | AT-13 Submit full-project recording and Claude-only evidence within the 30-hour limit | Not implemented |  |  |  |
 | REQ-11-014 | Architecture | Related screens update consistently from one stored source of truth; avoid duplicate copies of same busines... | Not implemented |  |  |  |
 | REQ-11-015 | UI | Show loading/success/failure feedback; validate input client and server where relevant; handle empty states | Not implemented |  |  |  |

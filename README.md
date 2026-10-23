@@ -41,6 +41,15 @@ php artisan storage:link
 php artisan serve
 ```
 
+Reload fictional walkthrough data (local / DEMO ONLY):
+
+```bash
+php artisan demo:reset --force
+```
+
+Live click path: [`docs/demo-script.md`](docs/demo-script.md).
+
+
 Open `http://127.0.0.1:8000/admin/login`.
 
 ## Demo credentials (fictional / local-only)

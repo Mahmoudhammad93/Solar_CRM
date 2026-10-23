@@ -531,3 +531,51 @@ Ready for AT-11 settings polish / packaging / recording.
 
 ### Next phase readiness
 Ready for packaging / recording / AT-12–13.
+
+---
+
+## Phase 12 - Demo data and end-to-end demonstration scenario
+
+**Time (shell):** `2026-10-23 17:22:49 EEST`
+
+**Git:** commit pending on `master` (this phase)
+
+### What was built
+- `DemoScenarioSeeder` (DEMO ONLY, idempotent via `demo.scenario_version=12`) using Numbering/Quotation/Convert/Invoice/Ticket/AMC/Calculator services
+- `php artisan demo:reset --force` (blocked in production; requires --force)
+- `docs/demo-script.md` walkthrough click path for AT-01…AT-13
+- Wired into `DatabaseSeeder` after catalogue
+
+### Verification
+- `migrate:fresh --seed` OK
+- Full suite: **88 passed, 3 skipped** (ExampleTest fixed for `/` → `/admin` redirect)
+- All 6 active demo users present; inactive flagged
+- Dashboard KPIs non-trivial (leads 20, accepted quotes 3, active projects 3, open tickets 4, revenue from payments)
+
+### Seeded counts (post fresh seed)
+
+| Table | Count |
+|-------|------:|
+| users | 7 |
+| branches | 2 |
+| leads | 20 |
+| customers | 5 |
+| visits | 6 |
+| calculation_runs | 5 |
+| quotations | 8 |
+| orders / projects | 3 / 3 |
+| project_materials | 7 (shortage lines present) |
+| invoices / payments | 2 / 2 |
+| tickets | 6 |
+| amc_contracts | 2 |
+| tasks | 4 |
+| user_notifications | 3 |
+| products | 25 |
+| lookups | 131 |
+| audit_logs | 210 |
+
+### Demo users
+See README / demo-script (Password1!): admin, manager, executive, surveyor, pm, ops (+ inactive).
+
+### Status
+AT-12 Fully working. Ready for FEATURE FREEZE.
