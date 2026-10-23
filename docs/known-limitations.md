@@ -27,3 +27,7 @@ Demo passwords are local-only fictional values documented in README. Do not reus
 
 ## Validation V1
 - See `docs/acceptance-evidence.md` for AT/SET status. Manual confirmation still required for AT-01, AT-11, SET-01 UI checks; AT-13 not started (clock awaiting receipt).
+
+## Validation V2 (security)
+- See `docs/security-verification.md`. Residual: optional 2FA/device list (REQ-8-B-004) not built; `LeadPolicy::export` is broader than `leads.export` alone (reports still gated by `reports.view`); DocumentPolicy ownership is strict for Visit/Lead, looser for other morph types (few used).
+- Fixed in V2: API empty-abilities fail-open; quote-verify + document-download throttles; User `role_id`/`is_active` removed from `$fillable`.

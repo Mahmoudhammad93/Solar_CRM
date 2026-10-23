@@ -58,7 +58,8 @@ class DocumentService
             'documentable_type' => $owner::class,
             'documentable_id' => $owner->getKey(),
             'document_type' => $meta['document_type'] ?? 'general',
-            'original_name' => $file->getClientOriginalName(),
+            // Never persist client path segments (../, absolute paths).
+            'original_name' => $this->safeOriginalName($file->getClientOriginalName()),
             'stored_name' => $storedName,
             'disk' => 'local',
             'path' => $path,
@@ -84,6 +85,18 @@ class DocumentService
         return $doc;
     }
 
+    public function safeOriginalName(string $clientName): string
+    {
+        $base = basename(str_replace(["\0", '\\'], ['', '/'], $clientName));
+        $base = trim($base);
+        if ($base === '' || $base === '.' || $base === '..') {
+            return 'upload.bin';
+        }
+
+        // Collapse nested traversal leftovers after basename.
+        return preg_replace('/[^\w.\- ()\[\]]+/u', '_', $base) ?: 'upload.bin';
+    }
+
     public function assertValidUpload(UploadedFile $file): void
     {
         $maxKb = $this->maxUploadKb();
@@ -93,7 +106,16 @@ class DocumentService
             ]);
         }
 
+        $clientName = $file->getClientOriginalName();
+        if (str_contains($clientName, "\0") || preg_match('#\.\.[/\\\\]#', $clientName)) {
+            throw ValidationException::withMessages([
+                'file' => 'Filename contains illegal path segments.',
+            ]);
+        }
+
         $ext = strtolower($file->getClientOriginalExtension() ?: '');
+        // Reject double extensions that smuggle executables (e.g. shell.php.jpg → still .jpg OK;
+        // shell.php with allowed spoof handled by MIME; reject when last ext not allowlisted).
         if ($ext === '' || ! array_key_exists($ext, self::ALLOWED_MIME_BY_EXT)) {
             throw ValidationException::withMessages([
                 'file' => 'File extension is not allowed.',

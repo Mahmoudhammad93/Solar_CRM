@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+
 class DemoUserSeeder extends Seeder
 {
     public function run(): void
@@ -70,19 +71,19 @@ class DemoUserSeeder extends Seeder
         foreach ($users as $data) {
             $role = Role::query()->where('slug', $data['role'])->firstOrFail();
 
-            User::query()->updateOrCreate(
-                ['email' => $data['email']],
-                [
-                    'name' => $data['name'],
-                    'phone' => '+2010000000'.substr((string) $role->id, -1),
-                    'password' => $data['password'],
-                    'role_id' => $role->id,
-                    'branch_id' => $branch->id,
-                    'team_id' => $team->id,
-                    'is_active' => $data['is_active'] ?? true,
-                    'email_verified_at' => now(),
-                ],
-            );
+            $user = User::query()->firstOrNew(['email' => $data['email']]);
+            $user->fill([
+                'name' => $data['name'],
+                'phone' => '+2010000000'.substr((string) $role->id, -1),
+                'password' => $data['password'],
+                'branch_id' => $branch->id,
+                'team_id' => $team->id,
+            ]);
+            $user->forceFill([
+                'role_id' => $role->id,
+                'is_active' => $data['is_active'] ?? true,
+                'email_verified_at' => now(),
+            ])->save();
         }
     }
 }

@@ -21,7 +21,8 @@ class LeadController extends Controller
 
         $token = $request->attributes->get('api_token');
         $abilities = $token?->abilities ?? [];
-        if ($abilities !== [] && ! in_array('leads:read', $abilities, true) && ! in_array('*', $abilities, true)) {
+        // Empty abilities must not grant access (fail closed).
+        if (! in_array('*', $abilities, true) && ! in_array('leads:read', $abilities, true)) {
             return response()->json(['message' => 'Token lacks leads:read ability.'], 403);
         }
 

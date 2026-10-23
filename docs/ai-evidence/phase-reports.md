@@ -598,3 +598,22 @@ AT-12 Fully working. Ready for FEATURE FREEZE.
 
 ### Defects fixed this validation
 None (suite already green).
+
+---
+
+## Validation V2 - Security verification
+
+**Time (shell):** `2026-10-23 17:34+ EEST`  
+**Git:** commit pending
+
+### Actions
+- Hardened API ability check (fail closed on empty abilities)
+- Added `throttle:quote-verify` (30/min) and `throttle:document-download` (60/min)
+- Removed `role_id`/`is_active` from User `$fillable`; DemoUserSeeder uses `forceFill`
+- DocumentService `safeOriginalName` + traversal reject
+- Added `tests/Feature/Security/SecurityVerificationTest.php` (13 tests) + `docs/security-verification.md`
+- Secrets scan: no live keys; demo Password1! only
+- Full suite after seed: **101 passed, 3 skipped, 0 failed**
+
+### Findings fixed
+SEC-V2-01..05 (see security-verification.md). Residuals: 2FA optional, LeadPolicy::export breadth, DocumentPolicy morph edge.

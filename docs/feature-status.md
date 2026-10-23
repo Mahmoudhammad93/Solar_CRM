@@ -117,7 +117,7 @@ Updated after Phase 2.
 | REQ-7-C-002 | Admin | Role/permission management: restrict view/create/edit/delete/export for sensitive modules; demonstrate ?2 r... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-7-C-003 | Admin | Audit logs for important actions: user, action, entity/reference, timestamp, change summary; never log pass... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-7-C-004 | Admin | Backup/export plan and REST API approach; prefer one authenticated sample endpoint; full automated restore ... | Not implemented |  |  |  |
-| REQ-7-C-005 | Security | Security: server-side checks, secure password hashing, validation, safe uploads, secrets in env/secure stor... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
+| REQ-7-C-005 | Security | Security: server-side checks, secure password hashing, validation, safe uploads, secrets in env/secure stor... | Fully working |  |  | V2: security-verification.md; SecurityVerificationTest 13 pass; empty-abilities+throttle+fillable hardened |
 | REQ-8-001 | Settings | ONE dedicated Settings tab/page; all listed business configuration editable by authorized admins, persist i... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-8-002 | Settings | Settings organized into sub-tabs/cards with Save, Cancel, validation, confirmation for sensitive changes, s... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-8-003 | Settings | Unimplemented settings clearly marked unavailable rather than shown as working | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
@@ -166,7 +166,7 @@ Updated after Phase 2.
 | SET-04 | Settings | SET-04 Change hybrid defaults ? changing PSH, battery DoD, loss factor or panel wattage changes results and... | Fully working |  |  | Phase5: change PSH/DoD/loss/panel → new run changes; old snapshot fixed |
 | SET-05 | Settings-WhatsApp | SET-05 Configure WhatsApp in Demo mode ? template preview works, demo visibly marked simulated, no false se... | Fully working |  |  | Phase10: Communications Demo; MessagingAndRemindersTest 8 pass |
 | SET-06 | Settings-WhatsApp | SET-06 Missing WhatsApp credentials ? useful setup message; never expose or request credentials in public/c... | Fully working |  |  | Phase10: env-only secrets; setup message; no UI token fields |
-| SET-07 | Settings | SET-07 Role restrictions ? non-admin cannot save protected settings by UI or direct HTTP/API | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
+| SET-07 | Settings | SET-07 Role restrictions ? non-admin cannot save protected settings by UI or direct HTTP/API | Fully working |  |  | V2: Livewire+Gate deny; SecurityVerificationTest + SettingsPermissionTest |
 | SET-08 | Settings | SET-08 Audit history ? settings changes record user, timestamp, category, safe summary; secrets/passwords n... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | SET-09 | Settings | SET-09 Persistence ? saved settings remain after logout/login and server restart using DB-backed configuration | Fully working |  |  | Phase11: persist after cache forget |
 | REQ-10-010 | UI | Responsive desktop/tablet/mobile design, accessible labels, search/filter/sort/pagination, sensible error s... | Not implemented |  |  |  |
@@ -224,3 +224,11 @@ Updated after Phase 2.
 
 Totals: {'Not implemented': 170, 'Fully working': 41, 'Partial': 6}
 Total features: 217
+
+
+## Bugs / fixes — Validation V2
+| ID | Severity | Summary | Fix |
+|----|----------|---------|-----|
+| SEC-V2-01 | Medium | API empty abilities fail-open | Require leads:read or * |
+| SEC-V2-02 | Medium | Quote verify unthrottled | throttle:quote-verify |
+| SEC-V2-04 | Medium | User role_id/is_active fillable | Removed; forceFill in seeder |

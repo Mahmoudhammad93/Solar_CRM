@@ -16,15 +16,20 @@ class User extends Authenticatable implements FilamentUser
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    /**
+     * Privileged auth fields (role_id, is_active) are intentionally omitted so
+     * request-derived mass assignment cannot escalate privileges. Seeders,
+     * factories, and admin code must use forceFill() / unguarded for those.
+     *
+     * @var list<string>
+     */
     protected $fillable = [
         'name',
         'email',
         'phone',
         'password',
-        'role_id',
         'branch_id',
         'team_id',
-        'is_active',
         'last_login_at',
     ];
 

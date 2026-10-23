@@ -81,6 +81,15 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by(strtolower((string) $request->input('email')).'|'.$request->ip());
         });
 
+        // Public quote verification — slow brute-force of public_token.
+        RateLimiter::for('quote-verify', function (Request $request) {
+            return Limit::perMinute(30)->by($request->ip());
+        });
+
+        RateLimiter::for('document-download', function (Request $request) {
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
+
         Password::defaults(function () {
             $min = 8;
 

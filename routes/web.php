@@ -9,9 +9,10 @@ Route::get('/', function () {
 });
 
 Route::get('/quotes/verify/{token}', [QuoteVerificationController::class, 'show'])
+    ->middleware('throttle:quote-verify')
     ->name('quotes.verify');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'throttle:document-download'])->group(function () {
     Route::get('/documents/{uuid}/download', DocumentDownloadController::class)
         ->name('documents.download');
 });
