@@ -56,25 +56,25 @@ Updated after Phase 2.
 | REQ-3-D-001 | Tasks | Tasks linkable to leads, customers, quotes, visits, projects, tickets | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
 | REQ-3-D-002 | Tasks | Task fields: title, description, owner, due date/time, priority, status, reminder, outcome | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
 | REQ-3-D-003 | Tasks | Task list/calendar view, overdue and due-today views, completion timestamps, linked-record activity history | Partial |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups list/due-today/overdue; calendar not shipped |
-| REQ-4-001 | Calculators | Calculator must not return arbitrary/fixed results; show inputs, formulas/assumptions, intermediate totals,... | Not implemented |  |  |  |
-| REQ-4-002 | Calculators | Results labeled as indicative estimates, not engineering certification | Not implemented |  |  |  |
-| REQ-4-003 | Calculators | Configurable formulas and documented assumptions; validate non-negative, units, efficiency ranges, zero den... | Not implemented |  |  |  |
-| REQ-4-A-001 | HybridCalculator | Hybrid load table: appliance name, quantity, rated watts, hours/day, usage pattern, critical/non-critical, ... | Not implemented |  |  |  |
-| REQ-4-A-002 | HybridCalculator | Hybrid solar/utility inputs: monthly units and/or bill, tariff/unit, usable roof area, proposed PV capacity... | Not implemented |  |  |  |
-| REQ-4-A-003 | HybridCalculator | Hybrid battery/inverter inputs: backup duration target, system voltage, battery chemistry, nominal capacity... | Not implemented |  |  |  |
-| REQ-4-A-004 | HybridCalculator | Hybrid financial inputs: panel/inverter/battery/BOS prices, GST, installation, transport, structure/civil, ... | Not implemented |  |  |  |
-| REQ-4-A-005 | HybridCalculator | Hybrid outputs: recommended PV kWp and panel count, roof-area-constrained size if enabled, daily/annual ene... | Not implemented |  |  |  |
-| REQ-4-A-006 | HybridCalculator | Display each selected input, unit and assumption beside results; do not hide battery/inverter rule path | Not implemented |  |  |  |
-| REQ-4-A-007 | HybridCalculator | If real tariff/net-metering/subsidy used: show state/utility, source/reference, effective date; else mark S... | Not implemented |  |  |  |
-| REQ-4-B-001 | InvestmentCalculator | Investment calculator inputs: upfront cost, grant/subsidy, optional loan amount/interest/tenure, estimated ... | Not implemented |  |  |  |
-| REQ-4-B-002 | InvestmentCalculator | Investment calculator outputs: net initial investment, monthly/annual savings/revenue, annual operating cos... | Not implemented |  |  |  |
-| REQ-4-B-003 | InvestmentCalculator | Investment calculator NPV/IRR (bonus) | Not implemented |  |  |  |
-| REQ-4-C-001 | EVCalculator | EV charging income inputs: charger type/power kW, number of points, sessions/day, avg kWh/session, operatin... | Not implemented |  |  |  |
-| REQ-4-C-002 | EVCalculator | EV charging outputs: energy sold, gross monthly/annual revenue, electricity cost, opex, estimated net profi... | Not implemented |  |  |  |
-| REQ-4-HYBRID-SIZING | HybridCalculator | Acceptance: changing appliance qty/hours, backup target, panel wattage, peak sun hours, battery DoD or effi... | Not implemented |  |  |  |
-| REQ-4-GEN-SAVINGS | Calculators | Acceptance: changing tariff, generation/loss, self-consumption or export rate changes projected savings and... | Not implemented |  |  |  |
-| REQ-4-COST-EST | HybridCalculator | Acceptance: changing product prices, GST, installation or transport updates line items and total; PDF match... | Not implemented |  |  |  |
-| REQ-4-VALIDATION | Calculators | Acceptance: reject negative inputs, implausible efficiencies, invalid denominators, non-numeric inputs with... | Not implemented |  |  |  |
+| REQ-4-001 | Calculators | Calculator must not return arbitrary/fixed results; show inputs, formulas/assumptions, intermediate totals,... | Fully working |  |  | Phase5: Hybrid/Investment/EV services + Filament; snapshot + PDF; calculation-spec.md |
+| REQ-4-002 | Calculators | Results labeled as indicative estimates, not engineering certification | Fully working |  |  | Phase5: disclaimer on UI/PDF/snapshot |
+| REQ-4-003 | Calculators | Configurable formulas and documented assumptions; validate non-negative, units, efficiency ranges, zero den... | Fully working |  |  | Phase5: validation + calculation-spec.md; HybridCalculatorTest |
+| REQ-4-A-001 | HybridCalculator | Hybrid load table: appliance name, quantity, rated watts, hours/day, usage pattern, critical/non-critical, ... | Fully working |  |  | Phase5: load repeater + connected/daily/peak |
+| REQ-4-A-002 | HybridCalculator | Hybrid solar/utility inputs: monthly units and/or bill, tariff/unit, usable roof area, proposed PV capacity... | Fully working |  |  | Phase5: PSH/PR/tariff/roof/export inputs from Settings |
+| REQ-4-A-003 | HybridCalculator | Hybrid battery/inverter inputs: backup duration target, system voltage, battery chemistry, nominal capacity... | Fully working |  |  | Phase5: backup/DoD/voltage/efficiencies/generator |
+| REQ-4-A-004 | HybridCalculator | Hybrid financial inputs: panel/inverter/battery/BOS prices, GST, installation, transport, structure/civil, ... | Fully working |  |  | Phase5: cost lines GST O&M subsidy |
+| REQ-4-A-005 | HybridCalculator | Hybrid outputs: recommended PV kWp and panel count, roof-area-constrained size if enabled, daily/annual ene... | Fully working |  |  | Phase5: full outputs + hybrid PDF |
+| REQ-4-A-006 | HybridCalculator | Display each selected input, unit and assumption beside results; do not hide battery/inverter rule path | Fully working |  |  | Phase5: intermediates + formula_path beside results |
+| REQ-4-A-007 | HybridCalculator | If real tariff/net-metering/subsidy used: show state/utility, source/reference, effective date; else mark S... | Fully working |  |  | Phase5: Sample/Demo tariff labels unless sourced |
+| REQ-4-B-001 | InvestmentCalculator | Investment calculator inputs: upfront cost, grant/subsidy, optional loan amount/interest/tenure, estimated ... | Fully working |  |  | Phase5: InvestmentCalculatorService inputs |
+| REQ-4-B-002 | InvestmentCalculator | Investment calculator outputs: net initial investment, monthly/annual savings/revenue, annual operating cos... | Fully working |  |  | Phase5: net initial/savings/payback/ROI |
+| REQ-4-B-003 | InvestmentCalculator | Investment calculator NPV/IRR (bonus) | Not implemented |  |  | NPV/IRR bonus deferred |
+| REQ-4-C-001 | EVCalculator | EV charging income inputs: charger type/power kW, number of points, sessions/day, avg kWh/session, operatin... | Fully working |  |  | Phase5: EvCalculatorService inputs |
+| REQ-4-C-002 | EVCalculator | EV charging outputs: energy sold, gross monthly/annual revenue, electricity cost, opex, estimated net profi... | Fully working |  |  | Phase5: energy/revenue/opex/profit/payback |
+| REQ-4-HYBRID-SIZING | HybridCalculator | Acceptance: changing appliance qty/hours, backup target, panel wattage, peak sun hours, battery DoD or effi... | Fully working |  |  | Phase5: sensitivity tests qty/hours/backup/panel/PSH/DoD/eff |
+| REQ-4-GEN-SAVINGS | Calculators | Acceptance: changing tariff, generation/loss, self-consumption or export rate changes projected savings and... | Fully working |  |  | Phase5: tariff/loss/export sensitivity + investment |
+| REQ-4-COST-EST | HybridCalculator | Acceptance: changing product prices, GST, installation or transport updates line items and total; PDF match... | Fully working |  |  | Phase5: GST/install sensitivity; PDF from snapshot HTML equality |
+| REQ-4-VALIDATION | Calculators | Acceptance: reject negative inputs, implausible efficiencies, invalid denominators, non-numeric inputs with... | Fully working |  |  | Phase5: negative/efficiency validation tests |
 | REQ-5-A-001 | Quotations | Quotation common fields: auto quotation number, revision, created/valid-until, customer/lead/site, owner, s... | Not implemented |  |  |  |
 | REQ-5-A-002 | Quotations | Quotation itemized lines: product/service, SKU, description/spec, qty, unit, unit price, discount, taxable ... | Not implemented |  |  |  |
 | REQ-5-A-003 | Quotations | Quotation totals: subtotal, discount, taxable value, configured CGST/SGST or IGST, round-off if used, grand... | Not implemented |  |  |  |
@@ -136,14 +136,14 @@ Updated after Phase 2.
 | REQ-8-D-002 | Settings-Lists | Where feasible: admin-defined custom fields (text/number/date/dropdown/checkbox) with label, required, defa... | Not implemented |  |  |  |
 | REQ-8-D-003 | Settings-Workflow | Configure quotation statuses, project milestones, ticket workflow, AMC statuses and allowed transitions; ne... | Not implemented |  |  |  |
 | REQ-8-D-004 | Settings-Lists | Configure table columns and defaults where feasible; deactivating config must not break existing records (p... | Not implemented |  |  |  |
-| REQ-9-E-001 | Settings-Calculator | Hybrid calculator defaults editable: peak sun hours, PR/losses, panel wattage, battery chemistry, usable Do... | Not implemented |  |  |  |
-| REQ-9-E-002 | Settings-Calculator | Editable rates/assumptions: electricity tariffs, export/net-metering prices, O&M defaults, component prices... | Not implemented |  |  |  |
-| REQ-9-E-003 | Settings-Calculator | Each config keeps value, unit, effective date, status, source/reference, updated-by; real policy assumption... | Not implemented |  |  |  |
-| REQ-9-E-004 | Settings-Calculator | Calculator setting changes affect new calculations/reports; previously saved quotes/calculations retain ass... | Not implemented |  |  |  |
+| REQ-9-E-001 | Settings-Calculator | Hybrid calculator defaults editable: peak sun hours, PR/losses, panel wattage, battery chemistry, usable Do... | Fully working |  |  | Phase5: Settings Calculators tab + calc.hybrid.* keys |
+| REQ-9-E-002 | Settings-Calculator | Editable rates/assumptions: electricity tariffs, export/net-metering prices, O&M defaults, component prices... | Fully working |  |  | Phase5: tariff/export/O&M/prices/GST in Settings |
+| REQ-9-E-003 | Settings-Calculator | Each config keeps value, unit, effective date, status, source/reference, updated-by; real policy assumption... | Fully working |  |  | Phase5: settings value/unit/effective/source/is_sample |
+| REQ-9-E-004 | Settings-Calculator | Calculator setting changes affect new calculations/reports; previously saved quotes/calculations retain ass... | Fully working |  |  | Phase5: snapshot immutability + rerun overlays settings |
 | REQ-9-F-001 | Settings-Inventory | Product/inventory settings: category, brand, warranty defaults, units, tax rate, price defaults, serial/bat... | Fully working |  |  | Phase4: Settings Inventory tab + inventory.* keys; warehouses Filament |
 | REQ-9-F-002 | Settings-Inventory | Configure allowed product types and component attributes for panels, hybrid inverters, batteries, pumps, EV... | Fully working |  |  | Phase4: product_attributes per category + Lookup product_category |
 | REQ-9-G-001 | Settings-Templates | Configure numbering prefixes and sequence behavior for quote/invoice/order/project/ticket/AMC; validity day... | Not implemented |  |  |  |
-| REQ-9-G-002 | Settings-Templates | Editable branded templates for quotation PDF, hybrid calculator report, site-visit report, installation/com... | Partial |  |  | Phase3: Blade visit-report template branded; Settings-editable templates later |
+| REQ-9-G-002 | Settings-Templates | Editable branded templates for quotation PDF, hybrid calculator report, site-visit report, installation/com... | Partial |  |  | Phase5: hybrid calc PDF Blade; investment/EV PDF Partial |
 | REQ-9-G-003 | Settings-Templates | Enable/disable QR code, signature block, footer/contact block, logo display, PDF/CSV/Excel export options w... | Not implemented |  |  |  |
 | REQ-9-H-001 | Settings-WhatsApp | WhatsApp settings page: provider/mode (Demo or configured), business phone/sender, business/account IDs, ap... | Not implemented |  |  |  |
 | REQ-9-H-002 | Settings-WhatsApp | Secure server-side credential configuration, test-connection, connection status, webhook/callback if implem... | Not implemented |  |  |  |
@@ -163,7 +163,7 @@ Updated after Phase 2.
 | SET-01 | Settings | SET-01 Change app/website display name and logo ? branding changes in nav/login and generated quotation/rep... | Partial |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 Branding settings UI+service present; manual logo refresh check pending human confirmation |
 | SET-02 | Settings | SET-02 Change own password ? current validated; new/confirm mismatch rejected; new works and old fails | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | SET-03 | Settings | SET-03 Change dropdown/workflow value ? new lead source/stage in forms/filters; changed project/ticket work... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups new lead_source in Lookup options |
-| SET-04 | Settings | SET-04 Change hybrid defaults ? changing PSH, battery DoD, loss factor or panel wattage changes results and... | Not implemented |  |  |  |
+| SET-04 | Settings | SET-04 Change hybrid defaults ? changing PSH, battery DoD, loss factor or panel wattage changes results and... | Fully working |  |  | Phase5: change PSH/DoD/loss/panel → new run changes; old snapshot fixed |
 | SET-05 | Settings-WhatsApp | SET-05 Configure WhatsApp in Demo mode ? template preview works, demo visibly marked simulated, no false se... | Not implemented |  |  |  |
 | SET-06 | Settings-WhatsApp | SET-06 Missing WhatsApp credentials ? useful setup message; never expose or request credentials in public/c... | Not implemented |  |  |  |
 | SET-07 | Settings | SET-07 Role restrictions ? non-admin cannot save protected settings by UI or direct HTTP/API | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
@@ -175,8 +175,8 @@ Updated after Phase 2.
 | AT-01 | Acceptance | AT-01 Log in with demo credentials; demonstrate ?2 roles with different server-enforced permissions | Partial |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 roles/permissions ready; full UI demo pending human |
 | AT-02 | Acceptance | AT-02 Create lead, assign, add follow-up/customer note, find via search/filter | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
 | AT-03 | Acceptance | AT-03 Schedule and complete site visit with survey fields, photo/document support, visit history/report | Fully working |  |  | Phase3: tests 5 pass; scripted schedule/complete/upload/reschedule/history/PDF VIS-2026-0001 |
-| AT-04 | Acceptance | AT-04 Run hybrid calculator; show changed inputs, units, assumptions, formula/intermediates, changing outpu... | Not implemented |  |  |  |
-| AT-05 | Acceptance | AT-05 Run solar investment and EV income calculators; verify input changes affect results logically | Not implemented |  |  |  |
+| AT-04 | Acceptance | AT-04 Run hybrid calculator; show changed inputs, units, assumptions, formula/intermediates, changing outpu... | Fully working |  |  | Phase5: hybrid UI+tests+PDF; 3 worked examples |
+| AT-05 | Acceptance | AT-05 Run solar investment and EV income calculators; verify input changes affect results logically | Fully working |  |  | Phase5: investment+EV tests and Filament pages |
 | AT-06 | Acceptance | AT-06 Create itemized hybrid and solar water-pump quotations, calculate configured taxes/totals, generate P... | Not implemented |  |  |  |
 | AT-07 | Acceptance | AT-07 Accept quotation and convert to linked order/project without losing key data; update milestones and s... | Not implemented |  |  |  |
 | AT-08 | Acceptance | AT-08 View catalogue/stock, link required materials to a project, show stock shortage/low-stock information | Partial |  |  | Phase4: catalogue/stock/low-stock evidenced; project material link Phase7 |
@@ -188,7 +188,7 @@ Updated after Phase 2.
 | REQ-11-014 | Architecture | Related screens update consistently from one stored source of truth; avoid duplicate copies of same busines... | Not implemented |  |  |  |
 | REQ-11-015 | UI | Show loading/success/failure feedback; validate input client and server where relevant; handle empty states | Not implemented |  |  |  |
 | REQ-11-016 | Integrations | Integrations expose real status only when real provider/API response supports it; local success toast is no... | Not implemented |  |  |  |
-| REQ-11-017 | Snapshots | Store snapshot of quote/calculation values so editing current settings does not silently alter previously a... | Not implemented |  |  |  |
+| REQ-11-017 | Snapshots | Store snapshot of quote/calculation values so editing current settings does not silently alter previously a... | Fully working |  |  | Phase5: calculation_runs immutable JSON snapshot |
 | REQ-12-001 | Submission | Submit working URL or local run steps, demo credentials, seed data, core flows accessible | Not implemented |  |  |  |
 | REQ-12-002 | Submission | Submit source repo/archive, migrations/schema, env sample without secrets, dependency/lock files | Not implemented |  |  |  |
 | REQ-12-003 | Submission | Submit README covering setup, stack, architecture, modules, database, demo accounts/roles, tests, deploymen... | Not implemented |  |  |  |
@@ -215,7 +215,7 @@ Updated after Phase 2.
 | REQ-MP-SETTINGS-SVC | Settings | Typed SettingsService with safe cache invalidation on save, versioning/effective-date metadata where requir... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-MP-SECRETS-UI | Security | Secrets (SMTP, WhatsApp tokens, API keys) in environment/server-side only; UI shows Configured/Not configur... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-MP-SNAPSHOTS | Snapshots | Calculation runs and quotation revisions store full JSON snapshots; issued snapshots never rewritten; edits... | Not implemented |  |  |  |
-| REQ-MP-CALC-SPEC | Calculators | Calculations server-side only with explicit units and shown intermediates; document additional assumptions ... | Not implemented |  |  |  |
+| REQ-MP-CALC-SPEC | Calculators | Calculations server-side only with explicit units and shown intermediates; document additional assumptions ... | Fully working |  |  | Phase5: docs/calculation-spec.md authored before code |
 | REQ-MP-FILES | Documents | Private disk storage, randomized stored names, MIME/extension/size validation by content, authorized downlo... | Fully working |  |  | Phase3: randomized names; MIME+ext+size; DocumentDownloadController; sensitive types; tests MIME/403 |
 | REQ-MP-QR | Quotations | Quote QR verification page may expose only minimal configurable fields via unguessable token | Not implemented |  |  |  |
 | REQ-MP-DEMO-DRIVERS | Integrations | External services behind interfaces with Demo drivers; never send real messages or call paid services by de... | Not implemented |  |  |  |

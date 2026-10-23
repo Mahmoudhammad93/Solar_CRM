@@ -8,6 +8,10 @@ use App\Services\BrandingService;
 use App\Services\DocumentService;
 use App\Services\NumberingService;
 use App\Services\SettingsService;
+use App\Services\CalculationReportService;
+use App\Services\Calculators\EvCalculatorService;
+use App\Services\Calculators\HybridCalculatorService;
+use App\Services\Calculators\InvestmentCalculatorService;
 use App\Services\StockService;
 use App\Services\VisitReportService;
 use Illuminate\Auth\Events\Login;
@@ -26,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(DocumentService::class);
         $this->app->singleton(VisitReportService::class);
         $this->app->singleton(StockService::class);
+        $this->app->singleton(HybridCalculatorService::class);
+        $this->app->singleton(InvestmentCalculatorService::class);
+        $this->app->singleton(EvCalculatorService::class);
+        $this->app->singleton(CalculationReportService::class);
     }
 
     public function boot(): void

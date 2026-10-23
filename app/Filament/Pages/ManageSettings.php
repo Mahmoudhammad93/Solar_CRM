@@ -91,6 +91,16 @@ class ManageSettings extends Page
             'allow_negative_stock' => (bool) $settings->get('inventory.allow_negative_stock', false),
             'default_gst_rate' => $settings->get('inventory.default_gst_rate', 18),
             'default_warranty_months' => $settings->get('inventory.default_warranty_months', 12),
+            'calc_psh' => $settings->get('calc.hybrid.peak_sun_hours', 5),
+            'calc_pr' => $settings->get('calc.hybrid.performance_ratio', 0.75),
+            'calc_loss' => $settings->get('calc.hybrid.system_loss_factor', 0),
+            'calc_panel_w' => $settings->get('calc.hybrid.panel_wattage', 550),
+            'calc_dod' => $settings->get('calc.hybrid.usable_dod', 0.9),
+            'calc_batt_eff' => $settings->get('calc.hybrid.battery_efficiency', 0.95),
+            'calc_inv_eff' => $settings->get('calc.hybrid.inverter_efficiency', 0.95),
+            'calc_margin' => $settings->get('calc.hybrid.design_margin', 1.25),
+            'calc_tariff' => $settings->get('calc.hybrid.tariff', 8),
+            'calc_export' => $settings->get('calc.hybrid.export_rate', 3),
         ]);
     }
 
@@ -180,6 +190,22 @@ class ManageSettings extends Page
                             TextInput::make('quote_prefix')->label('Quote prefix')->disabled(! $canEdit),
                             TextInput::make('quote_format')->label('Quote format')->disabled(! $canEdit),
                             Toggle::make('quote_reset_yearly')->label('Reset quote sequence yearly')->disabled(! $canEdit),
+                        ])->columns(2),
+                ]),
+                Tab::make('Calculators')->schema([
+                    Section::make('Hybrid defaults (Settings E / SET-04)')
+                        ->description('Changes affect NEW calculation runs only. Saved snapshots stay immutable. Tariff/export are Sample/Demo unless source metadata is set.')
+                        ->schema([
+                            TextInput::make('calc_psh')->numeric()->label('Peak sun hours')->helperText('h/day')->disabled(! $canEdit),
+                            TextInput::make('calc_pr')->numeric()->label('Performance ratio')->disabled(! $canEdit),
+                            TextInput::make('calc_loss')->numeric()->label('System loss factor (if separate)')->disabled(! $canEdit),
+                            TextInput::make('calc_panel_w')->numeric()->label('Default panel wattage (W)')->disabled(! $canEdit),
+                            TextInput::make('calc_dod')->numeric()->label('Usable DoD')->disabled(! $canEdit),
+                            TextInput::make('calc_batt_eff')->numeric()->label('Battery efficiency')->disabled(! $canEdit),
+                            TextInput::make('calc_inv_eff')->numeric()->label('Inverter efficiency')->disabled(! $canEdit),
+                            TextInput::make('calc_margin')->numeric()->label('Design margin (≥1)')->disabled(! $canEdit),
+                            TextInput::make('calc_tariff')->numeric()->label('Tariff (Sample/Demo)')->disabled(! $canEdit),
+                            TextInput::make('calc_export')->numeric()->label('Export rate (Sample/Demo)')->disabled(! $canEdit),
                         ])->columns(2),
                 ]),
                 Tab::make('Inventory')->schema([
@@ -291,6 +317,17 @@ class ManageSettings extends Page
                 'type' => 'boolean',
             ];
         }
+
+        $map['calc.hybrid.peak_sun_hours'] = ['value' => $data['calc_psh'] ?? 5, 'group' => 'calc', 'type' => 'float'];
+        $map['calc.hybrid.performance_ratio'] = ['value' => $data['calc_pr'] ?? 0.75, 'group' => 'calc', 'type' => 'float'];
+        $map['calc.hybrid.system_loss_factor'] = ['value' => $data['calc_loss'] ?? 0, 'group' => 'calc', 'type' => 'float'];
+        $map['calc.hybrid.panel_wattage'] = ['value' => $data['calc_panel_w'] ?? 550, 'group' => 'calc', 'type' => 'integer'];
+        $map['calc.hybrid.usable_dod'] = ['value' => $data['calc_dod'] ?? 0.9, 'group' => 'calc', 'type' => 'float'];
+        $map['calc.hybrid.battery_efficiency'] = ['value' => $data['calc_batt_eff'] ?? 0.95, 'group' => 'calc', 'type' => 'float'];
+        $map['calc.hybrid.inverter_efficiency'] = ['value' => $data['calc_inv_eff'] ?? 0.95, 'group' => 'calc', 'type' => 'float'];
+        $map['calc.hybrid.design_margin'] = ['value' => $data['calc_margin'] ?? 1.25, 'group' => 'calc', 'type' => 'float'];
+        $map['calc.hybrid.tariff'] = ['value' => $data['calc_tariff'] ?? 8, 'group' => 'calc', 'type' => 'float'];
+        $map['calc.hybrid.export_rate'] = ['value' => $data['calc_export'] ?? 3, 'group' => 'calc', 'type' => 'float'];
 
         foreach ($map as $key => $meta) {
             $settings->set($key, $meta['value'], [

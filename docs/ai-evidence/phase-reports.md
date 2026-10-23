@@ -240,3 +240,40 @@ Ready for hybrid calculators / quotations (Phase 4+).
 
 ### Next phase readiness
 Ready for hybrid calculators / quotations.
+
+---
+
+## Phase 5 - Calculators (hybrid, investment, EV) + hybrid PDF
+
+**Time (shell):** `2026-10-23 15:47:36 EEST`
+
+**Elapsed / remaining:** clock start not set (receipt timestamp still awaited).
+
+### Spec first
+- Authored `docs/calculation-spec.md` before coding (formulas, units, defaults, additional assumptions, validation, snapshots).
+
+### What was built
+- `HybridCalculatorService`, `InvestmentCalculatorService`, `EvCalculatorService` — server-side only; Settings-driven constants
+- Immutable `calculation_runs` snapshots; re-run overlays current Settings into a **new** row
+- Filament pages: Hybrid (load repeater + PDF), Investment, EV
+- Settings ? Calculators tab (SET-04 keys)
+- Hybrid PDF via Dompdf from **stored snapshot** only; investment/EV PDF Partial
+
+### Worked examples (hand vs actual)
+
+| Example | Key inputs | Hand expected | Actual |
+|---------|------------|---------------|--------|
+| A residential | loads 10×10W×5h + 2×60×8 + 1×150×24 crit; backup 4h; PSH5; PR0.75; Wp550; DoD0.9; ?0.95; m1.25; V48 | daily 5.06 kWh; batt 0.923 kWh; 3 panels / 1.65 kWp; annual gen 1.65×5×365×0.75=2258.44 | daily 5.06; batt 0.9234; panels 3; kWp 1.65; annual 2258.44 |
+| B higher backup | +router 20W crit; backup 8h | batt ?2.093 kWh (>A) | 2.093; greater than A |
+| C roof cap | constrain area 5 m² / 2.5 | max 2 panels / 1.1 kWp | panels 2; kWp 1.1 |
+
+### Tests
+- `HybridCalculatorTest` + `InvestmentAndEvCalculatorTest` ? **11 passed** (scenarios, sensitivity, immutability, validation, PDF/HTML snapshot equality)
+
+### Status
+- AT-04, AT-05, SET-04, REQ-4-* (except NPV/IRR) ? Fully working
+- REQ-4-B-003 NPV/IRR ? Not implemented
+- Investment/EV PDF ? Partial (hybrid PDF Fully working)
+
+### Next phase readiness
+Ready for quotations (Phase 6) consuming calculation runs.
