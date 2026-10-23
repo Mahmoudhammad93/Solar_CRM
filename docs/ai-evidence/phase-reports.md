@@ -721,3 +721,22 @@ SEC-V2-01..05 (see security-verification.md). Residuals: 2FA optional, LeadPolic
 
 ### Boundaries
 - Did not edit prior phase report entries; did not invent exports
+
+---
+
+## Validation V9 - Final submission checklist and known limitations
+
+**Time (shell):** `2026-10-23 18:13:53 EEST`
+
+### Actions
+- Created `docs/submission-checklist.md` (PDF §12 / AT-12 / AT-13 packaging)
+- Finalized `docs/known-limitations.md` (integrations, bonus gaps, security, calc, scale, identity)
+- Verified: migrate:fresh --seed OK; tests 114 passed / 3 skipped; secrets scan clean; .env untracked
+- Clock still AWAITING receipt — elapsed vs 30h unknown
+- Tag `v9.0.0-submission` + `git archive` command documented for human (archive not run outside project request)
+
+### Feature status counts
+Fully working 171 · Simulated 7 · Partial 13 · Not implemented 26 · Total 217
+
+### Pending on human
+Screen recording; AI exports; clock Start; employer compliance reply; run archive command
