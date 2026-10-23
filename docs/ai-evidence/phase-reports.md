@@ -617,3 +617,16 @@ None (suite already green).
 
 ### Findings fixed
 SEC-V2-01..05 (see security-verification.md). Residuals: 2FA optional, LeadPolicy::export breadth, DocumentPolicy morph edge.
+
+---
+
+## Validation V3 - Calculation verification
+
+**Time (shell):** `2026-10-23 17:40:07 EEST`  
+**Git:** commit pending
+
+### Actions
+- Created `docs/calculation-verification.md` (H1–H5, I1–I2, E1–E2, Q1–Q2 + what-if + snapshot/PDF)
+- Added `tests/Feature/Calculators/CalculationVerificationTest.php` (13 cases)
+- Hand math vs services: **all reconcile within tolerance**; no formula bug fixes required
+- Calculators: 24 passed; QuotationTotals: 9 passed; full suite: **114 passed, 3 skipped, 0 failed**

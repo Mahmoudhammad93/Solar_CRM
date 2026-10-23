@@ -232,3 +232,9 @@ Total features: 217
 | SEC-V2-01 | Medium | API empty abilities fail-open | Require leads:read or * |
 | SEC-V2-02 | Medium | Quote verify unthrottled | throttle:quote-verify |
 | SEC-V2-04 | Medium | User role_id/is_active fillable | Removed; forceFill in seeder |
+
+
+## Validation V3 — calculations
+- Evidence: `docs/calculation-verification.md`
+- All H1–H5, I1–I2, E1–E2, Q1–Q2 reconcile within documented tolerance; no formula bugs found.
+- Tests: `CalculationVerificationTest` (13) + existing calculator/totals suites.

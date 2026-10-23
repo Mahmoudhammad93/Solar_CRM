@@ -6,15 +6,15 @@
 - Local MySQL for the app is Docker container `solar_crm_mysql` on port **3308** (not the system MySQL socket).
 
 ## Communications (Phase 10)
-- WhatsApp/Email outbound is **Demo / SIMULATED – not delivered** by default. Statuses are only `demo_simulated` or `failed` unless a real provider response exists.
+- WhatsApp/Email outbound is **Demo / SIMULATED ï¿½ not delivered** by default. Statuses are only `demo_simulated` or `failed` unless a real provider response exists.
 - **Configured WhatsApp provider client**: Not implemented (interface + stub; no untested HTTP client).
 - WhatsApp **webhook/callback**: Not implemented.
 - Email **test send** action: Unavailable / Not implemented for live SMTP.
 - Live delivery requires env credentials + future tested provider; never invent `queued`/`sent`/`delivered`.
 
 ## Other
-- **Payment gateway** is **Simulated/not implemented** — manual payments only; labelled on invoices.
-- AMC **scheduling automation** is **Partial** — `amc:renewal-reminders` + `reminders:dispatch` need a scheduler process.
+- **Payment gateway** is **Simulated/not implemented** ï¿½ manual payments only; labelled on invoices.
+- AMC **scheduling automation** is **Partial** ï¿½ `amc:renewal-reminders` + `reminders:dispatch` need a scheduler process.
 - Partial/milestone billing beyond one invoice per order is **Not implemented**.
 - Installation **completion-report PDF** remains **Partial**.
 - My Orders is **internal-only** (no customer portal in this build).
@@ -31,3 +31,6 @@ Demo passwords are local-only fictional values documented in README. Do not reus
 ## Validation V2 (security)
 - See `docs/security-verification.md`. Residual: optional 2FA/device list (REQ-8-B-004) not built; `LeadPolicy::export` is broader than `leads.export` alone (reports still gated by `reports.view`); DocumentPolicy ownership is strict for Visit/Lead, looser for other morph types (few used).
 - Fixed in V2: API empty-abilities fail-open; quote-verify + document-download throttles; User `role_id`/`is_active` removed from `$fillable`.
+
+## Validation V3
+- NPV/IRR remain Not implemented (bonus). See calculation-verification.md for reconciled scenarios.
