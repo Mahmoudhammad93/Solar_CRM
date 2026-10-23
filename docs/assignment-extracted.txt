@@ -1,0 +1,832 @@
+                                 ROOTFLASH TECHNOLOGY | CANDIDATE ASSESSMENT
+
+
+
+                      FIRST-ROUND
+                  TECHNICAL ASSIGNMENT
+                                          Solar CRM Management System
+
+
+
+ MANDATORY BUILD RULE
+ Build the project using Claude AI only. No manual coding. Maximum total time: 30 hours.
+
+
+
+
+Objective
+Build a working, demonstrable Solar CRM web application covering the customer journey from lead capture and site survey
+through hybrid solar system sizing, quotation, order/project execution, inventory, reporting, after-sales service, and
+dynamically configurable system settings. This is a time-boxed prototype challenge: prioritize connected workflows,
+believable data, correct calculations, configuration-driven behavior, and clear technical reasoning.
+
+ Item                            Requirement
+
+ Time limit                      30 hours maximum from assignment receipt
+
+ Required AI                     Claude AI only for generating, editing, or debugging project code
+
+ Submission                      Runnable app + source repository + README + Claude AI evidence + full-project screen recording
+
+ Next round                      Technical interview based on the actual implementation and recorded walkthrough
+
+
+
+
+Important: this assignment is for evaluation only. Build an original implementation. Do not copy proprietary products, private repositories, or
+third-party source code.
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    1. AI-only development rules and submission checklist
+    Mandatory rules
+     • Claude AI must be the only AI coding assistant used to generate, modify, refactor, or debug project code. Do not use other AI
+       coding agents or code generators.
+
+     • No manual coding: do not hand-write or directly edit application source code. Use Claude to generate or revise code, then run
+       and test it. Normal IDE/terminal operation, environment setup, database tools, Git operations, and UI testing are allowed.
+
+     • Maximum duration is 30 hours total beginning when the assignment is received. Stop at the deadline and submit the current
+       state. Do not present incomplete or simulated features as fully functional.
+
+     • Keep Claude prompts and responses that relate to architecture, code generation, debugging, and testing. Provide relevant
+       exports or screenshots as evidence.
+
+     • Use fictional seed data. Do not place real customer data, passwords, API tokens, or company secrets in the repository. Store
+       credentials in environment variables or a secure server-side secret mechanism.
+
+     • You must understand the submitted code. AI-generated code that you cannot explain may count against the assessment.
+
+    Required deliverables
+     • Runnable, responsive web application with connected core workflows and demo credentials.
+
+     • Source repository/archive, database migrations/schema, seed data, dependency/lock files and a safe environment sample
+       file.
+
+     • README with setup, stack, architecture, database setup, demo roles, test steps, deployment notes, and known limitations.
+
+     • Full-project screen-recording video showing the live running app, every major module, key workflows, dynamic settings,
+       WhatsApp test/demo behavior, calculator inputs and outputs, exports, and any limitations.
+
+     • Claude AI evidence: relevant prompt history/export or screenshots plus a short note describing validation and debugging.
+
+     • Feature status sheet marking each required feature as Fully working, Simulated, Partial, or Not implemented.
+
+    Suggested screen-recording structure (12-20 minutes)
+      Time                What to demonstrate
+
+      1-2 min             Overview, stack, architecture and database relationships.
+
+      4-6 min             Lead creation/assignment, customer visit, hybrid calculator, branded quote PDF and quote-to-project conversion.
+
+      3-5 min             Project milestones, inventory, tickets, dashboard, reports and user permissions.
+
+      3-5 min             Settings tab: change app name/logo, change password, edit dropdown/workflow/calculator settings, configure
+                          WhatsApp test mode, demonstrate changes taking effect; finish with limitations and Claude evidence.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                             Page 2
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    2. Product brief and end-to-end workflow
+    Create a centralized CRM for a solar EPC/installation business. It should connect sales, field survey, hybrid system sizing,
+    quotations, execution, inventory, service, analytics and a broad dynamic settings center.
+
+
+      PRIMARY WORKFLOW
+      Lead -> follow-up/qualification -> customer/site visit -> hybrid solar calculation ->
+      quotation/proposal -> accepted quotation -> sales order/project -> materials/team allocation ->
+      installation milestones -> commissioning/handover -> invoice/payment visibility -> service
+      ticket/AMC.
+
+
+    Minimum quality expectations
+     • Use consistent navigation, clear page titles, search/filter controls, validation messages, useful empty/loading/error states and
+       responsive forms.
+
+     • Use linked records rather than duplicate disconnected entries: a lead/customer should link to visits, calculations, quotations,
+       orders/projects, documents and tickets.
+
+     • Use unique reference IDs for leads, visits, quotations, orders/projects, products, invoices, tickets and AMC contracts.
+
+     • Use stored data to calculate dashboard metrics and reports. Do not use decorative hard-coded KPIs.
+
+     • Dynamic business configuration belongs in the Settings tab and database. Changing a setting must affect the relevant UI,
+       calculations, templates, exports or workflows without code edits or redeployment, where technically applicable.
+
+     • If an external service such as WhatsApp, email, GPS/maps, e-signature, live subsidy data or payment gateway is not
+        integrated, label it as Demo/Simulated and document production setup.
+
+    Core demo user roles
+      Role                              Expected access
+
+      Super Admin                       All modules, settings, users, roles/permissions, company configuration, audit logs and integrations.
+
+      Sales Manager                     Team leads, assignment, approvals, quotes, sales pipeline and team reports.
+
+      Sales Executive                   Assigned leads, follow-ups, visits, customers, calculators, quotations and own pipeline.
+
+      Surveyor / Engineer               Assigned site visits, survey forms, GPS/site evidence and technical notes.
+
+      Project Manager / Operations      Accepted orders, projects, milestones, materials, team allocation and installation completion.
+
+      Inventory / Finance / Service     Relevant stock, procurement, invoice/payment visibility, support tickets and AMC functions.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                                Page 3
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    3. Required modules and field-level details
+    A. Dashboard and activity center
+     • Summary cards: new leads, follow-ups due/overdue, scheduled visits, quotations drafted/sent/accepted, active projects, open
+       tickets, recorded revenue and outstanding amounts when payment data exists.
+
+     • Charts/lists: lead-stage pipeline, source mix, sales by team member, quote conversion, monthly revenue, project status,
+       recent activity, upcoming tasks and notifications.
+
+     • Filters: date range, branch, team member, lead source and status. KPI cards should open the underlying filtered records.
+
+     • Activity center: timestamped events, task reminders, overdue highlights, read/unread notifications and action history.
+
+    B. Lead management
+      Field group             Fields and behavior
+
+      Identity                Auto lead ID, created date/time, lead title, customer type, full name/company, contact person, mobile, alternate
+                              phone, email.
+
+      Location                Address, city, district, state, PIN/postal code, GPS coordinates if available, branch/territory.
+
+      Solar need              System type (hybrid, solar water pump, EV charging or other supported project type), property segment, roof/site
+                              type, average monthly bill/units, sanctioned load, desired capacity, priority and budget range.
+
+      Sales tracking          Source, campaign/source details, assigned owner, stage, loss reason, probability, expected value, notes and tags.
+
+      Follow-up/files         Next follow-up, reminder, outcome, call/meeting notes, documents/photos, interaction history, created/updated by
+                              and timestamps.
+
+      Actions                 Add/edit/view, assign/reassign, import/export where feasible, search/filter/sort, duplicate check, follow-up
+                              scheduling and customer conversion.
+
+
+    C. Customer visit and site inspection
+     • Visit ID, linked lead/customer, schedule, assigned surveyor, status, site address, GPS coordinates, reschedule/cancellation
+       reason and visit history.
+
+     • Survey fields: property type, roof type/material, usable area, orientation/tilt, shading/obstructions, structural concerns, photos,
+       electrical room/meter photos, site access and safety notes.
+
+     • Utility details: bill/consumption evidence, monthly units, sanctioned load, single/three-phase, utility/DISCOM,
+       meter/connection type, proposed hybrid system and tentative capacity.
+
+     • Visit outcome: measurements, feasibility, customer needs, objections, feedback, recommended next step, preliminary bill of
+       materials and downloadable visit report.
+
+     • Map/GPS is a real integration only when configured; otherwise allow manual coordinates and label the map preview as demo.
+
+    D. Tasks, calendar and follow-ups
+     • Tasks can be linked to leads, customers, quotes, visits, projects and tickets. Fields: title, description, owner, due date/time,
+       priority, status, reminder and outcome.
+
+     • Provide list/calendar view, overdue and due-today views, completion timestamps and linked-record activity history.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                                   Page 4
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    4. Solar calculators and calculation rules
+    The calculator is a key evaluation area. It must not return arbitrary or fixed results. Show inputs, formulas/assumptions,
+    intermediate totals, units, final estimate and a printable/exportable report. Results are indicative estimates, not an
+    engineering certification.
+
+    A. Hybrid solar calculator (replaces separate off-grid and on-grid calculator
+    requirements)
+     • Load table: appliance/load name, quantity, rated watts, hours/day, usage pattern, critical/non-critical classification and
+       optional starting/surge factor. Calculate connected load, daily energy (Wh/kWh) and peak simultaneous load.
+
+     • Solar and utility inputs: average monthly units and/or bill, tariff per unit, usable roof area, proposed PV capacity, panel
+       wattage, peak sun hours or generation assumption, performance ratio/system loss factor, self-consumption assumption, grid
+       availability and export/net-metering assumption where applicable.
+
+     • Battery/inverter inputs: backup duration target, system voltage, battery chemistry, nominal battery capacity, usable depth of
+       discharge, battery/inverter efficiency, inverter continuous and surge rating, charge-controller/inverter limits and optional
+       generator input.
+
+     • Financial inputs: panel/inverter/battery/BOS prices, GST rate, installation, transport, structure/civil work, wiring/protection,
+       engineering, other charges, O&M, and editable subsidies/export rates where applicable.
+
+     • Outputs: recommended PV kWp and panel count, roof-area-constrained system size if enabled, daily/annual energy estimate,
+       battery nominal and usable kWh/Ah requirement, inverter rating, estimated backup time, expected solar contribution,
+       grid/generator support assumptions, self-consumed/exported units if configured, cost breakdown, total estimate and PDF
+       report.
+
+     • Display each selected input, unit and assumption beside results. Do not apply one universal battery/inverter rule without
+       showing the inputs and calculation path.
+
+     • If real tariff, net metering or subsidy rules are used, show applicable state/utility, source/reference and effective date.
+        Otherwise mark all such values Sample/Demo and make them editable in Settings.
+
+     • Use configurable formulas and documented assumptions. Validate physical plausibility, non-negative values, units, efficiency
+       ranges and zero denominators. State when detailed engineering validation is required.
+
+    B. Solar investment / income calculator
+     • Inputs: upfront cost, applicable grant/subsidy, optional loan amount/interest/tenure, estimated generation, self-consumption,
+        export price, utility tariff, degradation, tariff escalation, annual maintenance and other recurring costs.
+
+     • Outputs: net initial investment, monthly/annual savings or revenue, annual operating cost, net cash flow, payback period, ROI
+       for a selected period and an assumptions report. NPV/IRR are bonus items.
+
+    C. EV charging income calculator
+     • Inputs: charger type/power (kW), number of charging points, sessions/day, average kWh/session, operating days/month,
+        selling price, electricity purchase cost, utilization, rent/staff/maintenance/other monthly costs and optional capital cost.
+
+     • Outputs: energy sold, gross monthly/annual revenue, electricity cost, operating expenses, estimated net profit, utilization
+       assumptions, break-even and payback estimate when capital cost is provided.
+
+    Calculator acceptance tests
+      Test                        Expected behavior
+
+      Hybrid sizing               Changing appliance quantity/hours, backup target, panel wattage, peak sun hours, battery usable depth or
+                                  efficiency changes relevant outputs logically.
+
+      Generation/savings          Changing tariff, generation/loss assumption, self-consumption or export rate changes projected savings and
+                                  payback.
+
+      Cost estimate               Changing product prices, GST, installation or transport updates line items and total; generated PDF matches
+                                  on-screen results.
+
+      Validation                  Reject negative inputs, implausible efficiencies, invalid denominators and non-numeric inputs; show
+                                  understandable errors.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                                 Page 5
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    5. Quotations, product catalogue and customer
+    documents
+    A. Quotation and proposal management
+     • Common fields: auto quotation number, revision, created/valid-until dates, customer/lead/site, owner, system type/capacity,
+       status (Draft, Review, Sent, Accepted, Rejected, Expired), internal notes, customer terms and payment schedule.
+
+     • Itemized lines: product/service, SKU, description/specification, quantity, unit, unit price, discount, taxable value, GST rate/tax,
+        line total and stock availability. Support installation, civil work, transport, accessories, AMC and other charges.
+
+     • Totals: subtotal, discount, taxable value, configured CGST/SGST or IGST treatment, round-off if used, grand total, advance
+       and balance due. Tax rates/rules are configurable; do not hard-code universal tax advice.
+
+     • Hybrid proposal: panel/inverter/battery/structure/protection/accessories, load and backup assumptions, scope, exclusions,
+       commissioning, warranty, maintenance and validity.
+
+     • Solar water-pump proposal: pump model/capacity, head/discharge/water requirement, controller, panels, structure,
+       accessories, installation and configured subsidy assumptions.
+
+     • Output/share: branded PDF, print view, QR code to quote verification/detail, digital signature area, activity trail, and
+       Email/WhatsApp share action. Do not say a message was sent unless the provider confirms it; demo actions must be
+       labeled.
+
+    B. Product catalogue / product master
+     • Product ID/SKU, category, brand/model/title, description, technical specs, wattage/capacity, unit, purchase cost, sale price,
+       GST rate, warranty, vendor, status, image, serial/batch tracking, available stock and reorder threshold.
+
+     • Categories should cover solar panels, hybrid inverters, batteries, pumps, chargers, structures, wiring/protection, accessories
+       and services where relevant.
+
+     • Search, category/brand filters, sort, detail view, create/edit/archive and stock visibility. Prices and stock must come from
+       stored data.
+
+    C. Documents and generated records
+     • Attach bills, site photos, signed proposals, invoices, installation checklists, warranty docs, completion reports and
+       customer/site records.
+
+     • Store filename/type/date/uploader metadata, secure access rules and downloadable links; restrict sensitive documents by
+       role.
+
+     • Generate PDF quotes/proposals/reports with unique references and predictable filenames.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                         Page 6
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    6. Orders, project execution, My Orders and inventory
+    A. Quotation-to-order/project conversion
+     • An accepted quotation creates a linked customer order/project without retyping core customer, line-item, amount or site
+       details. Preserve the source quotation and display the relationship on both records.
+
+     • Order fields: order ID/date, quote reference, customer/site, project type/capacity, contract value, confirmed scope, payment
+       schedule, delivery target, documents, status, cancellation reason and owner.
+
+     • Project fields: project ID, project manager, assigned sales/engineering/installation team, planned/actual dates, priority,
+       milestone, percent complete, risks/blockers, materials required/allocated, and customer update history.
+
+     • Suggested milestones: Order Confirmed -> Documents Pending -> Site/Technical Approval -> Material Planning -> Material
+       Ready -> Installation Scheduled -> Installation In Progress -> Inspection/Testing -> Commissioned/Handed Over -> Closed.
+       Support hold/exception states with a recorded reason.
+
+     • Installation record: crew, schedule, checklist, serial numbers where tracked, install photos, safety notes,
+        testing/commissioning readings, customer sign-off, completion report and handover documents.
+
+     • Show timeline, milestone timestamps, stuck/overdue projects, completion reports and progress updates.
+
+    B. My Orders
+     • Separate Pending, Active, Completed and Cancelled views; search by order/customer/quote, status/date filters, order detail,
+       timeline, linked quote/project and related document downloads.
+
+     • If customer portal access exists, customers must only view their own projects. Otherwise make the page internal-only and
+        document that boundary.
+
+    C. Inventory, materials and procurement
+     • Track available, reserved, allocated, issued, returned and damaged quantities. Deduct/reserve stock only through explicit
+       supported transactions; prevent negative stock unless a protected admin setting deliberately permits it.
+
+     • Link bill of materials/material requirements to projects/orders; show required vs available vs allocated quantities and shortage
+       warnings.
+
+     • Stock movement log: date, warehouse/branch, reference, quantity, user and reason. Include supplier/vendor name, contact,
+       address, tax identifier if applicable, status and notes.
+
+     • Low-stock alerts, material/product/order/project reports and reconciliation to stock transactions. Purchase requests/orders
+       and goods-received workflow are bonus items.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                       Page 7
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    7. Service tickets, reports and administration
+    A. Tickets, complaints and AMC
+     • Ticket ID, customer, linked project/order/product, category, issue, priority/source, opened date, assignee/team, status, target
+       resolution date, resolution notes, parts/costs, feedback and timestamps.
+
+     • Ticket states: Open, Assigned, In Progress, Waiting for Customer/Parts, Resolved, Closed. Support assignment, comments,
+       status history, search/filter, resolution report and closure.
+
+     • AMC record: contract number, customer/site, start/end dates, coverage, visit frequency, SLA, amount, next service date,
+       status and renewal reminder. A basic record is acceptable if recurring automation is not completed.
+
+    B. Reports and exports
+      Report                      Minimum coverage
+
+      Lead                        ID, source, owner, stage, creation date, follow-up, expected value and win/loss; date/source/status filters.
+
+      Customer                    Profile, city/state, related leads, visits, quotes, projects/orders and tickets.
+
+      Quotation                   Quote number, customer, date, subtotal/tax/total, status, owner, validity and conversion.
+
+      Sales/revenue               Period, team member, won deals, conversion and recorded revenue/payment information. Do not infer revenue
+                                  without financial records.
+
+      Order/project               Status, system type/capacity, manager, milestone, planned vs actual dates, delays and completion.
+
+      Product/tax                 Stock/low-stock and tax summary derived from stored quote/invoice records and configured rates.
+
+      Ticket/AMC                  Open/overdue/resolved tickets, time-to-resolution if available, coverage and upcoming renewals.
+
+      Monthly business            Leads, quote conversion, orders/projects, sales value, recorded payments/outstanding and service workload
+                                  from real data.
+
+    Support date-range/status/owner filters, sorting, totals and page size. Provide CSV/Excel-compatible exports and PDF
+    reports. Exported rows/totals must match the current filtered view.
+
+    C. Admin panel and security
+     • User management: name, email/login, phone, role, branch/team, active/inactive, and last login if available;
+       create/invite/reset/deactivate users.
+
+     • Role/permission management: restrict view/create/edit/delete/export for sensitive modules. Demonstrate at least two roles
+       with different server-enforced permissions.
+
+     • Audit logs for important actions: user, action, entity/reference, timestamp and change summary. Never log passwords or raw
+       secrets.
+
+     • Backup/export plan and REST API approach. Prefer one authenticated sample endpoint. Full automated restore can be
+       documented if outside the time box.
+
+     • Security: server-side checks, secure password hashing, validation, safe uploads, secrets in environment variables/secure
+       server storage, and no public access to private records.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                                  Page 8
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    8. Mandatory dynamic Settings tab - all applicable
+    settings
+      NON-NEGOTIABLE REQUIREMENT
+      Create one dedicated Settings tab/page. All business configuration listed below must be
+      editable by authorized admins, persist in the database, and take effect across the app without
+      changing source code. Do not leave settings as hard-coded constants or decorative controls.
+
+    Settings should be organized into clear sub-tabs/cards with Save, Cancel, validation, confirmation for sensitive changes,
+    success/error messages, permissions and an audit trail. Settings that are not implemented must be clearly marked as
+    unavailable rather than shown as working.
+
+    A. Application branding and organization profile
+     • Change displayed application/website name, organization/company name, logo, favicon, login-page logo, sidebar/header
+       branding, footer text and theme/accent color if supported.
+
+     • Company details: legal name, display name, address, phone, support email, website URL, GSTIN/tax identifiers, invoice
+       address and other contact details used in PDFs.
+
+     • Logo/name changes must appear in navigation, login screen where applicable, quotation PDFs, report headers and
+       generated documents. Clarify that this changes app branding/display name, not the DNS domain registration itself.
+
+     • Allow secure logo upload with file type/size validation, preview, replace and remove/reset-to-default.
+
+    B. Account, password and security settings
+     • Allow a signed-in user to change their password using current password, new password and confirmation. Show policy
+       requirements, mismatch/weak-password errors and success confirmation.
+
+     • Admin-managed password reset/invitation flow, user activation/deactivation, session expiry/idle timeout and password policy
+       where feasible.
+
+     • Never display or recover existing plaintext passwords. Hash passwords securely, do not log credentials, and do not put
+       secrets in browser code or Git.
+
+     • Optional if time permits: two-factor authentication, login lockout, session/device list and security notification settings.
+
+    C. Users, roles, permissions and branches
+     • Configure roles, module access and actions (view/create/edit/delete/export/approve/settings). Protect settings pages and
+       endpoints by permission, not only by hiding navigation items.
+
+     • Configure branch/warehouse list, territory/region, assignment rules, team names and access scope.
+
+     • Configure company/fiscal-year details, numbering sequences and prefixes for leads, quotes, orders, invoices, projects, tickets
+       and AMC contracts.
+
+    D. Dynamic fields, lists and workflow configuration
+     • Add/edit/deactivate lead sources, lead stages, customer types, property types, product categories, units, priorities, ticket
+       types/statuses, loss reasons, task types, document types and notification categories.
+
+     • Where feasible, allow admins to define custom fields (text, number, date, dropdown, checkbox), field label, required flag,
+       default value, validation, visibility and module placement.
+
+     • Configure quotation statuses, project milestones, ticket workflow, AMC statuses and allowed transitions. New configured
+       values must appear in forms, filters and reports.
+
+     • Configure table columns and defaults where feasible. Do not allow invalid configurations to break existing records; preserve
+       old values or provide migration/deactivation behavior.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                       Page 9
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    9. Dynamic Settings tab - continued
+    E. Solar calculator and commercial assumptions
+     • Hybrid calculator defaults: peak sun hours, performance ratio/system losses, panel wattage, battery chemistry, usable depth
+       of discharge, battery/inverter efficiency, design margin, voltage options, export assumptions and currency/unit preferences.
+
+     • Rates and assumptions: electricity tariffs, export/net-metering prices, O&M defaults, component prices, installation/transport
+       cost defaults, tax/GST rates, discount limits and optional subsidy rules.
+
+     • Keep each configuration with value, unit, effective date, status, source/reference and updated-by metadata. For real policy
+       assumptions, capture applicable state/utility and source/date; otherwise label values as Sample/Demo.
+
+     • Changes to calculator settings must affect new calculations and reports. Previously saved quotes/calculations should retain a
+       snapshot of assumptions or clearly display which version was used.
+
+    F. Product, inventory and procurement settings
+     • Product category, brand, warranty defaults, unit list, tax rate, price defaults, serial/batch tracking toggle, reorder threshold,
+       warehouse/branch, stock reservation behavior and negative-stock policy.
+
+     • Configure allowed product types and component attributes for panels, hybrid inverters, batteries, pumps, EV chargers,
+       structures and accessories.
+
+    G. Documents, numbering and templates
+     • Configure quote/invoice/order/project/ticket/AMC numbering prefixes, sequence behavior, validity days, payment terms,
+       warranty/maintenance text, default notes and terms.
+
+     • Editable branded templates for quotation PDF, hybrid calculator report, site-visit report, installation/commissioning report,
+       invoice/receipt, ticket resolution report and customer communications.
+
+     • Enable/disable QR code, signature block, footer/contact block, logo display and PDF/CSV/Excel-compatible export options
+       where supported.
+
+    H. WhatsApp Business and communication settings
+     • Provide a WhatsApp integration settings page with provider/mode (Demo or configured provider), business phone/sender
+       number, business/account identifiers and approved template names. Use the provider/API version required by the selected
+       integration.
+
+     • Support secure server-side credential configuration, test-connection action, connection status, webhook/callback
+       configuration if implemented and a clear message when API credentials are missing. Never expose permanent access
+       tokens in front-end code or ordinary logs.
+
+     • Editable message templates with safe placeholders, preview and validation for lead assignment, follow-up reminder, site visit
+       confirmation, quotation ready/shared, quote accepted, project milestone update, invoice/payment update, ticket status and
+       AMC renewal.
+
+     • Add WhatsApp actions where useful: share quotation PDF/link, share calculator/report link, send approved template message
+       and open a customer conversation. If provider/API is not configured, run a clearly labelled demo mode and do not claim
+       delivery.
+
+     • Store message history: linked record, recipient, template, time, initiating user, status (queued/sent/delivered/failed when
+       provider supports status), provider response/error and retry action where appropriate.
+
+     • Respect customer consent/opt-in and opt-out state. Validate phone numbers with country code; provide safe error feedback
+       for invalid numbers, missing variables or API errors.
+
+    I. Email, notifications and reminders
+     • Configurable SMTP/provider mode and sender display name/address; use server-side secret storage. Include a test email
+       action only if implemented.
+
+     • Editable email templates for quotes, visits, project updates, ticket updates, invoices and AMC reminders. Optional SMS/push
+       channels may be documented if not implemented.
+
+     • Configure reminders, lead follow-up intervals, task due reminders, notification channels, working hours and ticket/project SLA
+       settings.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                            Page 10
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    10. Dynamic Settings validation and feature acceptance
+    J. Regional, finance, integration and system settings
+     • Locale, timezone, date/time format, currency symbol/precision, measurement units, rounding behavior and default country
+       calling code.
+
+     • Tax rules/GST rates, company fiscal year and financial report parameters must be editable by authorized users, validated
+       and audit logged.
+
+     • REST API configuration: enabled/disabled state, API client/key metadata and rotation/revocation workflow if implemented.
+       Never reveal a complete secret after saving it.
+
+     • Map/GPS, signature, payment, backup and external-data integration status should show Configured / Not configured / Demo.
+       Secrets belong server-side.
+
+     • Configure data-export formats, backup reminder/schedule settings, retention preferences and audit-log filter settings where
+       feasible. Dangerous restore/delete actions need confirmation and authorization.
+
+    Settings acceptance tests - mandatory
+      ID            Test                                 Expected result
+
+      SET-01        Change app/website display name      Branding changes in navigation/login where used and in generated quotation/report
+                    and logo                             PDFs; a page refresh does not revert it.
+
+      SET-02        Change own password                  Current password is validated; new/confirm mismatch is rejected; new password
+                                                         works and old one fails.
+
+      SET-03        Change dropdown/workflow value       New lead source or stage appears in forms and filters; a changed project/ticket
+                                                         workflow is reflected in the appropriate screens.
+
+      SET-04        Change hybrid defaults               Changing peak sun hours, battery DoD, loss factor or panel wattage changes
+                                                         relevant results and shows the selected assumptions.
+
+      SET-05        Configure WhatsApp in Demo mode      Template preview works, demo action is visibly marked simulated, and the system
+                                                         does not falsely claim sent/delivered status.
+
+      SET-06        Missing WhatsApp credentials         The app displays a useful setup message and never exposes or requests credentials
+                                                         in a public/client-side field.
+
+      SET-07        Role restrictions                    A non-admin cannot save protected settings by UI or direct HTTP/API request.
+
+      SET-08        Audit history                        Important settings changes record user, timestamp, setting category and safe change
+                                                         summary; secrets/password values are not logged.
+
+      SET-09        Persistence                          Saved settings remain after logout/login and server restart using database-backed
+                                                         configuration.
+
+
+    Other required or visible features
+     • Responsive desktop/tablet/mobile design, accessible labels, search/filter/sort/pagination and sensible error states.
+
+     • PDF and CSV/Excel-compatible exports, quote QR code, signature capture/display area, document management, GPS/site
+       photos, notifications, audit trail and REST API integration point or documented API design.
+
+     • Email/WhatsApp live delivery, live maps, external subsidy APIs, electronic signatures, payment gateway and production
+       backups may be simulated only when labelled clearly and described in README.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                                Page 11
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    11. Definition of done - end-to-end acceptance checklist
+      ID            Acceptance test
+
+      AT-01         Log in with demo credentials; demonstrate at least two roles with different server-enforced permissions.
+
+      AT-02         Create a lead, assign it, add follow-up/customer note, and find it using search/filter.
+
+      AT-03         Schedule and complete a site visit with survey fields, photo/document support and visit history/report.
+
+      AT-04         Run hybrid calculator; show changed inputs, units, assumptions, formula/intermediate values and changing outputs; export a
+                    report.
+
+      AT-05         Run solar investment and EV income calculators; verify input changes affect results logically.
+
+      AT-06         Create itemized hybrid and solar water-pump quotations, calculate configured taxes/totals, generate PDF and change quote
+                    status.
+
+      AT-07         Accept a quotation and convert it into a linked order/project without losing key data; update milestones and show progress.
+
+      AT-08         View catalogue/stock, link required materials to a project and show stock shortage/low-stock information.
+
+      AT-09         Create, assign, update and close a ticket linked to customer/project; show AMC record or renewal workflow.
+
+      AT-10         Dashboard KPIs and core reports reflect stored records; export data and verify filters/totals.
+
+      AT-11         Demonstrate dynamic settings: app name/logo, password change, a new dropdown/workflow setting, calculator assumptions
+                    and WhatsApp Demo/configured mode.
+
+      AT-12         README setup works; seed data/demo login exist; no secrets committed; known limitations are listed.
+
+      AT-13         Submit full-project recording and Claude-only evidence within the 30-hour limit.
+
+
+    Important technical expectations
+     • Related screens must update consistently from one stored source of truth. Avoid duplicate copies of the same business
+       setting across unrelated forms.
+
+     • Show loading/success/failure feedback, validate user input on both client and server where relevant, and handle empty
+       states.
+
+     • For integrations, expose real status only when a real provider/API response supports it. A local “success” toast is not proof
+       that WhatsApp/email was delivered.
+
+     • Store a snapshot of quote/calculation values so editing current settings does not silently alter previously accepted commercial
+       documents.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                                   Page 12
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    12. Submission format and next-round interview
+    Submit these items together
+      Deliverable                   What to include
+
+      1. Application                Working URL or local run steps, demo credentials, seed data and core flows accessible to evaluator.
+
+      2. Source                     Repository/archive, database migrations/schema, environment sample with no secrets and dependency/lock
+                                    files.
+
+      3. README                     Setup, stack, architecture, modules, database, demo accounts/roles, tests, deployment notes, limitations and
+                                    future work.
+
+      4. Screen recording           One complete walkthrough, preferably 12-20 minutes. Show the live running application, not only
+                                    slides/screenshots; narrate or explain the key steps.
+
+      5. Claude evidence            Prompt log/export or screenshots showing Claude AI-only coding; explain how generated code was verified.
+
+      6. Status sheet               Mark every feature Fully working / Simulated / Partial / Not implemented and list bugs/dependencies.
+
+
+    Next-round interview will be based on your project
+     • Explain architecture, data model/relationships, authentication, roles and permission enforcement.
+
+     • Walk through lead -> survey -> hybrid calculation -> quote -> order/project -> materials -> installation -> ticket/service. Explain
+       how linked records are saved and validated.
+
+     • Explain hybrid sizing formula assumptions and units. The interviewer may change appliance usage, backup target, PV
+       generation, battery depth of discharge or costs and ask you to predict the result.
+
+     • Explain why you chose your architecture, how you prompted Claude, how you identified incorrect generated code, and how
+       you debugged and tested it.
+
+     • Demonstrate dynamic settings and explain how changes propagate to forms, calculations, documents and reports without
+       manual code changes.
+
+     • Explain WhatsApp configuration, approved templates, consent/opt-out, demo vs real sending, delivery-status limitations and
+       secret handling.
+
+     • Answer questions about validation, error handling, security, REST APIs, indexing, performance, auditability, backups,
+       deployment and known limitations.
+
+     • Be ready to make a small change live using Claude AI, explain the diff and show the test result.
+
+    Suggested evaluation rubric
+      Area                                     Weight          What is evaluated
+
+      Core workflow functionality              25%             Connected modules and reliable end-to-end data flow.
+
+      Solar domain logic                       20%             Hybrid calculator inputs/results, assumptions, cost/tax estimates,
+                                                               inventory/project logic.
+
+      Dynamic settings and integrations        15%             Settings persistence, branding/password/workflow changes, WhatsApp/email
+                                                               demo or real integration behavior.
+
+      Code and data design                     15%             Structure, relationships, validation, error handling, documentation.
+
+      UI/UX and usability                      10%             Responsive screens, forms, search/filter, feedback and navigation.
+
+      Security and permissions                 10%             Auth, server permissions, secret handling and safe documents.
+
+      Recording / AI evidence                  5%              Clear walkthrough, Claude-only evidence and ability to explain decisions.
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                                    Page 13
+ROOTFLASH TECHNOLOGY | FIRST-ROUND TECHNICAL ASSIGNMENT
+
+
+
+
+    13. Research references and assumptions
+    This assignment retains the feature scope in the supplied Solar CRM Management System proposal and revises the
+    calculator scope as requested: separate off-grid and on-grid calculator specifications are replaced by one hybrid solar
+    calculator. The solar investment/income calculator and EV income calculator remain in scope.
+
+    Additional product workflow ideas for planning are referenced below. They are for feature research only; the candidate must
+    create an original implementation and must not copy proprietary code or branding.
+
+    Public feature references
+    Solar CRM - Features
+    https://getsolarcrm.com/features
+
+    Lead pipeline, contacts, tasks/calendar, tax-aware quotes, site visits, installation, inventory, projects, support and permissions.
+
+    SOLARCRM - Features
+    https://www.solarcrm.co/features
+
+    Lead progress, quote/proposal processes, project tracking and reporting.
+
+    SolarNeo - Features
+    https://solarneo.in/features
+
+    Survey-first mobile workflows, quotation/subsidy estimates, operations, inventory and role-based views.
+
+    Solar CRM for India
+    https://solarcrm.in/
+
+    Indian installer workflows, GST quotations, configurable subsidy rules, installation milestones, AMC and tickets.
+
+    Google Play - Solar CRM
+    https://play.google.com/store/apps/details?id=in.youwegroup.solarcrm
+
+    Lead stages, follow-ups, solar calculations, quotations/invoicing and site-visit documents.
+
+
+    Important assumptions
+     • Subsidy, net metering, tariffs, GST treatment, system sizing and financial outputs depend on jurisdiction, utility, product
+       specifications and project circumstances.
+
+     • Sample values must be labeled Demo/Sample. Real policy values must include source, applicable state/utility and effective
+       date, and remain configurable.
+
+     • Changing global settings should not silently rewrite historical quotes or reports already issued to customers; preserve a
+       snapshot/version or show the version used.
+
+     • A complete working core flow is more valuable than many decorative screens. Disclose all unfinished or simulated features
+       honestly.
+
+
+
+
+                                                   END OF FIRST-ROUND ASSIGNMENT
+
+
+
+
+Solar CRM Management System | Confidential candidate assignment                                                                           Page 14
+
