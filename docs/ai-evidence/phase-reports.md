@@ -198,3 +198,45 @@ Ready for visits / calculators / quotations phases.
 
 ### Next phase readiness
 Ready for hybrid calculators / quotations (Phase 4+).
+
+---
+
+## Phase 4 - Product catalogue and inventory core
+
+**Time (shell):** `2026-10-23 15:31:23 EEST`
+
+**Elapsed / remaining:** clock start not set (receipt timestamp still awaited).
+
+### What was built
+- Products (auto PRD reference + SKU), categories/brands/units via lookups, configurable `product_attributes`, vendors, warehouses, Filament catalogue with search/filters/archive
+- `stock_movements` ledger + `stock_balances` (updated only inside `StockService` transactions with `lockForUpdate`)
+- States: available/reserved/allocated/issued/returned/damaged; negative stock blocked unless Settings `inventory.allow_negative_stock` + Super Admin / `inventory.settings` (audit `stock.negative_allowed`)
+- Settings F tab; Low stock page; `stock:reconcile` / `stock:issue` commands
+- Seed: 25 products, 2 warehouses, 3 vendors, opening movements; 5 low-stock SKUs
+
+### Reconciliation test output
+- `php artisan test --filter=StockServiceTest` ? **4 passed** (ledger reconcile empty mismatches; negative blocked; policy+permission override; archive still loadable)
+- `StockMysqlConcurrencyTest` ? **1 passed** (10 parallel issues of qty 1 from stock 5 ? exactly 5 success / 5 fail; available=0)
+- `php artisan stock:reconcile` on seeded DB ? `OK: balances reconcile to ledger.`
+
+### Requirement status
+- REQ-5-B-001..003, REQ-6-C-001, REQ-6-C-003, REQ-9-F-001..002 ? Fully working
+- REQ-6-C-004 / AT-08 ? Partial (catalogue/stock/low-stock done; project BOM link Phase 7)
+- REQ-6-C-005 PO/GRN ? Not implemented (bonus)
+
+### Known bugs
+- None blocking catalogue/stock tests.
+
+### Deviations / assumptions
+- No purchase orders/GRN.
+- Project material allocation deferred to Phase 7.
+- Soft reservation behavior setting stored; hard path is default enforcement via StockService.
+
+### Human manual verify (AT-08 first half)
+1. Inventory ? Products: search/filter by category/brand; open detail.
+2. Low stock: shows PNL-HC-450, INV-VN-8K, BAT-VN-10KWH, PMP-AP-5HP, WR-DC-6MM.
+3. Settings ? Inventory: reorder default / negative policy.
+4. Warehouses / Vendors CRUD.
+
+### Next phase readiness
+Ready for hybrid calculators / quotations.

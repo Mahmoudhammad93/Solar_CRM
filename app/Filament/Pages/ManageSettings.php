@@ -10,6 +10,7 @@ use Filament\Actions\Action;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -84,6 +85,12 @@ class ManageSettings extends Page
             'quote_prefix' => $settings->get('numbering.quote.prefix', 'QUO'),
             'quote_format' => $settings->get('numbering.quote.format', '{PREFIX}-{YYYY}-{####}'),
             'quote_reset_yearly' => (bool) $settings->get('numbering.quote.reset_yearly', false),
+            'default_reorder_threshold' => $settings->get('inventory.default_reorder_threshold', 5),
+            'serial_batch_tracking_default' => (bool) $settings->get('inventory.serial_batch_tracking_default', false),
+            'reservation_behavior' => $settings->get('inventory.reservation_behavior', 'hard'),
+            'allow_negative_stock' => (bool) $settings->get('inventory.allow_negative_stock', false),
+            'default_gst_rate' => $settings->get('inventory.default_gst_rate', 18),
+            'default_warranty_months' => $settings->get('inventory.default_warranty_months', 12),
         ]);
     }
 
@@ -175,12 +182,33 @@ class ManageSettings extends Page
                             Toggle::make('quote_reset_yearly')->label('Reset quote sequence yearly')->disabled(! $canEdit),
                         ])->columns(2),
                 ]),
+                Tab::make('Inventory')->schema([
+                    Section::make('Product & stock policy (Settings F)')
+                        ->description('Warehouses are managed under Inventory → Warehouses. Categories/units/brands are Lookups. Negative stock may only be enabled by Super Admin and is audit-logged when used.')
+                        ->schema([
+                            TextInput::make('default_reorder_threshold')->numeric()->label('Default reorder threshold')->disabled(! $canEdit),
+                            Toggle::make('serial_batch_tracking_default')->label('Serial/batch tracking default on new products')->disabled(! $canEdit),
+                            Select::make('reservation_behavior')
+                                ->label('Stock reservation behavior')
+                                ->options([
+                                    'hard' => 'Hard — block when insufficient available',
+                                    'soft' => 'Soft — allow reserve attempt (still blocked if negative policy off)',
+                                ])
+                                ->disabled(! $canEdit),
+                            Toggle::make('allow_negative_stock')
+                                ->label('Allow negative stock (protected)')
+                                ->helperText('Only Super Admin / inventory.settings may use negative balances when enabled.')
+                                ->disabled(! $canEdit || (! Auth::user()?->isSuperAdmin() && ! Auth::user()?->hasPermission('inventory.settings'))),
+                            TextInput::make('default_gst_rate')->numeric()->label('Default GST %')->disabled(! $canEdit),
+                            TextInput::make('default_warranty_months')->numeric()->integer()->label('Default warranty (months)')->disabled(! $canEdit),
+                            Placeholder::make('inventory_lists_hint')
+                                ->label('Lists')
+                                ->content('Edit product_category, product_unit, and product_brand under Administration → Lookups. Manage warehouses under Inventory → Warehouses.'),
+                        ])->columns(2),
+                ]),
                 Tab::make('Coming soon')->schema([
                     Section::make('Not yet implemented')
                         ->schema([
-                            Placeholder::make('unavailable_lists')
-                                ->label('Dynamic lists / workflow')
-                                ->content('Unavailable — Phase 2+'),
                             Placeholder::make('unavailable_calc')
                                 ->label('Calculator assumptions')
                                 ->content('Unavailable — calculator phases'),
@@ -248,7 +276,21 @@ class ManageSettings extends Page
             'numbering.quote.prefix' => ['value' => $data['quote_prefix'] ?? 'QUO', 'group' => 'numbering', 'type' => 'string'],
             'numbering.quote.format' => ['value' => $data['quote_format'] ?? '{PREFIX}-{YYYY}-{####}', 'group' => 'numbering', 'type' => 'string'],
             'numbering.quote.reset_yearly' => ['value' => (bool) ($data['quote_reset_yearly'] ?? false), 'group' => 'numbering', 'type' => 'boolean'],
+            'inventory.default_reorder_threshold' => ['value' => $data['default_reorder_threshold'] ?? 5, 'group' => 'inventory', 'type' => 'integer'],
+            'inventory.serial_batch_tracking_default' => ['value' => (bool) ($data['serial_batch_tracking_default'] ?? false), 'group' => 'inventory', 'type' => 'boolean'],
+            'inventory.reservation_behavior' => ['value' => $data['reservation_behavior'] ?? 'hard', 'group' => 'inventory', 'type' => 'string'],
+            'inventory.default_gst_rate' => ['value' => $data['default_gst_rate'] ?? 18, 'group' => 'inventory', 'type' => 'integer'],
+            'inventory.default_warranty_months' => ['value' => $data['default_warranty_months'] ?? 12, 'group' => 'inventory', 'type' => 'integer'],
         ];
+
+        $user = Auth::user();
+        if ($user?->isSuperAdmin() || $user?->hasPermission('inventory.settings')) {
+            $map['inventory.allow_negative_stock'] = [
+                'value' => (bool) ($data['allow_negative_stock'] ?? false),
+                'group' => 'inventory',
+                'type' => 'boolean',
+            ];
+        }
 
         foreach ($map as $key => $meta) {
             $settings->set($key, $meta['value'], [

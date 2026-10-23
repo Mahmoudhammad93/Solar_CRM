@@ -24,7 +24,7 @@ Updated after Phase 2.
 | REQ-2-002 | Workflow | PRIMARY WORKFLOW: Lead ? follow-up/qualification ? customer/site visit ? hybrid calculation ? quotation ? a... | Not implemented |  |  |  |
 | REQ-2-003 | UI | Consistent navigation, clear page titles, search/filter, validation messages, empty/loading/error states, r... | Not implemented |  |  |  |
 | REQ-2-004 | Data model | Linked records (not disconnected duplicates): lead/customer links to visits, calculations, quotations, orde... | Partial |  |  | Phase3: lead/customer linked to visits+documents; quotes/orders/tickets later |
-| REQ-2-005 | Numbering | Unique reference IDs for leads, visits, quotations, orders/projects, products, invoices, tickets, AMC contr... | Partial |  |  | Phase3: visit numbering via NumberingService; other entities as seeded sequences |
+| REQ-2-005 | Numbering | Unique reference IDs for leads, visits, quotations, orders/projects, products, invoices, tickets, AMC contr... | Partial |  |  | Phase4: product numbering via NumberingService; remaining entities as sequences |
 | REQ-2-006 | Dashboard | Dashboard metrics and reports calculated from stored data; no decorative hard-coded KPIs | Not implemented |  |  |  |
 | REQ-2-007 | Settings | Dynamic business configuration in Settings tab and database; changes affect UI/calculations/templates/expor... | Not implemented |  |  |  |
 | REQ-2-008 | Integrations | External services not integrated must be labeled Demo/Simulated and production setup documented | Simulated |  |  | Phase3: map Demo preview labelled; other externals still Demo/Simulated |
@@ -82,9 +82,9 @@ Updated after Phase 2.
 | REQ-5-A-005 | Quotations | Solar water-pump proposal: pump model/capacity, head/discharge/water requirement, controller, panels, struc... | Not implemented |  |  |  |
 | REQ-5-A-006 | Quotations | Quote output/share: branded PDF, print view, QR to verification/detail, digital signature area, activity tr... | Not implemented |  |  |  |
 | REQ-5-A-007 | Quotations | Do not claim message sent unless provider confirms; demo actions must be labeled | Not implemented |  |  |  |
-| REQ-5-B-001 | Catalogue | Product master fields: ID/SKU, category, brand/model/title, description, technical specs, wattage/capacity,... | Not implemented |  |  |  |
-| REQ-5-B-002 | Catalogue | Product categories cover panels, hybrid inverters, batteries, pumps, chargers, structures, wiring/protectio... | Not implemented |  |  |  |
-| REQ-5-B-003 | Catalogue | Catalogue search, category/brand filters, sort, detail view, create/edit/archive, stock visibility; prices/... | Not implemented |  |  |  |
+| REQ-5-B-001 | Catalogue | Product master fields: ID/SKU, category, brand/model/title, description, technical specs, wattage/capacity,... | Fully working |  |  | Phase4: ProductResource+SKU/specs/vendor/stock; CatalogueInventorySeeder 25 products |
+| REQ-5-B-002 | Catalogue | Product categories cover panels, hybrid inverters, batteries, pumps, chargers, structures, wiring/protectio... | Fully working |  |  | Phase4: all 9 categories seeded with products |
+| REQ-5-B-003 | Catalogue | Catalogue search, category/brand filters, sort, detail view, create/edit/archive, stock visibility; prices/... | Fully working |  |  | Phase4: search/filters/sort/archive/low-stock; Filament Products table |
 | REQ-5-C-001 | Documents | Document attachments: bills, site photos, signed proposals, invoices, installation checklists, warranty doc... | Fully working |  |  | Phase3: polymorphic DocumentService private disk; DocumentsRelationManager; download policy |
 | REQ-5-C-002 | Documents | Store filename/type/date/uploader metadata, secure access rules, downloadable links; restrict sensitive doc... | Not implemented |  |  |  |
 | REQ-5-C-003 | Documents | Generate PDF quotes/proposals/reports with unique references and predictable filenames | Not implemented |  |  |  |
@@ -96,11 +96,11 @@ Updated after Phase 2.
 | REQ-6-A-006 | Projects | Show timeline, milestone timestamps, stuck/overdue projects, completion reports, progress updates | Not implemented |  |  |  |
 | REQ-6-B-001 | Orders | My Orders: separate Pending/Active/Completed/Cancelled views; search by order/customer/quote; status/date f... | Not implemented |  |  |  |
 | REQ-6-B-002 | Orders | If customer portal exists, customers only view own projects; else internal-only and document boundary | Not implemented |  |  |  |
-| REQ-6-C-001 | Inventory | Track available, reserved, allocated, issued, returned, damaged quantities; deduct/reserve only via explici... | Not implemented |  |  |  |
-| REQ-6-C-002 | Inventory | Link BOM/material requirements to projects/orders; show required vs available vs allocated and shortage war... | Not implemented |  |  |  |
-| REQ-6-C-003 | Inventory | Stock movement log: date, warehouse/branch, reference, quantity, user, reason; supplier/vendor name, contac... | Not implemented |  |  |  |
-| REQ-6-C-004 | Inventory | Low-stock alerts; material/product/order/project reports; reconciliation to stock transactions | Not implemented |  |  |  |
-| REQ-6-C-005 | Inventory | Purchase requests/orders and goods-received workflow (bonus) | Not implemented |  |  |  |
+| REQ-6-C-001 | Inventory | Track available, reserved, allocated, issued, returned, damaged quantities; deduct/reserve only via explici... | Fully working |  |  | Phase4: StockService states+locks; StockServiceTest+StockMysqlConcurrencyTest pass |
+| REQ-6-C-002 | Inventory | Link BOM/material requirements to projects/orders; show required vs available vs allocated and shortage war... | Not implemented |  |  | Phase7 project allocation |
+| REQ-6-C-003 | Inventory | Stock movement log: date, warehouse/branch, reference, quantity, user, reason; supplier/vendor name, contac... | Fully working |  |  | Phase4: stock_movements ledger + Vendor master (name/contact/address/tax/status/notes) |
+| REQ-6-C-004 | Inventory | Low-stock alerts; material/product/order/project reports; reconciliation to stock transactions | Partial |  |  | Phase4: low-stock page + reconcile command; project/order reports later |
+| REQ-6-C-005 | Inventory | Purchase requests/orders and goods-received workflow (bonus) | Not implemented |  |  | Bonus PO/GRN not built |
 | REQ-7-A-001 | Tickets | Ticket fields: Ticket ID, customer, linked project/order/product, category, issue, priority/source, opened ... | Not implemented |  |  |  |
 | REQ-7-A-002 | Tickets | Ticket states: Open, Assigned, In Progress, Waiting for Customer/Parts, Resolved, Closed; assignment, comme... | Not implemented |  |  |  |
 | REQ-7-A-003 | AMC | AMC record: contract number, customer/site, start/end, coverage, visit frequency, SLA, amount, next service... | Not implemented |  |  |  |
@@ -130,7 +130,7 @@ Updated after Phase 2.
 | REQ-8-B-003 | Settings-Security | Never display/recover plaintext passwords; hash securely; do not log credentials; no secrets in browser cod... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-8-B-004 | Settings-Security | Optional: 2FA, login lockout, session/device list, security notification settings | Not implemented |  |  |  |
 | REQ-8-C-001 | Settings-RBAC | Configure roles, module access and actions (view/create/edit/delete/export/approve/settings); protect setti... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
-| REQ-8-C-002 | Settings-RBAC | Configure branch/warehouse list, territory/region, assignment rules, team names, access scope | Not implemented |  |  |  |
+| REQ-8-C-002 | Settings-RBAC | Configure branch/warehouse list, territory/region, assignment rules, team names, access scope | Partial |  |  | Phase4: warehouses/branches list; territory/assignment rules later |
 | REQ-8-C-003 | Settings-Numbering | Configure company/fiscal-year details and numbering sequences/prefixes for leads, quotes, orders, invoices,... | Fully working |  |  | Phase1: migrate:fresh --seed; Feature tests 15 pass + MySQL concurrency pass; login HTTP 200 |
 | REQ-8-D-001 | Settings-Lists | Add/edit/deactivate lead sources, lead stages, customer types, property types, product categories, units, p... | Fully working |  |  | Phase2: Feature tests 22 pass; LeadConversion/Duplicate/Scoping/Lookup tests; migrate leads/customers/tasks/lookups |
 | REQ-8-D-002 | Settings-Lists | Where feasible: admin-defined custom fields (text/number/date/dropdown/checkbox) with label, required, defa... | Not implemented |  |  |  |
@@ -140,8 +140,8 @@ Updated after Phase 2.
 | REQ-9-E-002 | Settings-Calculator | Editable rates/assumptions: electricity tariffs, export/net-metering prices, O&M defaults, component prices... | Not implemented |  |  |  |
 | REQ-9-E-003 | Settings-Calculator | Each config keeps value, unit, effective date, status, source/reference, updated-by; real policy assumption... | Not implemented |  |  |  |
 | REQ-9-E-004 | Settings-Calculator | Calculator setting changes affect new calculations/reports; previously saved quotes/calculations retain ass... | Not implemented |  |  |  |
-| REQ-9-F-001 | Settings-Inventory | Product/inventory settings: category, brand, warranty defaults, units, tax rate, price defaults, serial/bat... | Not implemented |  |  |  |
-| REQ-9-F-002 | Settings-Inventory | Configure allowed product types and component attributes for panels, hybrid inverters, batteries, pumps, EV... | Not implemented |  |  |  |
+| REQ-9-F-001 | Settings-Inventory | Product/inventory settings: category, brand, warranty defaults, units, tax rate, price defaults, serial/bat... | Fully working |  |  | Phase4: Settings Inventory tab + inventory.* keys; warehouses Filament |
+| REQ-9-F-002 | Settings-Inventory | Configure allowed product types and component attributes for panels, hybrid inverters, batteries, pumps, EV... | Fully working |  |  | Phase4: product_attributes per category + Lookup product_category |
 | REQ-9-G-001 | Settings-Templates | Configure numbering prefixes and sequence behavior for quote/invoice/order/project/ticket/AMC; validity day... | Not implemented |  |  |  |
 | REQ-9-G-002 | Settings-Templates | Editable branded templates for quotation PDF, hybrid calculator report, site-visit report, installation/com... | Partial |  |  | Phase3: Blade visit-report template branded; Settings-editable templates later |
 | REQ-9-G-003 | Settings-Templates | Enable/disable QR code, signature block, footer/contact block, logo display, PDF/CSV/Excel export options w... | Not implemented |  |  |  |
@@ -179,7 +179,7 @@ Updated after Phase 2.
 | AT-05 | Acceptance | AT-05 Run solar investment and EV income calculators; verify input changes affect results logically | Not implemented |  |  |  |
 | AT-06 | Acceptance | AT-06 Create itemized hybrid and solar water-pump quotations, calculate configured taxes/totals, generate P... | Not implemented |  |  |  |
 | AT-07 | Acceptance | AT-07 Accept quotation and convert to linked order/project without losing key data; update milestones and s... | Not implemented |  |  |  |
-| AT-08 | Acceptance | AT-08 View catalogue/stock, link required materials to a project, show stock shortage/low-stock information | Not implemented |  |  |  |
+| AT-08 | Acceptance | AT-08 View catalogue/stock, link required materials to a project, show stock shortage/low-stock information | Partial |  |  | Phase4: catalogue/stock/low-stock evidenced; project material link Phase7 |
 | AT-09 | Acceptance | AT-09 Create, assign, update and close ticket linked to customer/project; show AMC record or renewal workflow | Not implemented |  |  |  |
 | AT-10 | Acceptance | AT-10 Dashboard KPIs and core reports reflect stored records; export data and verify filters/totals | Not implemented |  |  |  |
 | AT-11 | Acceptance | AT-11 Demonstrate dynamic settings: app name/logo, password change, new dropdown/workflow, calculator assum... | Not implemented |  |  |  |

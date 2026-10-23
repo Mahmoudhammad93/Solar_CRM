@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             SequenceSeeder::class,
             LookupSeeder::class,
             DemoUserSeeder::class,
+            CatalogueInventorySeeder::class,
         ]);
     }
 }

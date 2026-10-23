@@ -112,6 +112,38 @@ class LookupSeeder extends Seeder
                 ['conditional', 'Conditional'],
                 ['not_feasible', 'Not feasible'],
             ],
+            'product_category' => [
+                ['solar_panels', 'Solar panels'],
+                ['hybrid_inverters', 'Hybrid inverters'],
+                ['batteries', 'Batteries'],
+                ['pumps', 'Pumps'],
+                ['ev_chargers', 'EV chargers'],
+                ['structures', 'Structures'],
+                ['wiring_protection', 'Wiring / protection'],
+                ['accessories', 'Accessories'],
+                ['services', 'Services'],
+            ],
+            'product_unit' => [
+                ['pcs', 'Pieces'],
+                ['set', 'Set'],
+                ['m', 'Meter'],
+                ['pair', 'Pair'],
+                ['kW', 'kW'],
+                ['job', 'Job'],
+                ['contract', 'Contract'],
+            ],
+            'product_brand' => [
+                ['HelioCraft', 'HelioCraft'],
+                ['SunLattice', 'SunLattice'],
+                ['VoltNest', 'VoltNest'],
+                ['ArcForge', 'ArcForge'],
+                ['AquaPulse', 'AquaPulse'],
+                ['DeltaWell', 'DeltaWell'],
+                ['ChargeBay', 'ChargeBay'],
+                ['CableCraft', 'CableCraft'],
+                ['SafeGrid', 'SafeGrid'],
+                ['Rootflash Demo', 'Rootflash Demo'],
+            ],
         ];
 
         foreach ($groups as $type => $rows) {

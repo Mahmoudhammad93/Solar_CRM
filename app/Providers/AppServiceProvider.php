@@ -8,6 +8,7 @@ use App\Services\BrandingService;
 use App\Services\DocumentService;
 use App\Services\NumberingService;
 use App\Services\SettingsService;
+use App\Services\StockService;
 use App\Services\VisitReportService;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Event;
@@ -24,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(NumberingService::class);
         $this->app->singleton(DocumentService::class);
         $this->app->singleton(VisitReportService::class);
+        $this->app->singleton(StockService::class);
     }
 
     public function boot(): void

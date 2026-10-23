@@ -85,6 +85,9 @@ class Lookup extends Model
             'document_type' => 'Document types',
             'phase_type' => 'Electrical phase types',
             'feasibility' => 'Feasibility outcomes',
+            'product_category' => 'Product categories',
+            'product_unit' => 'Product units',
+            'product_brand' => 'Product brands',
         ]);
     }
 }

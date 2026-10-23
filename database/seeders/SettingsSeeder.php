@@ -47,6 +47,12 @@ class SettingsSeeder extends Seeder
             ['key' => 'numbering.ticket.prefix', 'value' => 'TKT', 'group' => 'numbering', 'type' => 'string', 'is_sample' => false],
             ['key' => 'numbering.amc.prefix', 'value' => 'AMC', 'group' => 'numbering', 'type' => 'string', 'is_sample' => false],
             ['key' => 'numbering.product.prefix', 'value' => 'PRD', 'group' => 'numbering', 'type' => 'string', 'is_sample' => false],
+            ['key' => 'inventory.default_reorder_threshold', 'value' => 5, 'group' => 'inventory', 'type' => 'integer', 'is_sample' => false],
+            ['key' => 'inventory.serial_batch_tracking_default', 'value' => false, 'group' => 'inventory', 'type' => 'boolean', 'is_sample' => false],
+            ['key' => 'inventory.reservation_behavior', 'value' => 'hard', 'group' => 'inventory', 'type' => 'string', 'is_sample' => false],
+            ['key' => 'inventory.allow_negative_stock', 'value' => false, 'group' => 'inventory', 'type' => 'boolean', 'is_sample' => false],
+            ['key' => 'inventory.default_gst_rate', 'value' => 18, 'group' => 'inventory', 'type' => 'integer', 'is_sample' => false],
+            ['key' => 'inventory.default_warranty_months', 'value' => 12, 'group' => 'inventory', 'type' => 'integer', 'is_sample' => false],
         ];
 
         foreach ($defaults as $row) {
