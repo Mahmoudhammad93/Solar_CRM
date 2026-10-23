@@ -669,3 +669,24 @@ SEC-V2-01..05 (see security-verification.md). Residuals: 2FA optional, LeadPolic
 
 ### Re-verify (post-commit) command results
 `git clone` → `MYSQL_READY` → `composer install` 0 → `npm ci` 0 → `npm run build` 0 → `key:generate` 0 → `migrate:fresh --seed` 0 → `storage:link` 0 → `LOGIN_HTTP:200` → `PASS_OK` / `AUTH_OK` → `.env` ignored; main `git status` clean aside from this report hash note.
+
+---
+
+## Validation V6 - Final feature status sheet
+
+**Time (shell):** `2026-10-23 18:05 EEST`
+
+### Actions
+- Rebuilt `docs/feature-status.md` + export `docs/feature-status.csv` from `docs/requirements-matrix.csv` (217 rows, no deletes)
+- Evidence-backed upgrades only (AT/tests/V4–V5); Partial/Simulated include gap + production note
+- Explicit honesty table: WhatsApp/email, maps, subsidy APIs, e-sign, payment gateway, backups, calendar, import, custom fields, NPV/IRR, PO/GRN, 2FA
+- Synced matrix statuses to match sheet
+
+### Counts
+| Status | Count |
+|--------|------:|
+| Fully working | 171 |
+| Simulated | 7 |
+| Partial | 13 |
+| Not implemented | 26 |
+| **Total** | **217** (= matrix) |
