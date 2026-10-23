@@ -1,0 +1,3 @@
+# Place verbatim phase prompt files here when you paste them.
+# Expected names (suggested): phase-00.md … phase-12.md, validation-v1.md …
+# Do not invent prompts — paste what you actually sent.

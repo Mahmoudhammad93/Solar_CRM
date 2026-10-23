@@ -703,3 +703,21 @@ SEC-V2-01..05 (see security-verification.md). Residuals: 2FA optional, LeadPolic
 - Flags only: visit PDF action if missing on camera; SET-01 logo refresh Partial
 
 ### No product code changes (script-only)
+
+---
+
+## Validation V8 - Genuine AI evidence organization
+
+**Time (shell):** `2026-10-23 18:12:41 EEST`
+
+### Actions
+- Created `docs/ai-evidence/README.md` indexing tools, prompts, exports path, phase-reports, debug examples from git/tests only
+- Created empty `exports/` and `prompts/` placeholders (no fabricated chat content)
+- Listed gaps: no chat exports, no pasted phase prompts, Claude-only vs Auto/Composer disclosure
+
+### Verification
+- `ls -R docs/ai-evidence` — only README placeholders + phase-reports.md (+ this README)
+- `git log --oneline` — 34 commits mapped in evidence README
+
+### Boundaries
+- Did not edit prior phase report entries; did not invent exports
