@@ -604,7 +604,7 @@ None (suite already green).
 ## Validation V2 - Security verification
 
 **Time (shell):** `2026-10-23 17:34+ EEST`  
-**Git:** commit pending
+**Git:** commit `c6e7736`
 
 ### Actions
 - Hardened API ability check (fail closed on empty abilities)

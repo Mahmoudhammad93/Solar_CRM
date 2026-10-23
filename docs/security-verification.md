@@ -14,11 +14,11 @@
 
 | ID | Severity | Finding | Disposition | Fix commit |
 |----|----------|---------|-------------|------------|
-| SEC-V2-01 | Medium | API tokens with **empty `abilities`** previously skipped ability check (fail-open) | **Fixed** — require `leads:read` or `*` | _(this V2 commit)_ |
-| SEC-V2-02 | Medium | Public `/quotes/verify/{token}` had **no rate limit** (token brute-force surface) | **Fixed** — `throttle:quote-verify` 30/min/IP | _(this V2 commit)_ |
-| SEC-V2-03 | Low | Document download lacked dedicated throttle | **Fixed** — `throttle:document-download` 60/min | _(this V2 commit)_ |
-| SEC-V2-04 | Medium | `User::$fillable` included `role_id` / `is_active` (mass-assignment privilege escalation if request ever filled) | **Fixed** — removed from fillable; seeders use `forceFill` | _(this V2 commit)_ |
-| SEC-V2-05 | Low | Client filenames with `../` — Symfony already strips path; added `safeOriginalName` + reject when raw name still contains traversal | **Hardened** | _(this V2 commit)_ |
+| SEC-V2-01 | Medium | API tokens with **empty `abilities`** previously skipped ability check (fail-open) | **Fixed** — require `leads:read` or `*` | `c6e7736` |
+| SEC-V2-02 | Medium | Public `/quotes/verify/{token}` had **no rate limit** (token brute-force surface) | **Fixed** — `throttle:quote-verify` 30/min/IP | `c6e7736` |
+| SEC-V2-03 | Low | Document download lacked dedicated throttle | **Fixed** — `throttle:document-download` 60/min | `c6e7736` |
+| SEC-V2-04 | Medium | `User::$fillable` included `role_id` / `is_active` (mass-assignment privilege escalation if request ever filled) | **Fixed** — removed from fillable; seeders use `forceFill` | `c6e7736` |
+| SEC-V2-05 | Low | Client filenames with `../` — Symfony already strips path; added `safeOriginalName` + reject when raw name still contains traversal | **Hardened** | `c6e7736` |
 | SEC-V2-06 | Info | Demo password `Password1!` in README/seeders | **Accepted** — documented demo-only; no production secrets | — |
 | SEC-V2-07 | Info | Optional 2FA / device list (REQ-8-B-004) | **Not implemented** — known-limitations | — |
 | SEC-V2-08 | Low | `LeadPolicy::export` allows `leads.view` **or** `leads.export` | **Documented** — Reports Hub still requires `reports.view` / export checks | residual |
