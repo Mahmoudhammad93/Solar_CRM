@@ -82,12 +82,12 @@ final class PermissionCatalog
         return [
             'super-admin' => $allKeys,
             'sales-manager' => array_values(array_unique(array_merge(
-                $moduleActions(['dashboard', 'leads', 'visits', 'tasks', 'calculators', 'quotations', 'customers', 'reports'], ['view', 'create', 'edit', 'export', 'approve']),
+                $moduleActions(['dashboard', 'leads', 'visits', 'tasks', 'calculators', 'quotations', 'customers', 'reports', 'orders', 'projects'], ['view', 'create', 'edit', 'export', 'approve']),
                 $moduleActions(['leads', 'quotations'], ['delete']),
                 ['users.view'],
             ))),
             'sales-executive' => $moduleActions(
-                ['dashboard', 'leads', 'customers', 'visits', 'tasks', 'calculators', 'quotations', 'products', 'documents'],
+                ['dashboard', 'leads', 'customers', 'visits', 'tasks', 'calculators', 'quotations', 'products', 'documents', 'orders'],
                 ['view', 'create', 'edit']
             ),
             'surveyor-engineer' => $moduleActions(

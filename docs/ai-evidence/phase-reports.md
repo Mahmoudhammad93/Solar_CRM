@@ -79,7 +79,7 @@ Ready for Phase 1 scaffolding after receipt timestamp is provided and clock is f
 - `php artisan test --testsuite=Feature` -> **15 passed, 1 skipped** (MySQL-only test skipped on sqlite)
 - `DB_CONNECTION=mysql ... php artisan test --filter=NumberingMysqlConcurrencyTest` -> **passed** (12 parallel allocations, no duplicates)
 - `curl /admin/login` -> HTTP **200**, branding name present
-- Earlier failure: parallel numbering under sqlite transaction wrap / wrong DB env for child processes ‚Äî fixed by dedicated MySQL test class + env passthrough
+- Earlier failure: parallel numbering under sqlite transaction wrap / wrong DB env for child processes ó fixed by dedicated MySQL test class + env passthrough
 
 ### Requirement status summary (matrix)
 - Fully working: 30
@@ -98,10 +98,10 @@ Ready for Phase 1 scaffolding after receipt timestamp is provided and clock is f
 
 ### Human manual verify
 1. Login as `admin@solar-crm.test` / `Password1!` at `/admin/login`.
-2. Settings ‚Üí change app name + upload logo ‚Üí Save ‚Üí refresh ‚Üí logout/login (SET-01/SET-09).
-3. Account ‚Üí Change password (SET-02): wrong current rejected; new works; old fails.
-4. Login as `executive@solar-crm.test` ‚Äî Settings nav should be inaccessible / 403 (SET-07).
-5. Login as `inactive@solar-crm.test` ‚Äî blocked.
+2. Settings ? change app name + upload logo ? Save ? refresh ? logout/login (SET-01/SET-09).
+3. Account ? Change password (SET-02): wrong current rejected; new works; old fails.
+4. Login as `executive@solar-crm.test` ó Settings nav should be inaccessible / 403 (SET-07).
+5. Login as `inactive@solar-crm.test` ó blocked.
 6. Narrow browser to mobile width; confirm responsive Filament shell.
 7. Provide assignment receipt timestamp for `docs/project-clock.md`.
 
@@ -139,7 +139,7 @@ See matrix totals after Phase 2 update.
 
 ### Human manual verify (AT-02 / SET-03)
 1. Login admin@solar-crm.test / Password1!
-2. Administration ‚Üí Lookups: add lead_source value; confirm it appears on Lead form Source + table filter.
+2. Administration ? Lookups: add lead_source value; confirm it appears on Lead form Source + table filter.
 3. Create lead, assign owner, add interaction note, schedule follow-up, search/filter.
 4. Login as executive A vs B: cannot open the other's lead URL.
 5. Convert lead to customer twice; same customer_number.
@@ -253,7 +253,7 @@ Ready for hybrid calculators / quotations.
 - Authored `docs/calculation-spec.md` before coding (formulas, units, defaults, additional assumptions, validation, snapshots).
 
 ### What was built
-- `HybridCalculatorService`, `InvestmentCalculatorService`, `EvCalculatorService` ó server-side only; Settings-driven constants
+- `HybridCalculatorService`, `InvestmentCalculatorService`, `EvCalculatorService` ù server-side only; Settings-driven constants
 - Immutable `calculation_runs` snapshots; re-run overlays current Settings into a **new** row
 - Filament pages: Hybrid (load repeater + PDF), Investment, EV
 - Settings ? Calculators tab (SET-04 keys)
@@ -263,9 +263,9 @@ Ready for hybrid calculators / quotations.
 
 | Example | Key inputs | Hand expected | Actual |
 |---------|------------|---------------|--------|
-| A residential | loads 10◊10W◊5h + 2◊60◊8 + 1◊150◊24 crit; backup 4h; PSH5; PR0.75; Wp550; DoD0.9; ?0.95; m1.25; V48 | daily 5.06 kWh; batt 0.923 kWh; 3 panels / 1.65 kWp; annual gen 1.65◊5◊365◊0.75=2258.44 | daily 5.06; batt 0.9234; panels 3; kWp 1.65; annual 2258.44 |
+| A residential | loads 10ù10Wù5h + 2ù60ù8 + 1ù150ù24 crit; backup 4h; PSH5; PR0.75; Wp550; DoD0.9; ?0.95; m1.25; V48 | daily 5.06 kWh; batt 0.923 kWh; 3 panels / 1.65 kWp; annual gen 1.65ù5ù365ù0.75=2258.44 | daily 5.06; batt 0.9234; panels 3; kWp 1.65; annual 2258.44 |
 | B higher backup | +router 20W crit; backup 8h | batt ?2.093 kWh (>A) | 2.093; greater than A |
-| C roof cap | constrain area 5 m≤ / 2.5 | max 2 panels / 1.1 kWp | panels 2; kWp 1.1 |
+| C roof cap | constrain area 5 mù / 2.5 | max 2 panels / 1.1 kWp | panels 2; kWp 1.1 |
 
 ### Tests
 - `HybridCalculatorTest` + `InvestmentAndEvCalculatorTest` ? **11 passed** (scenarios, sensitivity, immutability, validation, PDF/HTML snapshot equality)
@@ -294,7 +294,7 @@ Ready for quotations (Phase 6) consuming calculation runs.
 
 ### Sample totals
 
-**Hybrid QUO-2026-0001 (intra-state Maharashtra)** ó PDF `quotation-quo-2026-0001-r1-20261023-130037.pdf` (880,865 bytes)
+**Hybrid QUO-2026-0001 (intra-state Maharashtra)** ù PDF `quotation-quo-2026-0001-r1-20261023-130037.pdf` (880,865 bytes)
 
 | Field | Amount |
 |-------|--------|
@@ -305,7 +305,7 @@ Ready for quotations (Phase 6) consuming calculation runs.
 | SGST 9% | 162.00 |
 | Grand total | 2,124.00 |
 
-**Pump QUO-2026-0002 (inter-state Karnataka)** ó PDF `quotation-quo-2026-0002-r1-20261023-130038.pdf` (881,404 bytes)
+**Pump QUO-2026-0002 (inter-state Karnataka)** ù PDF `quotation-quo-2026-0002-r1-20261023-130038.pdf` (881,404 bytes)
 
 | Field | Amount |
 |-------|--------|
@@ -322,3 +322,60 @@ AT-06 Fully working; REQ-5-A-* Fully working; NPV N/A; order conversion still Ph
 
 ### Next phase readiness
 Ready for order/project conversion (Phase 7).
+
+---
+
+## Phase 7 - Quotation?project, milestones, materials, My Orders
+
+**Time (shell):** `2026-10-23 16:32:40 EEST`
+
+**Git:** commit `c22b55e` on `master`
+
+### What was built
+- `ConvertQuotationToProject` ó Accepted only; `lockForUpdate`; unique `orders.quotation_id`; idempotent return of existing; copies snapshot lines/totals/schedule/site/customer; preserves quote; audit + quotation activity
+- Orders / Projects migrations + models; milestones (10 defaults + weights/%); Installation (checklist/readings/Demo sign-off; completion PDF Partial); ProjectMaterial BOM from quote lines
+- `AllocationService` ? `StockService` (reserve/allocate/issue/return/damage); shortage required vs available
+- `ProjectMilestoneService` ó configurable transitions; hold/exception require reason; SLA due_at / overdue
+- Filament: My Orders (Pending/Active/Completed/Cancelled, internal-only); Projects + relation managers; Convert action on Accepted quote
+- Settings: `projects.default_delivery_days`, `default_duration_days`, `milestone_sla_days`
+- Artisan `quote:convert` for concurrency tests
+
+### Conversion data-mapping (quote snapshot ? order/project)
+
+| Snapshot / quote field | Order | Project |
+|------------------------|-------|---------|
+| quotation.id | quotation_id (unique) | quotation_id |
+| revision.id | quotation_revision_id | ó |
+| customer_id | customer_id | customer_id |
+| revision.site_address | site_address | ó |
+| revision.system_type / proposal_type | project_type | ó |
+| revision.system_capacity_kw | capacity_kw | ó |
+| revision.totals.grand_total | contract_value | ó |
+| revision.lines | lines_snapshot + ProjectMaterial rows | materials (BOM) |
+| revision.totals | totals_snapshot | ó |
+| revision.payment_schedule | payment_schedule | ó |
+| revision.template_texts.scope / customer_terms | confirmed_scope | ó |
+| owner_id | owner_id | sales_user_id |
+| ó | number ORD-*, ordered_on, delivery_target, status | number PRJ-*, milestones, installation, % complete |
+
+### Shortage example (AT-08)
+- Project material `PNL-HC-550`: required **12**, warehouse AT08S available **2** ? shortage **10**, `has_shortage=true`
+- Reserve 5 blocked: ìInsufficient stockÖ negative stock blocked by policyî
+- Low-stock samples still visible: PNL-HC-450 (8/15), INV-VN-8K (2/2), BAT-VN-10KWH (3/3)
+
+### Manual AT-07 evidence
+- QUO-2026-0003 Accepted ? ORD-2026-0001 / PRJ-2026-0001
+- contract_value 19399.2 equals revision grand_total; site ìAT-07 Demo Site, Nagpurî; capacity 4.4; payment schedule 30/40/30
+- 10 milestones; after complete Order Confirmed ? percent_complete 5%, current `documents_pending`
+- Second convert: idempotent message ìOrder/project already existsÖî
+
+### Tests
+- `ConvertQuotationToProjectTest` + `ProjectMilestoneAndAllocationTest` ó **8 passed** (sqlite)
+- `ConvertQuotationMysqlConcurrencyTest` ó **1 passed** (6 parallel `quote:convert`, single order)
+- Quotation workflow suite still **9 passed** (sent?accepted status-only on locked revision)
+
+### Status
+AT-07 Fully working; AT-08 Fully working; installation completion PDF Partial.
+
+### Next phase readiness
+Ready for invoices/tickets/AMC (Phase 8).

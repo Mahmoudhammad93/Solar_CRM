@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Quotations\Pages;
 
 use App\Filament\Resources\Quotations\QuotationResource;
 use App\Models\Customer;
+use App\Services\ConvertQuotationToProject;
 use App\Services\MessageService;
 use App\Services\QuotationReportService;
 use App\Services\QuotationService;
@@ -137,6 +138,26 @@ class EditQuotation extends EditRecord
                 ->url(fn () => route('quotes.verify', $this->record->public_token))
                 ->openUrlInNewTab()
                 ->label('Public verify page'),
+            Action::make('convertToProject')
+                ->label('Convert to order/project')
+                ->color('success')
+                ->visible(fn () => strtolower((string) $this->record->currentRevision?->status) === 'accepted')
+                ->requiresConfirmation()
+                ->modalHeading('Convert accepted quotation')
+                ->modalDescription('Creates linked order + project from the locked revision snapshot. Safe to retry — duplicates are blocked.')
+                ->action(function (): void {
+                    try {
+                        $result = app(ConvertQuotationToProject::class)->convert($this->record, Filament::auth()->user());
+                        Notification::make()
+                            ->title($result['created'] ? 'Order/project created' : 'Already converted')
+                            ->body($result['message'].' Order '.$result['order']->number.' · Project '.$result['project']->number)
+                            ->success()
+                            ->send();
+                        $this->record->refresh();
+                    } catch (ValidationException $e) {
+                        Notification::make()->title('Conversion blocked')->body(collect($e->errors())->flatten()->implode(' '))->danger()->send();
+                    }
+                }),
         ];
     }
 }

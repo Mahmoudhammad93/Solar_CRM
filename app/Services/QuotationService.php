@@ -125,10 +125,8 @@ class QuotationService
         }
 
         return DB::transaction(function () use ($quote, $revision, $from, $to, $user, $notes) {
-            if ($revision->is_locked) {
-                throw ValidationException::withMessages(['status' => 'Locked revision cannot change status. Create a new revision.']);
-            }
-
+            // is_locked freezes lines/totals (edits go through revise()). Status-only
+            // transitions remain allowed per QuotationWorkflow (e.g. sent → accepted).
             $revision->status = $to;
             if (QuotationWorkflow::locksRevision($to)) {
                 $revision->is_locked = true;

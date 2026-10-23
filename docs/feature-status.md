@@ -178,8 +178,8 @@ Updated after Phase 2.
 | AT-04 | Acceptance | AT-04 Run hybrid calculator; show changed inputs, units, assumptions, formula/intermediates, changing outpu... | Fully working |  |  | Phase5: hybrid UI+tests+PDF; 3 worked examples |
 | AT-05 | Acceptance | AT-05 Run solar investment and EV income calculators; verify input changes affect results logically | Fully working |  |  | Phase5: investment+EV tests and Filament pages |
 | AT-06 | Acceptance | AT-06 Create itemized hybrid and solar water-pump quotations, calculate configured taxes/totals, generate P... | Fully working |  |  | Phase6: QuotationTotalsAndWorkflowTest 9 pass; sample PDFs generated |
-| AT-07 | Acceptance | AT-07 Accept quotation and convert to linked order/project without losing key data; update milestones and s... | Not implemented |  |  |  |
-| AT-08 | Acceptance | AT-08 View catalogue/stock, link required materials to a project, show stock shortage/low-stock information | Partial |  |  | Phase4: catalogue/stock/low-stock evidenced; project material link Phase7 |
+| AT-07 | Acceptance | AT-07 Accept quotation and convert to linked order/project without losing key data; update milestones and s... | Fully working |  |  | Phase7: ConvertQuotationToProject + milestones; ORD-2026-0001/PRJ-2026-0001 from QUO-2026-0003; tests 17+MySQL concurrency |
+| AT-08 | Acceptance | AT-08 View catalogue/stock, link required materials to a project, show stock shortage/low-stock information | Fully working |  |  | Phase7: ProjectMaterial+AllocationService via StockService; shortage 12 req/2 avail; low-stock page retained |
 | AT-09 | Acceptance | AT-09 Create, assign, update and close ticket linked to customer/project; show AMC record or renewal workflow | Not implemented |  |  |  |
 | AT-10 | Acceptance | AT-10 Dashboard KPIs and core reports reflect stored records; export data and verify filters/totals | Not implemented |  |  |  |
 | AT-11 | Acceptance | AT-11 Demonstrate dynamic settings: app name/logo, password change, new dropdown/workflow, calculator assum... | Not implemented |  |  |  |

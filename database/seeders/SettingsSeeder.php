@@ -108,6 +108,9 @@ class SettingsSeeder extends Seeder
             ['key' => 'quotations.template_maintenance', 'value' => 'Optional AMC available separately.', 'group' => 'quotations', 'type' => 'string', 'is_sample' => true],
             ['key' => 'quotations.template_validity', 'value' => 'Valid until the date shown on this quotation.', 'group' => 'quotations', 'type' => 'string', 'is_sample' => true],
             ['key' => 'integrations.message_mode', 'value' => 'demo', 'group' => 'integrations', 'type' => 'string', 'is_sample' => true],
+            ['key' => 'projects.default_delivery_days', 'value' => 45, 'group' => 'projects', 'type' => 'integer', 'unit' => 'days', 'is_sample' => false],
+            ['key' => 'projects.default_duration_days', 'value' => 60, 'group' => 'projects', 'type' => 'integer', 'unit' => 'days', 'is_sample' => false],
+            ['key' => 'projects.milestone_sla_days', 'value' => 7, 'group' => 'projects', 'type' => 'integer', 'unit' => 'days', 'is_sample' => false],
         ];
 
         foreach ($defaults as $row) {

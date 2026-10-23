@@ -64,4 +64,14 @@ class Quotation extends Model
     {
         return $this->morphMany(Document::class, 'documentable');
     }
+
+    public function order(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Order::class);
+    }
+
+    public function project(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Project::class);
+    }
 }

@@ -101,6 +101,9 @@ class ManageSettings extends Page
             'calc_margin' => $settings->get('calc.hybrid.design_margin', 1.25),
             'calc_tariff' => $settings->get('calc.hybrid.tariff', 8),
             'calc_export' => $settings->get('calc.hybrid.export_rate', 3),
+            'project_delivery_days' => $settings->get('projects.default_delivery_days', 45),
+            'project_duration_days' => $settings->get('projects.default_duration_days', 60),
+            'project_milestone_sla_days' => $settings->get('projects.milestone_sla_days', 7),
         ]);
     }
 
@@ -232,15 +235,21 @@ class ManageSettings extends Page
                                 ->content('Edit product_category, product_unit, and product_brand under Administration → Lookups. Manage warehouses under Inventory → Warehouses.'),
                         ])->columns(2),
                 ]),
+                Tab::make('Projects')->schema([
+                    Section::make('Order / project defaults (Phase 7)')
+                        ->description('Milestone catalogue defaults: Order Confirmed → … → Closed. Hold/exception require a recorded reason. SLA days set due dates used for stuck/overdue detection.')
+                        ->schema([
+                            TextInput::make('project_delivery_days')->numeric()->integer()->label('Default delivery target (days)')->disabled(! $canEdit),
+                            TextInput::make('project_duration_days')->numeric()->integer()->label('Default project duration (days)')->disabled(! $canEdit),
+                            TextInput::make('project_milestone_sla_days')->numeric()->integer()->label('Milestone SLA step (days)')->disabled(! $canEdit),
+                        ])->columns(3),
+                ]),
                 Tab::make('Coming soon')->schema([
                     Section::make('Not yet implemented')
                         ->schema([
-                            Placeholder::make('unavailable_calc')
-                                ->label('Calculator assumptions')
-                                ->content('Unavailable — calculator phases'),
                             Placeholder::make('unavailable_whatsapp')
                                 ->label('WhatsApp / Email integrations')
-                                ->content('Unavailable — Demo drivers in later phases'),
+                                ->content('Unavailable — Demo drivers (MessageService)'),
                             Placeholder::make('unavailable_regional')
                                 ->label('Regional / finance / API')
                                 ->content('Unavailable — later settings phases'),
@@ -307,6 +316,9 @@ class ManageSettings extends Page
             'inventory.reservation_behavior' => ['value' => $data['reservation_behavior'] ?? 'hard', 'group' => 'inventory', 'type' => 'string'],
             'inventory.default_gst_rate' => ['value' => $data['default_gst_rate'] ?? 18, 'group' => 'inventory', 'type' => 'integer'],
             'inventory.default_warranty_months' => ['value' => $data['default_warranty_months'] ?? 12, 'group' => 'inventory', 'type' => 'integer'],
+            'projects.default_delivery_days' => ['value' => $data['project_delivery_days'] ?? 45, 'group' => 'projects', 'type' => 'integer'],
+            'projects.default_duration_days' => ['value' => $data['project_duration_days'] ?? 60, 'group' => 'projects', 'type' => 'integer'],
+            'projects.milestone_sla_days' => ['value' => $data['project_milestone_sla_days'] ?? 7, 'group' => 'projects', 'type' => 'integer'],
         ];
 
         $user = Auth::user();
