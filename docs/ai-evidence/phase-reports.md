@@ -457,7 +457,7 @@ Ready for settings polish / AT-11 / packaging.
 
 **Time (shell):** `2026-10-23 17:12:14 EEST`
 
-**Git:** commit pending on `master` (this phase)
+**Git:** commit `bb9b16f` on `master`
 
 ### What was built
 - `WhatsAppProvider` + `DemoWhatsAppDriver` (default) + `ConfiguredWhatsAppDriver` stub (**Not implemented** live client)
