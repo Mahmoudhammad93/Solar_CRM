@@ -623,7 +623,7 @@ SEC-V2-01..05 (see security-verification.md). Residuals: 2FA optional, LeadPolic
 ## Validation V3 - Calculation verification
 
 **Time (shell):** `2026-10-23 17:40:07 EEST`  
-**Git:** commit pending
+**Git:** commit `95e48e6`
 
 ### Actions
 - Created `docs/calculation-verification.md` (H1–H5, I1–I2, E1–E2, Q1–Q2 + what-if + snapshot/PDF)
